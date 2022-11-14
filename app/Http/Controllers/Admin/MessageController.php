@@ -46,12 +46,7 @@ class MessageController extends Controller
             'message' => $request->message,
             'excerpt' => Str::limit(strip_tags($request->message), 200),
         ]);
-
-        $notification = array(
-            'message' => 'Pesan berhasil dikirim !',
-            'alert-type' => 'success',
-        );
-
-        return redirect()->back()->with($notification);
+        
+        return redirect()->back()->with('complete', 'Pesan berhasil dikirim. Kami telah mengirimkan email ke pada mahasiswa tersebut yang berisi informasi balasan pesan anda !');
     }
 }

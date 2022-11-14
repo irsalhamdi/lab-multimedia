@@ -229,7 +229,7 @@ class DashboardController extends Controller
             'alert-type' => 'success',
         );
 
-        return redirect()->route('mahasiswa.pelatihan')->with($notification);
+        return redirect()->route('mahasiswa.pelatihan')->with('complete', 'Selamat, pendaftaran anda berhasil. Kami telah mengirimkan email kepada anda yang berisi link pelatihan !');
     }
 
     public function comment(Request $request, $id)
@@ -332,7 +332,7 @@ class DashboardController extends Controller
                 'alert-type' => 'success',
             );
     
-            return redirect()->back()->with($notification);
+            return redirect()->back()->with('complete', 'Mahasiswa berhasil ditambahkan, kami telah mengirimkan email kepada mahasiswa tersebut yang berisi info pengabdian anda !');
 
         }
     }

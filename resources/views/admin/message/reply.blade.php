@@ -1,5 +1,12 @@
 @extends('admin.layouts.main')
 @section('main')
+    <div class="container">
+        @if (session()->has('complete'))
+            <div class="alert alert-success" role="alert">
+                {{ session('complete') }}
+            </div>
+        @endif
+    </div>
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="comments-area">
             @php

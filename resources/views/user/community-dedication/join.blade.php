@@ -6,6 +6,13 @@
         $year = date('Y',strtotime($dedication->date));
         $hour = date('H:i',strtotime($dedication->date));
     @endphp
+        <div class="container">
+          @if (session()->has('complete'))
+              <div class="alert alert-success" role="alert">
+                  {{ session('complete') }}
+              </div>
+          @endif
+      </div>
     <div class="row">
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card">

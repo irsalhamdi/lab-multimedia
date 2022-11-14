@@ -46,6 +46,13 @@
 
     <div class="service_area gray_bg">
         <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="section_title text-center mb-70">
+                        <h3 class="mb-45">Pelayanan</h3>
+                    </div>
+                </div>
+            </div>
             <div class="row justify-content-center ">
                 <div class="col-lg-4 col-md-6">
                     <div class="single_service d-flex align-items-center ">
@@ -55,7 +62,6 @@
                         <a href="{{ route('home.trainings') }}">
                             <div class="service_info">
                                 <h4>Pelatihan</h4>
-                                <p>Tersedia</p>
                             </div>
                         </a>
                     </div>
@@ -68,7 +74,6 @@
                         <a href="{{ route('home.dedications') }}">
                             <div class="service_info">
                                 <h4>Pengabdian</h4>
-                                <p>Tersedia</p>
                             </div>
                         </a>
                     </div>
@@ -81,7 +86,6 @@
                         <a href="{{ route('home.release') }}">
                             <div class="service_info">
                                 <h4>Informasi</h4>
-                                <p>Tersedia</p>
                             </div>
                         </a>
                     </div>
@@ -92,10 +96,10 @@
 
     <div class="popular_program_area section__padding">
         <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="section_title text-center">
-                        <h3>Berita Terkini</h3>
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="section_title text-center mb-70">
+                        <h3 class="mb-45">Berita Terkini</h3>
                     </div>
                 </div>
             </div>

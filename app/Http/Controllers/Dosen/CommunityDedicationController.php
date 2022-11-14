@@ -246,13 +246,8 @@ class CommunityDedicationController extends Controller
             ];
     
             Mail::to($user->email)->send(new CommunityDedicationMail($data));
-
-            $notification = array(
-                'message' => 'Mahasiswa Berhasil ditambahkan !',
-                'alert-type' => 'success',
-            );
     
-            return redirect()->route('dosen.community.dedication.participants', $id)->with($notification);
+            return redirect()->route('dosen.community.dedication.participants', $id)->with('complete', 'Mahasiswa berhasil ditambahkan, kami telah mengirimkan email kepada mahasiswa tersebut yang berisi info pengabdian anda !');
 
         }
 
@@ -290,7 +285,7 @@ class CommunityDedicationController extends Controller
             'alert-type' => 'success',
         );
 
-        return redirect()->route('dosen.community.dedication.participants', $id)->with($notification);
+        return redirect()->route('dosen.community.dedication.participants', $id)->with('complete', 'Dosen berhasil ditambahkan, kami telah mengirimkan email kepada dosen tersebut yang berisi info pengabdian anda !');
     }
 
     public function participantsDestroy($id)

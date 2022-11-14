@@ -1,5 +1,12 @@
 @extends('user.layouts.main')
 @section('main')
+    <div class="container">
+        @if (session()->has('complete'))
+            <div class="alert alert-success" role="alert">
+                {{ session('complete') }}
+            </div>
+        @endif
+    </div>
     <div class="content-wrapper">
         <div class="row">
             @foreach ($trainings as $training)
