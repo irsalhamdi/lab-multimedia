@@ -75,6 +75,8 @@ Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/subscribe', [HomeController::class, 'subscribe'])->name('subscribe');
 Route::get('/pelatihan/daftar/{id}', [DashboardController::class, 'trainingEnroll'])->name('mahasiswa.daftar.pelatihan');
 Route::get('/pengabdian-masyarakat/daftar/{id}', [DashboardController::class, 'dedicationEnroll'])->name('mahasiswa.daftar.pengabdian');
+Route::post('/penelitian/daftar/submit', [ResearchController::class, 'enroll'])->name('mahasiswa.daftar.penelitian.submit');
+Route::get('/penelitian', [ResearchController::class, 'research'])->name('mahasiswa.daftar.penelitian');   
 
 Route::prefix('admin')->group(function(){
     Route::get('/profile/vission', [ProfileController::class, 'vission'])->middleware('admin')->name('admin.vission');
@@ -438,8 +440,6 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::get('/pengabdian-masyarakat/lain/{id}', [DashboardController::class, 'join'])->name('mahasiswa.community.dedication.join');
     Route::post('/pengabdian-masyarakat/participants-store/{id}', [DashboardController::class, 'participantsStore'])->name('mahasiswa.community.dedication.participants.store');
     Route::post('/pengabdian-masyarakat/daftar/submit/{id}', [DashboardController::class, 'dedicationSubmit'])->name('mahasiswa.daftar.pengabdian.submit');
-    Route::get('/penelitian', [ResearchController::class, 'research'])->name('mahasiswa.daftar.penelitian');   
-    Route::post('/penelitian/daftar/submit', [ResearchController::class, 'enroll'])->name('mahasiswa.daftar.penelitian.submit');
     Route::get('/daftar-penelitian', [ResearchController::class, 'list'])->name('mahasiswa.penelitian');
     Route::post('/question', [DashboardController::class, 'question'])->name('question');
     Route::get('/message', [DashboardController::class, 'message'])->name('mahasiswa.message');

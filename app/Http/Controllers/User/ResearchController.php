@@ -17,6 +17,10 @@ class ResearchController extends Controller
 {   
     public function research()
     {
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum mendaftar penelitian !');
+        }
+
         $user = User::where('id', Auth::user()->id)->first();
 
         $contact = Contact::find(1);
@@ -31,6 +35,17 @@ class ResearchController extends Controller
 
     public function enroll(Request $request)
     {   
+        $user = User::where(['nim' => $request->nim, 'email' => $request->email])->first();
+
+        if(empty($user)){
+            $notification = [
+                'message' => 'Data anda belum terdaftar di sistem kami, silahkan daftarkan akun terlebih dahulu !',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+
         $request->validate([
             'name' => ['min:3'],
             'nim' => ['min:10'],
@@ -54,7 +69,7 @@ class ResearchController extends Controller
             $url = 'upload/research/' . $fileName;
 
             Research::create([
-                'user_id' => Auth::user()->id,
+                'user_id' => $user->id,
                 'title' => $request->title,
                 'description' => $request->description,
                 'dosen' => $request->dosen,
