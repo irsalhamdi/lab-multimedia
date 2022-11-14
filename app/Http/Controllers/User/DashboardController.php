@@ -161,6 +161,10 @@ class DashboardController extends Controller
 
     public function trainingEnroll($id)
     {
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum mendaftar pelatihan !');
+        }
+
         $training = Training::findOrFail($id);
 
         $contact = Contact::find(1);
@@ -339,6 +343,9 @@ class DashboardController extends Controller
 
     public function dedicationEnroll($id)
     {
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum mendaftar pengabdian !');
+        }
         $dedication = CommunityDedication::findOrFail($id);
 
         $contact = Contact::find(1);
