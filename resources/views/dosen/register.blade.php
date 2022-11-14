@@ -44,9 +44,19 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-6">
+                                    <div class="col-md-6 mb-3">
                                         <div class="single_input">
-                                            <input type="text" name="jurusan" placeholder="Jurusan" value="{{ old('jurusan') }}" class="@error('nip') is-invalid @enderror" required>
+                                            <div class="default-select" id="default-select">
+                                                <select>
+                                                    <option value="Komputerisasi Akuntansi">Komputerisasi Akuntansi</option>
+                                                    <option value="Manajemen Informatika">Manajemen Informatika</option>
+                                                    <option value="Sistem Informasi">Sistem Informasi</option>
+                                                    <option value="Sistem Komputer">Sistem Komputer</option>
+                                                    <option value="Teknik Informatika">Teknik Informatika</option>
+                                                    <option value="Teknik Komputer Jaringan">Teknik Komputer</option>
+                                                    <option value="Teknik Komputer Jaringan">Teknik Komputer Jaringan</option>
+                                                </select>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
