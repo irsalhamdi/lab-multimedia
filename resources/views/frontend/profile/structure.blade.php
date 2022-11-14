@@ -11,76 +11,80 @@
             </div>
         </div>
     </div>
-    <div class="popular_program_area section__padding program__page">
+    <div class="event_details_area section__padding">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <div class="section_title text-center">
-                        <h3>Struktur Organisasi</h3>
+                    <div class="single_event d-flex align-items-center">
+                        <div class="thumb">
+                            <img src="{{ asset('frontend/img/causes/causes.png') }}">
+                        </div>
+                        <div class="event_details_info">
+                            <div class="event_info">
+                                <a href="#">
+                                    <h4>Dr. Ali Ibrahim</h4>
+                                </a>
+                                <p>
+                                    <span>Kepala Laboratorium</span>  
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="row mt-3">
-                <div class="col-lg-12 col-md-12">
-                    <div class="single__program">
-                        <div style="text-align: center">
-                            <img src="{{ asset('frontend/img/ali.png') }}" style="width: 120px; height: 120px; border-radius: 50%;">
-                            <h6 style="text-align: center" class="mt-3">Kepala Lab</h6> 
-                            <p style="text-align: center">Ali Ibrahim</p> 
+                <div class="col-lg-12">
+                    <div class="single_event d-flex align-items-center">
+                        <div class="thumb">
+                            <img src="{{ asset('frontend/img/irsal.jpeg') }}">
+                        </div>
+                        <div class="event_details_info">
+                            <div class="event_info">
+                                <a href="#">
+                                    <h4>Cakro</h4>
+                                </a>
+                                <p>
+                                    <span>Admin Laboratorium</span>  
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 mt-3">
-                    <div class="single__program">
-                        <div style="text-align: center">
-                            <img src="{{ asset('frontend/img/dea.png') }}" style="width: 120px; height: 120px; border-radius: 50%;">
-                            <h6 style="text-align: center" class="mt-3">Bagian Administrasi</h6> 
-                            <p style="text-align: center">Ali Ibrahim</p> 
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <div class="single_event d-flex align-items-center">
+                        <div class="thumb">
+                            <img src="{{ asset('frontend/img/dea.jpeg') }}">
+                        </div>
+                        <div class="event_details_info">
+                            <div class="event_info">
+                                <a href="#">
+                                    <h4>Dea Salsabilla</h4>
+                                </a>
+                                <p>
+                                    <span>Asisten Laboratorium</span>  
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6 mt-3">
-                    <div class="single__program">
-                        <div style="text-align: center">
-                            <img src="{{ asset('frontend/img/dea.png') }}" style="width: 120px; height: 120px; border-radius: 50%;">
-                            <h6 style="text-align: center" class="mt-3">Bagian Administrasi</h6> 
-                            <p style="text-align: center">Ali Ibrahim</p> 
+            </div>
+            <div class="row mt-3">
+                <div class="col-lg-12">
+                    <div class="single_event d-flex align-items-center">
+                        <div class="thumb">
+                            <img src="{{ asset('frontend/img/iwan.jpeg') }}">
                         </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 mt-3">
-                    <div class="single__program">
-                        <div style="text-align: center">
-                            <img src="{{ asset('frontend/img/dea.png') }}" style="width: 120px; height: 120px; border-radius: 50%;">
-                            <h6 style="text-align: center" class="mt-3">Asistant Lab</h6> 
-                            <p style="text-align: center">Dea</p> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 mt-3">
-                    <div class="single__program">
-                        <div style="text-align: center">
-                            <img src="{{ asset('frontend/img/dea.png') }}" style="width: 120px; height: 120px; border-radius: 50%;">
-                            <h6 style="text-align: center" class="mt-3">Asistant Lab</h6> 
-                            <p style="text-align: center">Iwan</p> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 mt-3">
-                    <div class="single__program">
-                        <div style="text-align: center">
-                            <img src="{{ asset('frontend/img/dea.png') }}" style="width: 120px; height: 120px; border-radius: 50%;">
-                            <h6 style="text-align: center" class="mt-3">Asistant Lab</h6> 
-                            <p style="text-align: center">Dea</p> 
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-3 mt-3">
-                    <div class="single__program">
-                        <div style="text-align: center">
-                            <img src="{{ asset('frontend/img/dea.png') }}" style="width: 120px; height: 120px; border-radius: 50%;">
-                            <h6 style="text-align: center" class="mt-3">Asistant Lab</h6> 
-                            <p style="text-align: center">Iwan</p> 
+                        <div class="event_details_info">
+                            <div class="event_info">
+                                <a href="#">
+                                    <h4>Iwan Mandala</h4>
+                                </a>
+                                <p>
+                                    <span>Asistent Laboratorium</span>  
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>

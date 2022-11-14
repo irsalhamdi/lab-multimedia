@@ -77,6 +77,18 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#research" aria-expanded="false" aria-controls="research">
+          <i class="typcn typcn-briefcase menu-icon"></i>
+          <span class="menu-title">Penelitian</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="research">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.research') }}"> Daftar Penelitian </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#mahasiswa" aria-expanded="false" aria-controls="mahasiswa">
           <i class="typcn typcn-business-card menu-icon"></i>
           <span class="menu-title">Mahasiswa</span>
@@ -111,6 +123,42 @@
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.vission') }}"> Edit Visi</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.mission') }}"> Edit Misi</a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.goal') }}"> Edit Tujuan </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#gallery" aria-expanded="false" aria-controls="gallery">
+          <i class="typcn typcn-calendar-outline menu-icon"></i>
+          <span class="menu-title">Galeri</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="gallery">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.galleries') }}"> Galeri Foto</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#schedule" aria-expanded="false" aria-controls="schedule">
+          <i class="typcn typcn-image-outline menu-icon"></i>
+          <span class="menu-title">Jadwal</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="schedule">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.schedules') }}"> Jadwal Lab</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#faq" aria-expanded="false" aria-controls="faq">
+          <i class="typcn typcn-zoom-outline menu-icon"></i>
+          <span class="menu-title">Faq</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="faq">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.faqs') }}"> Faq</a></li>
           </ul>
         </div>
       </li>

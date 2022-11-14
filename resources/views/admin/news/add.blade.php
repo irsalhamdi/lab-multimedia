@@ -57,10 +57,10 @@
                         {{ old('description') }}
                     </textarea>
                     @error('description')
-                    <p class="text-danger">
-                        {{ $message }}
-                    </p>
-                @enderror
+                        <p class="text-danger">
+                            {{ $message }}
+                        </p>
+                    @enderror
                 </div>
             <a href="{{ route('admin.news') }}" class="btn btn-light">Cancel</a>
             <button type="submit" formnovalidate="formnovalidate" class="btn btn-primary mr-2">Submit</button>

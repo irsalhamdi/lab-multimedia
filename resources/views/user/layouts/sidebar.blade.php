@@ -50,6 +50,18 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#research" aria-expanded="false" aria-controls="research">
+          <i class="typcn typcn-zoom-outline menu-icon"></i>
+          <span class="menu-title">Penelitian</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="research">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('mahasiswa.penelitian') }}"> Daftar Penelitian </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#communitydedication" aria-expanded="false" aria-controls="communitydedication">
           <i class="typcn typcn-group-outline menu-icon"></i>
           <span class="menu-title">Pengabdian</span>

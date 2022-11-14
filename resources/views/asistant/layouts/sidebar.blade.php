@@ -115,6 +115,18 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#gallery" aria-expanded="false" aria-controls="gallery">
+          <i class="typcn typcn-image-outline menu-icon"></i>
+          <span class="menu-title">Galeri</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="gallery">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('asistant.galleries') }}"> Galeri Foto</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#tool" aria-expanded="false" aria-controls="tool">
           <i class="typcn typcn-flash-outline menu-icon"></i>
           <span class="menu-title">Peralatan Lab</span>

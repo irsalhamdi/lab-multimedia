@@ -76,6 +76,9 @@
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('home.profile') }}">Profil</a></li>
                                                     <li><a href="{{ route('home.structure') }}">Struktur Organisasi</a></li>
+                                                    <li><a href="{{ route('home.galleries') }}">Gallery</a></li>
+                                                    <li><a href="{{ route('home.schedules') }}">Jadwal</a></li>
+                                                    <li><a href="{{ route('home.faq') }}">FAQ</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ route('home.tools') }}">Fasilitas</a>
@@ -87,6 +90,7 @@
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('home.trainings') }}">Pelatihan</a></li>
                                                     <li><a href="{{ route('home.dedications') }}">Pengabdian Masyarakat</a></li>
+                                                    <li><a href="{{ route('mahasiswa.daftar.penelitian') }}">Penelitian</a></li>
                                                     <li><a href="{{ route('home.news') }}">Berita</a></li>
                                                     <li><a href="{{ route('home.release') }}">Rilis</a></li>
                                                 </ul>

@@ -24,6 +24,10 @@ use Illuminate\Support\Facades\DB;
 use App\Models\CommunityDedication;
 use App\Http\Controllers\Controller;
 use App\Models\Customers;
+use App\Models\Dosen;
+use App\Models\Faq;
+use App\Models\Gallery;
+use App\Models\Schedule;
 use App\Models\Tool;
 
 class HomeController extends Controller
@@ -310,6 +314,44 @@ class HomeController extends Controller
         $title = 'Struktur Organisasi';
 
         return view('frontend.profile.structure', compact('title' , 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function galleries(){
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $galleries = Gallery::latest()->filter(request(['search']))->paginate(3)->withQueryString();
+        $title = 'Gallery Laboratorium Multimedia';
+
+        return view('frontend.gallery.index', compact('title', 'contact', 'regency', 'district', 'village', 'galleries'));
+    }
+
+    public function schedules()
+    {   
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $schedules = Schedule::latest()->get();
+        $title = 'Jadwal Laboratorium Multimedia';
+
+        return view('frontend.schedules.index', compact('title', 'contact', 'regency', 'district', 'village', 'schedules'));
+    }
+
+    public function faq()
+    {   
+        $faqs = Faq::latest()->get();
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Frequntly Ask Question';
+
+        return view('frontend.faq.index', compact('title', 'contact', 'regency', 'district', 'village', 'faqs'));
     }
 
     public function tools()

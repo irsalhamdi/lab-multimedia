@@ -61,5 +61,25 @@
           </div>
         </div>
       </div>
+      <div class="col-xl-6 d-flex grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-wrap justify-content-between">
+              <h4 class="card-title news-title-style mb-3">Penelitian</h4>
+            </div>
+            <div class="row">
+              <div class="col-12">
+                <div class="row">
+                  <div class="col-sm-12">
+                    <div class="d-flex mb-4">
+                      <div class="news-style" style="">{{ $researchs }}</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+    </div>
     </div>
 @endsection

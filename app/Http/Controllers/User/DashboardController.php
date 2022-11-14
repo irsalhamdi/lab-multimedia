@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Mail;
 use App\Mail\CommunityDedicationMail;
 use App\Models\CommunityDedicationGuide;
 use App\Models\ParticipantCommunityDedication;
+use App\Models\Research;
 
 class DashboardController extends Controller
 {
@@ -35,8 +36,9 @@ class DashboardController extends Controller
     {   
         $trainings = Participant::where('user_id', Auth::user()->id)->count();
         $dedications = ParticipantCommunityDedication::where('user_id', Auth::user()->id)->count();
+        $researchs = Research::where('user_id', Auth::user()->id)->count();
 
-        return view('user.index', compact('trainings', 'dedications'));
+        return view('user.index', compact('trainings', 'dedications', 'researchs'));
     }
 
     public function profile()
