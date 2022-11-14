@@ -418,7 +418,7 @@ Route::prefix('lead')->group(function(){
     Route::get('logout', [LeadController::class, 'logout'])->name('lead.logout')->middleware('lead');
 });
 
-Route::middleware('auth')->group(function(){
+Route::middleware('auth', 'verified')->group(function(){
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/profile/edit', [DashboardController::class, 'profile'])->name('mahasiswa.profile');
     Route::post('/profile/update', [DashboardController::class, 'profileEdit'])->name('mahasiswa.profile.submit');

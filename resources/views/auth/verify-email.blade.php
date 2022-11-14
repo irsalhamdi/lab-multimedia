@@ -1,4 +1,4 @@
-<x-guest-layout>
+{{-- <x-guest-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -36,4 +36,40 @@
             </form>
         </div>
     </x-auth-card>
-</x-guest-layout>
+</x-guest-layout> --}}
+@extends('frontend.layouts.main')
+@section('main')
+    <div class="admission_area">
+        <div class="admission_inner">
+            <div class="container">
+                <div class="row justify-content-end">
+                    <div class="col-lg-7">
+                        <div class="admission_form">
+                            <h3>Verifikasi Email</h3>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p style="text-align: justify">
+                                        Terima kasih telah mendaftar! Sebelum memulai, dapatkah Anda memverifikasi alamat email Anda dengan mengklik tautan yang baru saja kami kirimkan melalui email kepada Anda? Jika Anda tidak menerima email tersebut, kami dengan senang hati akan mengirimkan email yang lain kepada Anda.
+                                    </p>
+                                    @if (session('status') == 'email-verifikasi-telah-dikirim')
+                                        <div class="mb-4 font-medium text-sm text-white">
+                                            Tautan verifikasi baru telah dikirim ke alamat email yang Anda berikan saat pendaftaran.
+                                        </div>
+                                    @endif
+                                </div>
+                                <div class="col-md-12 mt-2">
+                                    <form method="POST" action="{{ route('verification.send') }}">
+                                        @csrf
+                                        <div class="apply_btn">
+                                            <button class="boxed-btn3" type="submit">{{ __('Resend Verification Email') }}</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

@@ -12,11 +12,13 @@
                                 <div class="row">
                                     <div class="col-md-12">
                                         <p>
-                                            lupa kata sandi Anda? Tidak masalah. Cukup beri tahu kami alamat email Anda dan kami akan mengirim email kepada Anda yang berisi tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih yang baru. 
+                                            <p style="text-align: justify">
+                                                lupa kata sandi Anda? Tidak masalah. Cukup beri tahu kami alamat email Anda dan kami akan mengirim email kepada Anda yang berisi tautan pengaturan ulang kata sandi yang memungkinkan Anda memilih yang baru. 
+                                            </p>
                                         </p>
                                         @if (Session::has('status'))
-                                        <p>{{ session::get('status') }}</p>
-                                    @endif
+                                            <p>{{ session::get('status') }}</p>
+                                        @endif
                                         <div class="single_input">
                                             <input type="email" class="@error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" placeholder="Alamat Email" rows="10" required></textarea>
                                             @error('email')
@@ -25,10 +27,10 @@
                                                 </span>
                                             @enderror
                                         </div>
-                                    </div>
-                                    <div class="col-md-12 mt-2">
-                                        <div class="apply_btn">
-                                            <button class="boxed-btn3" type="submit">Submit</button>
+                                        <div class="col-md-12 mt-2">
+                                            <div class="apply_btn">
+                                                <button class="boxed-btn3" type="submit">Submit</button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
