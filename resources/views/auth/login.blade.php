@@ -10,6 +10,11 @@
                             @if (Session::has('error'))
                                 <p>{{ session::get('error') }}</p>
                             @endif
+                            @if (session()->has('complete'))
+                                <p class="text-white">
+                                    {{ session('complete') }}
+                                </p>
+                            @endif
                             <form method="POST" action="{{ route('login') }}">
                                 @csrf
                                 <div class="row">

@@ -79,13 +79,8 @@ class RegisteredUserController extends Controller
                 'password' => Hash::make($request->password),
                 'updated_at' => Carbon::now()
             ]);
-
-            $notification = array(
-                'message' => 'Pendaftaran berhasil, silahkan login !',
-                'alert-type' => 'success',
-            );
     
-            return redirect()->route('login')->with($notification);
+            return redirect()->route('login')->with('complete', 'Pendaftaran berhasil, silahkan login terlebih dahulu !');
         }
     }
 }
