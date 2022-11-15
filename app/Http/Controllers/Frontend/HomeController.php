@@ -27,6 +27,7 @@ use App\Models\Customers;
 use App\Models\Dosen;
 use App\Models\Faq;
 use App\Models\Gallery;
+use App\Models\ResearchTeacher;
 use App\Models\Schedule;
 use App\Models\Tool;
 
@@ -262,9 +263,44 @@ class HomeController extends Controller
         return view('frontend.community-dedication.detail', compact('dedication', 'shares', 'title', 'contact', 'regency', 'district', 'village'));
     }
 
-    public function dedicationTeacher($id)
+    public function researchs()
+    {
+        $researchs = ResearchTeacher::with('dosen')->latest()->filter(request(['search']))->paginate(6)->withQueryString();
+
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Penelitian';
+
+        return view('frontend.research.index', compact('researchs', 'title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function research($id)
+    {
+        $research = ResearchTeacher::findOrFail($id);
+
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = $research->title;
+        $shares = Share::page('http://127.0.0.1:8000/penelitian/detail/'.$research->id, $title)
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->whatsapp()
+        ->getRawLinks();
+
+        return view('frontend.research.detail', compact('research', 'shares', 'title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function teacher($id)
     {
        $dedications = CommunityDedication::where('dosen_id', $id)->filter(request(['search']))->paginate(6)->withQueryString();
+       $researchs = ResearchTeacher::where('dosen_id', $id)->filter(request(['search']))->paginate(6)->withQueryString();
        $dosen = Dosen::where('id', $id)->first();
 
        $contact = Contact::find(1);
@@ -272,9 +308,9 @@ class HomeController extends Controller
        $district = District::where('id', $contact->district_id)->first();
        $village = Village::where('id', $contact->village_id)->first();
 
-       $title = 'Pengabdian | '.$dosen->name;
+       $title = 'Kegiatan | '.$dosen->name;
 
-       return view('frontend.community-dedication.dosen', compact('title', 'dedications', 'contact', 'regency', 'district', 'village'));
+       return view('frontend.teacher.index', compact('title', 'dedications', 'researchs', 'contact', 'regency', 'district', 'village'));
     }
 
     public function download()

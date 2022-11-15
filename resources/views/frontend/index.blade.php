@@ -212,8 +212,9 @@
                     <div class="col-lg-7">
                         <div class="admission_form">
                             <h3>Pendaftaran Penelitian</h3>
-                            <form method="POST" action="{{ route('mahasiswa.daftar.penelitian.submit') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('mahasiswa.daftar.penelitian.individu') }}" enctype="multipart/form-data">
                                 @csrf
+                                <p class="text-white">Silahkan login terlebih dahulu sebelum mendaftar !</p>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="single_input">
@@ -339,7 +340,9 @@
                                 </a>
                                 <p class="d-flex align-items-ce nter"> 
                                     <span> <i class="flaticon-clock"></i> {{ $date }} {{ Str::substr($month, 0, 3) }}, {{ $year }} WIB</span> 
-                                    <span> <i class="ti-user"></i> {{ $dedication->dosen->name }}</span>
+                                    <span> <i class="ti-user"></i>
+                                        <a href="{{ route('home.dosen', $dedication->dosen->id) }}">{{ $dedication->dosen->name }}</a> 
+                                    </span>
                                 </p>
                             </div>
                         </div>

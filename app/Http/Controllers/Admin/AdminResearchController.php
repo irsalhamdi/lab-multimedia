@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Research;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Mail\ResearchReplyMail;
+use Illuminate\Support\Facades\Mail;
 
 class AdminResearchController extends Controller
 {
@@ -26,6 +29,17 @@ class AdminResearchController extends Controller
             'status' => 1,
             'information' => $request->information
         ]);
+
+        $research = Research::findOrFail($id);
+        $user = User::where('id', $research->user_id)->first();
+
+        $data = [
+            'title' => $research->title,
+            'link' => 'http://127.0.0.1:8000/mahasiswa/penelitian',
+            'email' => $user->name,
+        ];
+
+        Mail::to($user->email)->send(new ResearchReplyMail($data));
 
         $notification = [
             'message' => 'Penelitian berhasil dikonfirmasi !',

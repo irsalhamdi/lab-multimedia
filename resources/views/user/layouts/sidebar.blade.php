@@ -57,7 +57,8 @@
         </a>
         <div class="collapse" id="research">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('mahasiswa.penelitian') }}"> Daftar Penelitian </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('mahasiswa.penelitian.individu') }}"> Daftar Penelitian </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('mahasiswa.penelitian.joins') }}"> Penelitian Lain </a></li>
           </ul>
         </div>
       </li>

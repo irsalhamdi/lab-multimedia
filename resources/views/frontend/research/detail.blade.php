@@ -1,10 +1,10 @@
 @extends('frontend.layouts.main')
 @section('main')
     @php
-        $date = date('d',strtotime($dedication->date));
-        $month = date('F',strtotime($dedication->date));
-        $year = date('Y',strtotime($dedication->date));
-        $hour = date('H:i',strtotime($dedication->date));
+        $date = date('d',strtotime($research->date));
+        $month = date('F',strtotime($research->date));
+        $year = date('Y',strtotime($research->date));
+        $hour = date('H:i',strtotime($research->date));
     @endphp
     <div class="bradcam_area breadcam_bg">
         <div class="container">
@@ -21,9 +21,9 @@
 		<div class="container box_1170 mb-5">
             <div class="section-top-border">
                 <div class="thumb">
-                    <img src="{{ asset($dedication->image) }}" style="width: 100%;">
+                    <img src="{{ asset($research->image) }}" style="width: 100%;">
                 </div>
-                <h3 class="mt-3">{{ $dedication->name }}</h3>
+                <h3 class="mt-3">{{ $research->name }}</h3>
                 <p class="d-flex align-items-ce nter"> 
                     <span class="mr-2">
                         <i class="flaticon-clock"></i>
@@ -31,16 +31,12 @@
                     </span>
                     <span class="mr-2"> 
                         <i class="ti-user"></i>
-                        <a href="{{ route('home.dosen', $dedication->dosen->id) }}">
-                            {{ $dedication->dosen->name }} 
+                        <a href="{{ route('home.dosen', $research->dosen->id) }}">
+                            {{ $research->dosen->name }} 
                         </a> 
                     </span>
                     <span class="mr-2"> 
-                        <i class="flaticon-placeholder"></i>
-                         {{ $dedication->place }} 
-                    </span>
-                    <span class="mr-2"> 
-                        <i class="flaticon-book"></i> {{ $dedication->participants }} 
+                        <i class="flaticon-book"></i> {{ $research->participants }} 
                     </span>
                 </p>
                 <div class="col-md-12">
@@ -52,10 +48,10 @@
                     <span class="mr-3"><a target="_blank" href="{{ $shares['whatsapp'] }}"><i class="fa fa-whatsapp"></i></a></span>
                 </ul>
                 <p class="sample-text mt-3">
-                    {!! $dedication->description !!}
+                    {!! $research->description !!}
                 </p>
                 <div style="float: right;">
-                    <a href="{{ route('mahasiswa.daftar.pengabdian', $dedication->id) }}" class="boxed-btn3 text-right">Daftar</a>
+                    <a href="{{ route('mahasiswa.daftar.penelitian', $research->id) }}" class="boxed-btn3 text-right">Daftar</a>
                 </div>
             </div>
         </div>

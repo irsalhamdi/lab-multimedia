@@ -1,94 +1,67 @@
 @extends('frontend.layouts.main')
 @section('main')
-    <div class="admission_area">
-        <div class="admission_inner">
-            <div class="container">
-                <div class="row justify-content-end">
-                    <div class="col-lg-7">
-                        <div class="admission_form">
-                            <h3>Pendaftaran Penelitian</h3>
-                            <form method="POST" action="{{ route('mahasiswa.daftar.penelitian.submit') }}" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="text" name="name" value="{{ old('name', $user->name) }}" placeholder="Nama" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="number" name="nim" value="{{ old('nim', $user->nim) }}" placeholder="NIM" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="email" name="email" value="{{ old('email', $user->email) }}" placeholder="Alamat Email" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="number" name="phone" value="{{ old('phone', $user->phone) }}" placeholder="Nomor Handphone" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="text" name="jurusan" value="{{ old('jurusan', $user->jurusan) }}" placeholder="Jurusan" required>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <div class="single_input">
-                                            <input type="text" name="title" value="{{ old('title') }}" class="@error('title') is-invalid @enderror" placeholder="Tema penelitian" required>
-                                            @error('title')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single_input">
-                                            <input type="text" name="description" value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="Deskripsi Penelitian" required>
-                                            @error('description')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single_input">
-                                            <input type="text" name="dosen" value="{{ old('dosen') }}" class="@error('dosen') is-invalid @enderror" placeholder="Dosen pendamping" required>
-                                            @error('dosen')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="single_input">
-                                            <input type="file" name="image" class="@error('image') is-invalid @enderror" placeholder="Surat Pengantar Penelitian" required>
-                                            @error('image')
-                                                <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $message }}</strong>
-                                                </span>
-                                            @enderror
-                                            <div class="apply_btn">
-                                                <p class="text-white">Upload Surat pengantar penelitian : file pdf</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div class="apply_btn">
-                                            <button class="boxed-btn3" type="submit">Daftar</button>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
+    <div class="bradcam_area breadcam_bg">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-12">
+                    <div class="bradcam_text">
+                        <h3>Penelitian</h3>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+    <div class="popular_program_area section__padding program__page">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="section_title text-center">
+                        <h3>Penelitian</h3>
+                    </div>
+                    <form action="{{ route('home.researchs') }}" class="mt-3 mb-3">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari Penelitian" aria-label="Cari Penelitian">
+                                <div class="input-group-append">
+                                <button class="btn btn-sm btn-warning" type="submit">Cari</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="row">
+                @if ($researchs->count())
+                @foreach ($researchs as $research)
+                    <div class="col-lg-4 col-md-6">
+                        <div class="single__program">
+                            <div class="program_thumb">
+                                <img src="{{ asset($research->image) }}" style="width: 360; height: 268px;">
+                            </div>
+                            <div class="program__content">
+                                <span>
+                                    <a href="{{ route('home.dosen', $research->dosen->id) }}">{{ $research->dosen->name }}</a>
+                                </span>
+                                <h4><a href="{{ route('home.research', $research->id) }}">{{ $research->title }}</a></h4>
+                                <p>{{ $research->excerpt }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+                <div class="container">
+                    <div class="d-flex justify-content-center">
+                        {{ $researchs->links() }}
+                    </div>
+                </div>
+                @else
+                    <div class="col-lg-12">
+                        <div class="section_title text-center">
+                            <h4>Penelitian di temukan</h4>
+                        </div>
+                    </div>
+                @endif
+            </div>
+
         </div>
     </div>
 @endsection

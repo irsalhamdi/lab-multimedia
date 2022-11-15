@@ -26,9 +26,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CommunityDedicationMail;
+use App\Mail\ResearchTeacherMail;
 use App\Models\CommunityDedicationGuide;
 use App\Models\ParticipantCommunityDedication;
 use App\Models\Research;
+use App\Models\ResearchParticipant;
+use App\Models\ResearchTeacher;
+use App\Models\ResearchTeacherGuide;
 
 class DashboardController extends Controller
 {
@@ -333,7 +337,7 @@ class DashboardController extends Controller
                 'name' => $dedication->name,
                 'place' => $dedication->place,
                 'date' => $dedication->date,
-                'link' => 'http://127.0.0.1:8000/pengabdian-masyarakat/lain/'.$dedication->id,
+                'link' => 'http://127.0.0.1:8000/mahasiswa/pengabdian-masyarakat/lain/'.$dedication->id,
                 'email' => $user->name,
             ];
     
@@ -344,7 +348,7 @@ class DashboardController extends Controller
                 'alert-type' => 'success',
             );
     
-            return redirect()->back()->with('complete', 'Mahasiswa berhasil ditambahkan, kami telah mengirimkan email kepada mahasiswa tersebut yang berisi info pengabdian anda !');
+            return redirect()->back()->with('complete', 'Mahasiswa berhasil ditambahkan, kami telah mengirimkan email kepada mahasiswa tersebut yang berisi info pengabdian !');
 
         }
     }
@@ -410,6 +414,138 @@ class DashboardController extends Controller
         );
 
         return redirect()->route('mahasiswa.community.dedication.joins')->with($notification);
+    }
+
+    public function listResearchTeacher()
+    {
+        $participants = ResearchParticipant::with('research', 'dosen')->where('user_id', Auth::user()->id)->get();
+        return view('user.research.joins', compact('participants'));
+    }
+
+    public function researchTeacherDetail($id)
+    {
+        $users = User::orderBy('name', 'ASC')->get();
+        $research = ResearchTeacher::findOrFail($id);
+        $guide = ResearchTeacherGuide::where('research_id', $research->id)->first();
+        $quota = ResearchParticipant::where('research_id', $id)->count();
+
+        return view('user.research.join', compact('research', 'guide', 'users', 'quota'));
+    }
+
+    public function participantsResearchStore(Request $request, $id)
+    {
+        $research = ResearchTeacher::findOrFail($id);
+        $available = ResearchParticipant::where('research_id', $research->id)->count();
+
+        if($available == $research->participants){
+            $notification = array(
+                'message' => 'Kuota penelitian telah penuh !',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+        
+        if($request->user_id)
+        {
+            $user = ResearchParticipant::where(['user_id' => $request->user_id, 'research_id' => $id])->first();
+            if($user){
+                $notification = array(
+                    'message' => 'Mahasiwa telah terdaftar !',
+                    'alert-type' => 'error',
+                );
+
+                return redirect()->back()->with($notification);
+            }
+
+            ResearchParticipant::create([
+                'user_id' => $request->user_id,
+                'research_id' => $id
+            ]);
+
+            $user = User::where('id', $request->user_id)->first();
+
+            $data = [
+                'dosen' => Auth::user()->name,
+                'title' => $research->title,
+                'date' => $research->date,
+                'link' => 'http://127.0.0.1:8000/mahasiswa/penelitian/lain/'.$research->id,
+                'email' => $user->name,
+            ];
+    
+            Mail::to($user->email)->send(new ResearchTeacherMail($data));
+
+            $notification = array(
+                'message' => 'Mahasiswa Berhasil ditambahkan !',
+                'alert-type' => 'success',
+            );
+    
+            return redirect()->back()->with('complete', 'Mahasiswa berhasil ditambahkan, kami telah mengirimkan email kepada mahasiswa tersebut yang berisi info pelatihan !');
+
+        }
+    }
+
+    public function researchEnroll($id)
+    {
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum mendaftar penelitian !');
+        }
+        $research = ResearchTeacher::findOrFail($id);
+
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Daftar | ' . $research->title;
+
+        return view('frontend.research.enroll', compact('research', 'title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function researchSubmit(Request $request, $id)
+    {
+        $requirement = $request->requirement;
+        $wordRequirement = 'saya memahami dan akan mengikuti persyaratan penelitian';
+
+        if($requirement !== $wordRequirement){
+            return redirect()->back()->with('error', 'pastikan anda menulis kalimat di atas dengan benar. Perhatikan huruf besar dan kecil !');
+        }
+   
+        $dedication = ResearchTeacher::findOrFail($id);
+        $available = ResearchParticipant::where('research_id', $dedication->id)->count();
+
+        if($available == $dedication->participants){
+            $notification = array(
+                'message' => 'Kuota pelatihan telah penuh, silahkan hubungi dosen ybs !',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+
+        $participants = ResearchParticipant::where(['user_id' => $request->user_id, 'research_id' => $id])->first();
+        
+        if($participants){
+
+            $notification = array(
+                'message' => 'Anda telah mendaftar untuk pelatihan ini !',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+        
+        ResearchParticipant::create([
+            'user_id' => $request->user_id,
+            'research_id' => $id
+        ]);
+        
+        $notification = array(
+            'message' => 'Pendaftaran Pelatihan berhasil !',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('mahasiswa.penelitian.joins')->with($notification);
     }
 
     public function logout()

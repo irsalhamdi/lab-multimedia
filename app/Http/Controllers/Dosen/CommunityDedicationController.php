@@ -242,7 +242,7 @@ class CommunityDedicationController extends Controller
                 'name' => $dedication->name,
                 'place' => $dedication->place,
                 'date' => $dedication->date,
-                'link' => 'http://127.0.0.1:8000/pengabdian-masyarakat/lain/'.$dedication->id,
+                'link' => 'http://127.0.0.1:8000/mahasiswa/pengabdian-masyarakat/lain/'.$dedication->id,
                 'email' => $user->name,
             ];
     

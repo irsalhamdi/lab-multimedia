@@ -90,7 +90,7 @@
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('home.trainings') }}">Pelatihan</a></li>
                                                     <li><a href="{{ route('home.dedications') }}">Pengabdian Masyarakat</a></li>
-                                                    <li><a href="{{ route('mahasiswa.daftar.penelitian') }}">Penelitian</a></li>
+                                                    <li><a href="{{ route('home.researchs') }}">Penelitian</a></li>
                                                     <li><a href="{{ route('home.news') }}">Berita</a></li>
                                                     <li><a href="{{ route('home.release') }}">Rilis</a></li>
                                                 </ul>

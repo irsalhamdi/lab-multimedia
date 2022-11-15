@@ -52,8 +52,6 @@ use App\Http\Controllers\Lead\LeadTeacherController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Dosen\ResearchTeacherController;
 use App\Http\Controllers\User\ResearchController;
-use App\Models\ResearchTeacher;
-use Maatwebsite\Excel\Row;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang-kami', [HomeController::class, 'profile'])->name('home.profile');
@@ -73,17 +71,18 @@ Route::get('/pelatihan', [HomeController::class, 'trainings'])->name('home.train
 Route::get('/pelatihan/detail/{id}', [HomeController::class, 'training'])->name('home.training');
 Route::get('/pengabdian-masyarakat', [HomeController::class, 'dedications'])->name('home.dedications');
 Route::get('/pengabdian-masyarakat/detail/{id}', [HomeController::class, 'dedication'])->name('home.dedication');
+Route::get('/penelitian', [HomeController::class, 'researchs'])->name('home.researchs');
+Route::get('/penelitian/detail/{id}', [HomeController::class, 'research'])->name('home.research');
+Route::get('/kegiatan/dosen/{id}', [HomeController::class, 'teacher'])->name('home.dosen');
 Route::get('/unduhan', [HomeController::class, 'download'])->name('download');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
 Route::post('/subscribe', [HomeController::class, 'subscribe'])->name('subscribe');
+Route::post('/question', [DashboardController::class, 'question'])->name('question');
 Route::post('/berita/komentar/{id}', [DashboardController::class, 'comment'])->name('mahasiswa.comment');
 Route::post('/rilis/komentar/{id}', [DashboardController::class, 'commentRelease'])->name('mahasiswa.comment.release');
-Route::get('/pelatihan/daftar/{id}', [DashboardController::class, 'trainingEnroll'])->name('mahasiswa.daftar.pelatihan');
 Route::get('/pengabdian-masyarakat/daftar/{id}', [DashboardController::class, 'dedicationEnroll'])->name('mahasiswa.daftar.pengabdian');
-Route::get('/pengabdian-masyarakat/dosen/{id}', [HomeController::class, 'dedicationTeacher'])->name('home.dedication.dosen');
-Route::post('/penelitian/daftar/submit', [ResearchController::class, 'enroll'])->name('mahasiswa.daftar.penelitian.submit');
-Route::get('/penelitian', [ResearchController::class, 'research'])->name('mahasiswa.daftar.penelitian');   
-Route::post('/question', [DashboardController::class, 'question'])->name('question');
+Route::get('/penelitian/daftar/{id}', [DashboardController::class, 'researchEnroll'])->name('mahasiswa.daftar.penelitian'); 
+Route::post('/penelitian/individu', [ResearchController::class, 'enroll'])->name('mahasiswa.daftar.penelitian.individu');
 
 Route::prefix('admin')->group(function(){
     Route::get('/profile/vission', [ProfileController::class, 'vission'])->middleware('admin')->name('admin.vission');
@@ -450,25 +449,29 @@ Route::prefix('lead')->group(function(){
 });
 
 Route::middleware('auth', 'verified')->group(function(){
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-    Route::get('/profile/edit', [DashboardController::class, 'profile'])->name('mahasiswa.profile');
-    Route::post('/profile/update', [DashboardController::class, 'profileEdit'])->name('mahasiswa.profile.submit');
-    Route::get('/profile/edit-password', [DashboardController::class, 'password'])->name('mahasiswa.password');
-    Route::post('/profile/update-password', [DashboardController::class, 'passwordEdit'])->name('mahasiswa.password.submit');
-    Route::get('/profile/edit/image', [DashboardController::class, 'image'])->name('mahasiswa.profile.image');
-    Route::post('/profile/edit/image', [DashboardController::class, 'imageSubmit'])->name('mahasiswa.profile.image.submit');
-    Route::post('/pelatihan/daftar/submit/{id}', [DashboardController::class, 'submit'])->name('mahasiswa.daftar.pelatihan.submit');
-    Route::get('/mahasiswa/pelatihan', [DashboardController::class, 'training'])->name('mahasiswa.pelatihan');
-    Route::get('/mahasiswa/pelatihan/{id}', [DashboardController::class, 'trainingDetail'])->name('mahasiswa.pelatihan.detail');
-    Route::post('/mahasiswa/pelatihan/absen', [DashboardController::class, 'absent'])->name('mahasiswa.pelatihan.absen');
-    Route::get('/pengabdian-masyarakat/lain', [DashboardController::class, 'joins'])->name('mahasiswa.community.dedication.joins');
-    Route::get('/pengabdian-masyarakat/lain/{id}', [DashboardController::class, 'join'])->name('mahasiswa.community.dedication.join');
-    Route::post('/pengabdian-masyarakat/participants-store/{id}', [DashboardController::class, 'participantsStore'])->name('mahasiswa.community.dedication.participants.store');
-    Route::post('/pengabdian-masyarakat/daftar/submit/{id}', [DashboardController::class, 'dedicationSubmit'])->name('mahasiswa.daftar.pengabdian.submit');
-    Route::get('/daftar-penelitian', [ResearchController::class, 'list'])->name('mahasiswa.penelitian');
-    Route::get('/message', [DashboardController::class, 'message'])->name('mahasiswa.message');
-    Route::post('/message/reply/{id}', [DashboardController::class, 'reply'])->name('mahasiswa.message.reply.submit');
-    Route::get('/mahasiswa/logout', [DashboardController::class, 'logout'])->name('mahasiswa.logout');
+    Route::get('dashboard', [DashboardController::class, 'index'])->name('dashboard');
+    Route::get('mahasiswa/profile/edit', [DashboardController::class, 'profile'])->name('mahasiswa.profile');
+    Route::post('mahasiswa/profile/update', [DashboardController::class, 'profileEdit'])->name('mahasiswa.profile.submit');
+    Route::get('mahasiswa/profile/edit-password', [DashboardController::class, 'password'])->name('mahasiswa.password');
+    Route::post('mahasiswa/profile/update-password', [DashboardController::class, 'passwordEdit'])->name('mahasiswa.password.submit');
+    Route::get('mahasiswa/profile/edit/image', [DashboardController::class, 'image'])->name('mahasiswa.profile.image');
+    Route::post('mahasiswa/profile/edit/image', [DashboardController::class, 'imageSubmit'])->name('mahasiswa.profile.image.submit');
+    Route::post('mahasiswa/pelatihan/daftar/submit/{id}', [DashboardController::class, 'submit'])->name('mahasiswa.daftar.pelatihan.submit');
+    Route::get('mahasiswa/pelatihan', [DashboardController::class, 'training'])->name('mahasiswa.pelatihan');
+    Route::get('mahasiswa/pelatihan/{id}', [DashboardController::class, 'trainingDetail'])->name('mahasiswa.pelatihan.detail');
+    Route::post('mahasiswa/pelatihan/absen', [DashboardController::class, 'absent'])->name('mahasiswa.pelatihan.absen');
+    Route::get('mahasiswa/pengabdian-masyarakat/lain', [DashboardController::class, 'joins'])->name('mahasiswa.community.dedication.joins');
+    Route::get('mahasiswa/pengabdian-masyarakat/lain/{id}', [DashboardController::class, 'join'])->name('mahasiswa.community.dedication.join');
+    Route::post('mahasiswa/pengabdian-masyarakat/participants-store/{id}', [DashboardController::class, 'participantsStore'])->name('mahasiswa.community.dedication.participants.store');
+    Route::post('mahasiswa/pengabdian-masyarakat/daftar/submit/{id}', [DashboardController::class, 'dedicationSubmit'])->name('mahasiswa.daftar.pengabdian.submit');
+    Route::get('mahasiswa/penelitian', [ResearchController::class, 'list'])->name('mahasiswa.penelitian.individu');
+    Route::get('mahasiswa/penelitian/lain', [DashboardController::class, 'listResearchTeacher'])->name('mahasiswa.penelitian.joins'); 
+    Route::get('mahasiswa/penelitian/lain/{id}', [DashboardController::class, 'researchTeacherDetail'])->name('mahasiswa.penelitian.join'); 
+    Route::post('mahasiswa/penelitian/participants-store/{id}', [DashboardController::class, 'participantsResearchStore'])->name('mahasiswa.penelitian.participants.store');
+    Route::post('mahasiswa/penelitian/daftar/submit/{id}', [DashboardController::class, 'researchSubmit'])->name('mahasiswa.daftar.penelitian.submit');
+    Route::get('mahasiswa/message', [DashboardController::class, 'message'])->name('mahasiswa.message');
+    Route::post('mahasiswa/message/reply/{id}', [DashboardController::class, 'reply'])->name('mahasiswa.message.reply.submit');
+    Route::get('mahasiswa/mahasiswa/logout', [DashboardController::class, 'logout'])->name('mahasiswa.logout');
 });
 
 require __DIR__.'/auth.php';

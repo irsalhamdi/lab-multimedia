@@ -15,24 +15,6 @@ use Illuminate\Support\Facades\Auth;
 
 class ResearchController extends Controller
 {   
-    public function research()
-    {
-        if(!Auth::user()){
-            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum mendaftar penelitian !');
-        }
-
-        $user = User::where('id', Auth::user()->id)->first();
-
-        $contact = Contact::find(1);
-        $regency = Regency::where('id', $contact->regency_id)->first();
-        $district = District::where('id', $contact->district_id)->first();
-        $village = Village::where('id', $contact->village_id)->first();
-
-        $title = 'Pendaftaran Penelitian';
-        
-        return view('frontend.research.index', compact('user', 'contact', 'regency', 'district', 'village', 'title'));
-    }
-
     public function enroll(Request $request)
     {   
         $user = User::where(['nim' => $request->nim, 'email' => $request->email])->first();
@@ -75,13 +57,8 @@ class ResearchController extends Controller
                 'dosen' => $request->dosen,
                 'image' => $url
             ]);
-
-            $notification = array(
-                'message' => 'Pendaftaran pelatihan berhasil !',
-                'alert-type' => 'success',
-            );
     
-            return redirect()->route('mahasiswa.penelitian')->with($notification);
+            return redirect()->route('mahasiswa.penelitian.individu')->with('complete', 'Pendaftaran penelitian berhasil, kami akan segera menghubungi anda !');
         }
     }
 

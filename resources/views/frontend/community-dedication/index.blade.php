@@ -40,7 +40,7 @@
                             </div>
                             <div class="program__content">
                                 <span>
-                                    <a href="{{ route('home.dedication.dosen', $dedication->dosen->id) }}">{{ $dedication->dosen->name }}</a>
+                                    <a href="{{ route('home.dosen', $dedication->dosen->id) }}">{{ $dedication->dosen->name }}</a>
                                 </span>
                                 <h4><a href="{{ route('home.dedication', $dedication->id) }}">{{ $dedication->name }}</a></h4>
                                 <p>{{ $dedication->excerpt }}</p>
