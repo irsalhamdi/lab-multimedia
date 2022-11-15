@@ -12,22 +12,22 @@
       <div class="card-body">
         <h4 class="card-title">Peserta</h4>
         <span style="float: right">
-          <a href="{{ route('dosen.community.dedication.participants.export', $dedication->id) }}" type="button" class="btn btn-sm bg-white btn-icon-text border"><i class="typcn typcn-arrow-forward-outline mr-2"></i>Export</a>
+          <a href="{{ route('dosen.penelitian.participants.export', $research->id) }}" type="button" class="btn btn-sm bg-white btn-icon-text border"><i class="typcn typcn-arrow-forward-outline mr-2"></i>Export</a>
         </span>
         <p class="card-description">
-            Daftar peserta Pengabdian Masyarakat {{ $dedication->name }}<code><a href="{{ route('dosen.community.dedication.participants.add', $dedication->id) }}">Tambah</a></code>
+            Daftar peserta Pengabdian Masyarakat {{ $research->name }}<code><a href="{{ route('dosen.penelitian.participants.add', $research->id) }}">Tambah</a></code>
         </p>
         <p class="card-description">
             <span>
-              Peserta Maksimal : {{ $dedication->participants }}
+              Peserta Maksimal : {{ $research->participants }}
             </span>
-            @if ($quota === $dedication->participants)
+            @if ($quota === $research->participants)
               <span style="float: right; color: red">
                 Tersedia : 0
               </span>
             @else
               <span style="float: right; color: green">
-                Tersedia : {{ $dedication->participants - $quota  }}
+                Tersedia : {{ $research->participants - $quota  }}
               </span>
             @endif
         </p>
@@ -78,20 +78,20 @@
                             @php
                                 $user = App\Models\User::where('id', $participant->user_id)->first();
                             @endphp
-                            <a href="{{ route('dosen.community.dedication.participants.user.detail', $user->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
+                            <a href="{{ route('dosen.penelitian.participants.user.detail', $user->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
                               <i class="typcn typcn-eye"></i>
                             </a>
-                            <a href="{{ route('dosen.community.dedication.participants.delete', $participant->id) }}" type="button" class="btn btn-danger btn-circle btn-sm justify-content-between flex-nowrap">
+                            <a href="{{ route('dosen.penelitian.participants.delete', $participant->id) }}" type="button" class="btn btn-danger btn-circle btn-sm justify-content-between flex-nowrap">
                               <i class="typcn typcn-delete-outline"></i>
                             </a>
                           @elseif($participant->user_id === null)
                             @php
                                 $dosen = App\Models\User::where('id', $participant->dosen_id)->first();
-                            @endphp
-                            <a href="{{ route('dosen.community.dedication.participants.dosen.detail', $dosen->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
+                            @endphp 
+                            <a href="{{ route('dosen.penelitian.participants.dosen.detail', $dosen->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
                               <i class="typcn typcn-eye"></i>
                             </a>
-                            <a href="{{ route('dosen.community.dedication.participants.delete', $participant->id) }}" type="button" class="btn btn-danger btn-circle btn-sm justify-content-between flex-nowrap">
+                            <a href="{{ route('dosen.penelitian.participants.delete', $participant->id) }}" type="button" class="btn btn-danger btn-circle btn-sm justify-content-between flex-nowrap">
                               <i class="typcn typcn-delete-outline"></i>
                             </a>
                           @endif

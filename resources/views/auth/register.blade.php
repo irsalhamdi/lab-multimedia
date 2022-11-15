@@ -46,7 +46,7 @@
                                     <div class="col-md-6 mb-3">
                                         <div class="single_input">
                                             <div class="default-select" id="default-select">
-                                                <select>
+                                                <select name="jurusan">
                                                     <option value="Komputerisasi Akuntansi">Komputerisasi Akuntansi</option>
                                                     <option value="Manajemen Informatika">Manajemen Informatika</option>
                                                     <option value="Sistem Informasi">Sistem Informasi</option>

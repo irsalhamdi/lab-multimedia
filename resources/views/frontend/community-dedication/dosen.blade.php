@@ -1,11 +1,11 @@
 @extends('frontend.layouts.main')
-@section('main')
+@section('main')    
     <div class="bradcam_area breadcam_bg">
         <div class="container">
             <div class="row">
                 <div class="col-xl-12">
                     <div class="bradcam_text">
-                        <h3>Pengabdian Masyarakat</h3>
+                        <h3>{{ $title }}</h3>
                     </div>
                 </div>
             </div>

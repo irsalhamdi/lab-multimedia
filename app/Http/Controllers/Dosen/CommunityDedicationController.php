@@ -15,12 +15,13 @@ use Illuminate\Support\Facades\Mail;
 use App\Models\CommunityDedicationGuide;
 use App\Models\ParticipantCommunityDedication;
 use Maatwebsite\Excel\Excel;
+use PhpParser\Node\Stmt\Do_;
 
 class CommunityDedicationController extends Controller
 {
     public function index()
     {
-        $dedications = CommunityDedication::where('dosen_id', Auth::guard('dosen')->user()->id)->get();
+        $dedications = CommunityDedication::where('dosen_id', Auth::guard('dosen')->user()->id)->filter(request(['search']))->paginate(3)->withQueryString();
         return view('dosen.community-dedication.index', compact('dedications'));
     }
 
@@ -298,6 +299,18 @@ class CommunityDedicationController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    public function participantsDetailUser($id)
+    {
+        $user = User::where('id', $id)->first();
+        return view('dosen.community-dedication.participant-user', compact('user'));
+    }
+
+    public function participantsDetailDosen($id)
+    {
+        $dosen = Dosen::where('id', $id)->first();
+        return view('dosen.community-dedication.participant-dosen', compact('dosen'));
     }
     
     public function joins()

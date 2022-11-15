@@ -3,21 +3,21 @@
 <div class="col-lg-12 grid-margin stretch-card">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title">Pengabdian Masyarakat</h4>
+        <h4 class="card-title">Penelitian</h4>
         <p class="card-description">
-            Daftar Pengabdian Masyarakat <code><a href="{{ route('dosen.community.dedication.add') }}">Tambah</a></code>
+            Daftar Penelitian <code><a href="{{ route('dosen.penelitian.add') }}">Tambah</a></code>
         </p>
-        <form action="">
+        <form action="{{ route('dosen.penelitian') }}">
           <div class="form-group">
             <div class="input-group">
-                <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari Pengabdian" aria-label="Cari Pengabdian">
+                <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari Penelitian" aria-label="Cari Penelitian">
                 <div class="input-group-append">
                 <button class="btn btn-sm btn-primary" type="submit">Cari</button>
                 </div>
             </div>
           </div>
         </form>
-        @if ($dedications->count())
+        @if ($researchs->count())
           <div class="table-responsive">
             <table class="table table-striped">
               <thead>
@@ -27,9 +27,6 @@
                   </th>
                   <th>
                     Jadwal 
-                  </th>
-                  <th>
-                      Tempat 
                   </th>
                   <th>
                       Peserta 
@@ -43,41 +40,38 @@
                 </tr>
               </thead>
               <tbody>
-                  @foreach ($dedications as $dedication)
+                  @foreach ($researchs as $research)
                       @php
-                        $date = date('d',strtotime($dedication->date));
-                        $month = date('F',strtotime($dedication->date));
-                        $year = date('Y',strtotime($dedication->date));
-                        $hour = date('H:i',strtotime($dedication->date));
+                        $date = date('d',strtotime($research->date));
+                        $month = date('F',strtotime($research->date));
+                        $year = date('Y',strtotime($research->date));
+                        $hour = date('H:i',strtotime($research->date));
                       @endphp
                       <tr>
                           <td class="py-1">
-                              {{  $dedication->name }}
+                              {{  $research->title }}
                           </td>
                           <td>
                             {{ $date }} {{ Str::substr($month, 0, 3) }} {{ $year }}, {{ $hour }}
                           </td>
                           <td>
-                            {{ $dedication->place }}
-                          </td>
-                          <td>
-                            <a href="{{ route('dosen.community.dedication.participants', $dedication->id) }}" type="button" class="btn btn-primary btn-circle btn-sm justify-content-between flex-nowrap">
+                            <a href="{{ route('dosen.penelitian.participants', $research->id) }}" type="button" class="btn btn-primary btn-circle btn-sm justify-content-between flex-nowrap">
                                 <i class="typcn typcn-user"></i>
                               </a>
                           </td>
                           <td>
-                            <a href="{{ route('dosen.community.dedication.guide', $dedication->id) }}" type="button" class="btn btn-info btn-circle btn-sm justify-content-between flex-nowrap">
+                            <a href="{{ route('dosen.penelitian.guide', $research->id) }}" type="button" class="btn btn-info btn-circle btn-sm justify-content-between flex-nowrap">
                               <i class="typcn typcn-upload"></i>
                             </a>
                           </td>
                           <td>
-                              <a href="{{ route('dosen.community.dedication.show', $dedication->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
+                              <a href="{{ route('dosen.penelitian.show', $research->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
                                   <i class="typcn typcn-eye"></i>
                               </a>
-                              <a href="{{ route('dosen.community.dedication.edit', $dedication->id) }}" type="button" class="btn btn-warning btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
+                              <a href="{{ route('dosen.penelitian.edit', $research->id) }}" type="button" class="btn btn-warning btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
                                   <i class="typcn typcn-edit"></i>
                               </a>
-                              <a href="{{ route('dosen.community.dedication.delete', $dedication->id) }}" type="button" class="btn btn-danger btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
+                              <a href="{{ route('dosen.penelitian.delete', $research->id) }}" type="button" class="btn btn-danger btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
                                   <i class="typcn typcn-delete-outline"></i>
                               </a>
                           </td>
@@ -88,11 +82,11 @@
           </div>
         @else
           <div class="d-flex justify-content-center">
-            <p class="text-muted">Pengabdian tidak di temukan</p>
+            <p class="text-muted">Penelitian tidak di temukan</p>
           </div>
         @endif
         <div class="d-flex justify-content-center mt-3">
-          {{ $dedications->links() }}
+          {{ $researchs->links() }}
         </div>
       </div>
     </div>

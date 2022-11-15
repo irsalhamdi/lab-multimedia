@@ -30,6 +30,8 @@ use App\Models\Gallery;
 use App\Models\Schedule;
 use App\Models\Tool;
 
+use function Ramsey\Uuid\v1;
+
 class HomeController extends Controller
 {
     public function index()
@@ -258,6 +260,21 @@ class HomeController extends Controller
         ->getRawLinks();
 
         return view('frontend.community-dedication.detail', compact('dedication', 'shares', 'title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function dedicationTeacher($id)
+    {
+       $dedications = CommunityDedication::where('dosen_id', $id)->filter(request(['search']))->paginate(6)->withQueryString();
+       $dosen = Dosen::where('id', $id)->first();
+
+       $contact = Contact::find(1);
+       $regency = Regency::where('id', $contact->regency_id)->first();
+       $district = District::where('id', $contact->district_id)->first();
+       $village = Village::where('id', $contact->village_id)->first();
+
+       $title = 'Pengabdian | '.$dosen->name;
+
+       return view('frontend.community-dedication.dosen', compact('title', 'dedications', 'contact', 'regency', 'district', 'village'));
     }
 
     public function download()

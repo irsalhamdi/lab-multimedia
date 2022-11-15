@@ -38,6 +38,19 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#research" aria-expanded="false" aria-controls="research">
+          <i class="typcn typcn-thermometer menu-icon"></i>
+          <span class="menu-title">Penelitian</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="research">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('dosen.penelitian') }}"> Penelitian </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('dosen.penelitian.joins') }}"> Penelitian Lain </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#communitydedication" aria-expanded="false" aria-controls="communitydedication">
           <i class="typcn typcn-group-outline menu-icon"></i>
           <span class="menu-title">Pengabdian</span>
@@ -45,7 +58,7 @@
         </a>
         <div class="collapse" id="communitydedication">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('dosen.community.dedication') }}"> Pengabdian Masyakat </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('dosen.community.dedication') }}"> Pengabdian Masyarakat </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('dosen.community.dedication.joins') }}"> Pengabdian Masyarakat Lain </a></li>
           </ul>
         </div>
