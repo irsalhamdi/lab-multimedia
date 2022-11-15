@@ -99,17 +99,17 @@
                     <div class="comment-form">
                         <h4>Tinggalkan Komentar</h4>
                         @if(Auth::guard('admin')->check())
-                            <form method="POST" action="{{ route('admin.comment', $new->id) }}" class="form-contact comment_form" action="#" id="commentForm">
+                            <form method="POST" action="{{ route('admin.comment', $new->id) }}" class="form-contact comment_form" id="commentForm">
                         @elseif(Auth::guard('asistant')->check())
-                            <form method="POST" action="{{ route('asistant.comment', $new->id) }}" class="form-contact comment_form" action="#" id="commentForm">
+                            <form method="POST" action="{{ route('asistant.comment', $new->id) }}" class="form-contact comment_form" id="commentForm">
                         @elseif(Auth::guard('dosen')->check())
-                            <form method="POST" action="{{ route('dosen.comment', $new->id) }}" class="form-contact comment_form" action="#" id="commentForm">
+                            <form method="POST" action="{{ route('dosen.comment', $new->id) }}" class="form-contact comment_form" id="commentForm">
                         @elseif(Auth::guard('lead')->check())
-                            <form method="POST" action="{{ route('lead.comment', $new->id) }}" class="form-contact comment_form" action="#" id="commentForm">
+                            <form method="POST" action="{{ route('lead.comment', $new->id) }}" class="form-contact comment_form" id="commentForm">
                         @elseif(Auth::guard('web')->check())
-                            <form method="POST" action="{{ route('mahasiswa.comment', $new->id) }}" class="form-contact comment_form" action="#" id="commentForm">
+                            <form method="POST" action="{{ route('mahasiswa.comment', $new->id) }}" class="form-contact comment_form" id="commentForm">
                         @elseif (!Auth::user())
-                            <form method="POST" action="{{ route('mahasiswa.comment', $new->id) }}" class="form-contact comment_form" action="#" id="commentForm">  
+                            <form method="POST" action="{{ route('mahasiswa.comment', $new->id) }}" class="form-contact comment_form" id="commentForm">  
                         @endif
                             @csrf
                             <div class="row">

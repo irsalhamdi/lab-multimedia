@@ -238,6 +238,10 @@ class DashboardController extends Controller
 
     public function comment(Request $request, $id)
     {   
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'Silahkan login terlebih dahulu untuk memberikan komentar !');
+        }
+
         News::findOrFail($id);
         Comment::create([
             'user_id' => Auth::user()->id,
@@ -256,6 +260,10 @@ class DashboardController extends Controller
 
     public function commentRelease(Request $request, $id)
     {   
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'Silahkan login terlebih dahulu untuk memberikan komentar !');
+        }
+
         Release::findOrFail($id);
         ReleaseComment::create([
             'user_id' => Auth::user()->id,
@@ -418,6 +426,10 @@ class DashboardController extends Controller
 
     public function question(Request $request)
     {
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'Silahkan login terlebih dahulu untuk mengirimkan pesan !');
+        }
+
         $message = Message::where('user_id', Auth::user()->id)->first();
         if($message){
             $replies = Reply::where('message_id', $message->id)->get();
