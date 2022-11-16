@@ -27,6 +27,7 @@ use App\Models\Customers;
 use App\Models\Dosen;
 use App\Models\Faq;
 use App\Models\Gallery;
+use App\Models\ResearchResultTeacher;
 use App\Models\ResearchTeacher;
 use App\Models\Schedule;
 use App\Models\Tool;
@@ -295,6 +296,20 @@ class HomeController extends Controller
         ->getRawLinks();
 
         return view('frontend.research.detail', compact('research', 'shares', 'title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function researchResult()
+    {
+        $results = ResearchResultTeacher::latest()->get();
+
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Hasil Penelitian';
+
+        return view('frontend.research.result', compact('title', 'results', 'contact', 'regency', 'district', 'village'));
     }
 
     public function teacher($id)

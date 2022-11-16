@@ -12,6 +12,7 @@ use App\Models\ResearchTeacher;
 use App\Mail\ResearchTeacherMail;
 use App\Models\ResearchParticipant;
 use App\Http\Controllers\Controller;
+use App\Models\ResearchResultTeacher;
 use App\Models\ResearchTeacherGuide;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
@@ -373,6 +374,65 @@ class ResearchTeacherController extends Controller
             );
     
             return redirect()->back()->with($notification);
+    }
+
+    public function result($id)
+    {
+        $research = ResearchTeacher::findOrFail($id);
+        $result = ResearchResultTeacher::where('research_teacher_id', $research->id)->first();
+
+        return view('dosen.research.result', compact('research', 'result'));
+    }
+
+    public function resultSubmit(Request $request, $id)
+    {
+        $request->validate([
+            'file' => 'mimes:pdf'
+        ], [
+            'file.mimes' => 'tipe file pdf',
+        ]);
+
+        $research = ResearchTeacher::findOrFail($id);
+        $result = ResearchResultTeacher::where('research_teacher_id', $research->id)->first();
+        if($result){
+
+            if(file_exists(public_path('upload/research-teacher/result/'.$result->file))) {
+                @unlink('upload/research-teacher/result/'.$result->file);
+            }            
+
+            $file = $request->file('file');
+            $destinationPath = 'upload/research-teacher/result';
+            $name = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath,$name);
+
+            ResearchResultTeacher::findOrFail($result->id)->update([
+                'file' => $name,
+            ]);
+    
+            $notification = array(
+                'message' => 'Hasil penelitian berhasil diupdate !',
+                'alert-type' => 'success',
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        $file = $request->file('file');
+        $destinationPath = 'upload/research-teacher/result';
+        $name = date('YmdHis') . "." . $file->getClientOriginalExtension();
+        $file->move($destinationPath,$name);
+
+        ResearchResultTeacher::create([
+            'research_teacher_id' => $research->id,
+            'file' => $name,
+        ]);
+        
+        $notification = array(
+            'message' => 'Hasil penelitian berhasil ditambahkan !',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
     }
 
     private $excel;

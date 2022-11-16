@@ -73,6 +73,7 @@ Route::get('/pengabdian-masyarakat', [HomeController::class, 'dedications'])->na
 Route::get('/pengabdian-masyarakat/detail/{id}', [HomeController::class, 'dedication'])->name('home.dedication');
 Route::get('/penelitian', [HomeController::class, 'researchs'])->name('home.researchs');
 Route::get('/penelitian/detail/{id}', [HomeController::class, 'research'])->name('home.research');
+Route::get('/penelitian/hasil', [HomeController::class, 'researchResult'])->name('home.research.result');
 Route::get('/kegiatan/dosen/{id}', [HomeController::class, 'teacher'])->name('home.dosen');
 Route::get('/unduhan', [HomeController::class, 'download'])->name('download');
 Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
@@ -339,6 +340,8 @@ Route::prefix('dosen')->group(function(){
     Route::get('/penelitian/participants-user-detail/{id}', [ResearchTeacherController::class, 'participantsDetailUser'])->name('dosen.penelitian.participants.user.detail')->middleware('dosen');
     Route::get('/penelitian/participants-dosen-detail/{id}', [ResearchTeacherController::class, 'participantsDetailDosen'])->name('dosen.penelitian.participants.dosen.detail')->middleware('dosen');
     Route::get('/penelitian/participants/export/{id}', [ResearchTeacherController::class, 'export'])->name('dosen.penelitian.participants.export')->middleware('dosen');
+    Route::get('/penelitian/result/{id}', [ResearchTeacherController::class, 'result'])->name('dosen.penelitian.hasil');
+    Route::post('/penelitian/result/{id}', [ResearchTeacherController::class, 'resultSubmit'])->name('dosen.penelitian.hasil.submit');
     Route::get('/penelitian/lain', [ResearchTeacherController::class, 'joins'])->name('dosen.penelitian.joins')->middleware('dosen');
     Route::get('/penelitian/lain/{id}', [ResearchTeacherController::class, 'join'])->name('dosen.penelitian.join')->middleware('dosen');
     Route::get('/profile/edit', [DosenController::class, 'profile'])->middleware('dosen')->name('dosen.profile');

@@ -91,6 +91,7 @@
                                                     <li><a href="{{ route('home.trainings') }}">Pelatihan</a></li>
                                                     <li><a href="{{ route('home.dedications') }}">Pengabdian Masyarakat</a></li>
                                                     <li><a href="{{ route('home.researchs') }}">Penelitian</a></li>
+                                                    <li><a href="{{ route('home.research.result') }}">Hasil Penelitian</a></li>
                                                     <li><a href="{{ route('home.news') }}">Berita</a></li>
                                                     <li><a href="{{ route('home.release') }}">Rilis</a></li>
                                                 </ul>

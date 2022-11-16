@@ -26,7 +26,7 @@
                     Nama
                   </th>
                   <th>
-                    Jadwal 
+                    Hasil 
                   </th>
                   <th>
                       Peserta 
@@ -52,12 +52,14 @@
                               {{  $research->title }}
                           </td>
                           <td>
-                            {{ $date }} {{ Str::substr($month, 0, 3) }} {{ $year }}, {{ $hour }}
+                            <a href="{{ route('dosen.penelitian.hasil', $research->id) }}" type="button" class="btn btn-link btn-circle btn-sm justify-content-between flex-nowrap">
+                              <i class="typcn typcn-document"></i>
+                            </a>
                           </td>
                           <td>
                             <a href="{{ route('dosen.penelitian.participants', $research->id) }}" type="button" class="btn btn-primary btn-circle btn-sm justify-content-between flex-nowrap">
                                 <i class="typcn typcn-user"></i>
-                              </a>
+                            </a>
                           </td>
                           <td>
                             <a href="{{ route('dosen.penelitian.guide', $research->id) }}" type="button" class="btn btn-info btn-circle btn-sm justify-content-between flex-nowrap">

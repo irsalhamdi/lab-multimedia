@@ -35,7 +35,7 @@
                 @if ($guide)
                   <div class="container">
                     <p align="center">
-                        <iframe type="application/pdf" src="{{ asset('upload/research/guide/'.$guide->file) }}" height="600" style="width: 100%;"></iframe>
+                        <iframe type="application/pdf" src="{{ asset('upload/research-teacher/guide/'.$guide->file) }}" height="600" style="width: 100%;"></iframe>
                     </p>
                   </div>
                 @else
