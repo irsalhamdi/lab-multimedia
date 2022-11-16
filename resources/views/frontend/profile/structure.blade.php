@@ -32,7 +32,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/1.png') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
@@ -45,7 +45,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/2.png') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
@@ -58,7 +58,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/3.png') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
@@ -71,7 +71,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/4.png') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
@@ -84,7 +84,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/5.png') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
@@ -97,7 +97,7 @@
                 <div class="col-lg-4 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/6.png') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
