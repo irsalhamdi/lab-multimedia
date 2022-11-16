@@ -21,7 +21,7 @@ class CreateTrainersTable extends Migration
             $table->text('profile');
             $table->string('job');
             $table->timestamps();
-            $table->foreign('training_id')->references('id')->on('trainings');
+            $table->foreign('training_id')->references('id')->on('trainings')->onDelete('cascade');
         });
     }
 

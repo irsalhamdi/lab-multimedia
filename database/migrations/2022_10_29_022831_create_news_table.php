@@ -21,7 +21,7 @@ class CreateNewsTable extends Migration
             $table->text('description');
             $table->text('excerpt');
             $table->timestamps();
-            $table->foreign('news_categories_id')->references('id')->on('news_categories');
+            $table->foreign('news_categories_id')->references('id')->on('news_categories')->onDelete('cascade');
         });
     }
 

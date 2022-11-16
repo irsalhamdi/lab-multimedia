@@ -23,6 +23,7 @@ class CreateResearchTeachersTable extends Migration
             $table->dateTime('date');
             $table->integer('participants');
             $table->timestamps();
+            $table->foreign('dosen_id')->references('id')->on('dosens')->onDelete('casacade');
         });
     }
 

@@ -26,7 +26,7 @@ class CreateTrainingsTable extends Migration
             $table->string('whatsapp')->nullable();
             $table->tinyInteger('status')->default(1);
             $table->timestamps();
-            $table->foreign('training_categories_id')->references('id')->on('training_categories');
+            $table->foreign('training_categories_id')->references('id')->on('training_categories')->onDelete('cascade');
         });
     }
 
