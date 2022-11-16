@@ -11,79 +11,98 @@
             </div>
         </div>
     </div>
-    <div class="event_details_area section__padding">
+    <div class="popular_program_area section__padding program__page">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <div class="single_event d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="{{ asset('frontend/img/causes/causes.png') }}">
+                <div class="col-lg-12 col-md-12">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/causes/causes.png') }}">
                         </div>
-                        <div class="event_details_info">
-                            <div class="event_info">
-                                <a href="#">
-                                    <h4>Dr. Ali Ibrahim</h4>
-                                </a>
-                                <p>
-                                    <span>Kepala Laboratorium</span>  
-                                </p>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Kepala Laboratorium <br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Dr. Ali Ibrahim</b>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="row mt-3">
-                <div class="col-lg-12">
-                    <div class="single_event d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="{{ asset('frontend/img/irsal.jpeg') }}">
+            <div class="row">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
                         </div>
-                        <div class="event_details_info">
-                            <div class="event_info">
-                                <a href="#">
-                                    <h4>Cakro</h4>
-                                </a>
-                                <p>
-                                    <span>Admin Laboratorium</span>  
-                                </p>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Admin Laboratorium <br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Cakro</b>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-12">
-                    <div class="single_event d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="{{ asset('frontend/img/dea.jpeg') }}">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
                         </div>
-                        <div class="event_details_info">
-                            <div class="event_info">
-                                <a href="#">
-                                    <h4>Dea Salsabilla</h4>
-                                </a>
-                                <p>
-                                    <span>Asisten Laboratorium</span>  
-                                </p>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Admin Laboratorium <br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Nabila</b>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="row mt-3">
-                <div class="col-lg-12">
-                    <div class="single_event d-flex align-items-center">
-                        <div class="thumb">
-                            <img src="{{ asset('frontend/img/iwan.jpeg') }}">
+                <div class="col-lg-4 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
                         </div>
-                        <div class="event_details_info">
-                            <div class="event_info">
-                                <a href="#">
-                                    <h4>Iwan Mandala</h4>
-                                </a>
-                                <p>
-                                    <span>Asistent Laboratorium</span>  
-                                </p>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Asisten Laboratorium <br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Hamdani</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                        </div>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Asisten Laboratorium <br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Dea Salsabilla</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                        </div>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Asisten Laboratorium <br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Iwan Mandala</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/user.png') }}">
+                        </div>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Admin Laboratorium <br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Tasya Uswatun</b>
                             </div>
                         </div>
                     </div>
