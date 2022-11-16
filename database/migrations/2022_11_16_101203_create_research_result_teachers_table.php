@@ -18,6 +18,7 @@ class CreateResearchResultTeachersTable extends Migration
             $table->unsignedBigInteger('research_teacher_id');
             $table->string('file');
             $table->timestamps();
+            $table->foreign('research_teacher_id')->references('id')->on('research_teachers')->onDelete('cascade');
         });
     }
 

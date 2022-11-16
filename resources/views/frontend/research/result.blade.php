@@ -17,34 +17,42 @@
             <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
                 <div class="container">
                     <div class="row">
-                        <table class="table">
-                            <thead>
-                              <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Tema</th>
-                                <th scope="col">Peneliti</th>
-                                <th scope="col">Lihat</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                @php $i = 1; @endphp
-                                @foreach ($results as $result)
-                                    <tr>
-                                        <td scope="row">{{ $i++ }}</td>
-                                        @php
-                                            $research = App\Models\ResearchTeacher::where('id', $result->research_teacher_id)->first();
-                                        @endphp
-                                        <td>{{ $research->title }}</td>
-                                        <td>{{ $research->dosen->name }}</td>
-                                        <td>
-                                            <a target="_blank" href="{{ asset('upload/research-teacher/result/'.$result->file) }}" class="genric-btn default-border circle arrow">
-                                                Lihat<span class="lnr lnr-arrow-right"></span>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
+                        @if ($results->count())
+                            <table class="table">
+                                <thead>
+                                <tr>
+                                    <th scope="col">No</th>
+                                    <th scope="col">Tema</th>
+                                    <th scope="col">Peneliti</th>
+                                    <th scope="col">Lihat</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                        @php $i = 1; @endphp
+                                        @foreach ($results as $result)
+                                            <tr>
+                                                <td scope="row">{{ $i++ }}</td>
+                                                @php
+                                                    $research = App\Models\ResearchTeacher::where('id', $result->research_teacher_id)->first();
+                                                @endphp
+                                                <td>{{ $research->title }}</td>
+                                                <td>{{ $research->dosen->name }}</td>
+                                                <td>
+                                                    <a target="_blank" href="{{ asset('upload/research-teacher/result/'.$result->file) }}" class="genric-btn default-border circle arrow">
+                                                        Lihat<span class="lnr lnr-arrow-right"></span>
+                                                    </a>
+                                                </td>
+                                            </tr>
+                                        @endforeach
+                                </tbody>
+                            </table>
+                        @else
+                            <div class="col-lg-12">
+                                <div class="section_title text-center">
+                                    <h4>Hasil penelitian belum tersedia</h4>
+                                </div>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>
