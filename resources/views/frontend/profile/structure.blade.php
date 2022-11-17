@@ -17,7 +17,7 @@
                 <div class="col-lg-12 col-md-12">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/causes/causes.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px; height: 300px;" src="{{ asset('frontend/img/causes/causes.png') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
@@ -29,80 +29,28 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/1.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px; height:300px;" src="{{ asset('frontend/img/cakro.jpg') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
-                                Admin Laboratorium <br>
+                                Admin Laboratorium Palembang<br>
                                 <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Cakro</b>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-4 col-md-6">
+                <div class="col-lg-6 col-md-6">
                     <div class="single__program">
                         <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/2.png') }}">
+                            <img style="border: 4px; border-radius: 10px; width: 300px; height:300px; " src="{{ asset('frontend/img/hafez.jpg') }}">
                         </div>
                         <div class="program__content">
                             <div style="text-align: center">
-                                Admin Laboratorium <br>
+                                Admin Laboratorium Indaralaya<br>
                                 <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Nabila</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single__program">
-                        <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/3.png') }}">
-                        </div>
-                        <div class="program__content">
-                            <div style="text-align: center">
-                                Asisten Laboratorium <br>
-                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Hamdani</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single__program">
-                        <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/4.png') }}">
-                        </div>
-                        <div class="program__content">
-                            <div style="text-align: center">
-                                Asisten Laboratorium <br>
-                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Dea Salsabilla</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single__program">
-                        <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/5.png') }}">
-                        </div>
-                        <div class="program__content">
-                            <div style="text-align: center">
-                                Asisten Laboratorium <br>
-                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Iwan Mandala</b>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 col-md-6">
-                    <div class="single__program">
-                        <div class="program_thumb" style="text-align: center">
-                            <img style="border: 4px; border-radius: 10px; width: 300px;" src="{{ asset('frontend/img/experts/6.png') }}">
-                        </div>
-                        <div class="program__content">
-                            <div style="text-align: center">
-                                Admin Laboratorium <br>
-                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Tasya Uswatun</b>
                             </div>
                         </div>
                     </div>
