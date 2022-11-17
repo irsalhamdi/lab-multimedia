@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminResearchController;
+use App\Http\Controllers\Admin\AdminTestimoniController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\FaqController;
@@ -60,6 +61,12 @@ Route::get('/galeri', [HomeController::class, 'galleries'])->name('home.gallerie
 Route::get('/jadwal', [HomeController::class, 'schedules'])->name('home.schedules');
 Route::get('/frequently-ask-question', [HomeController::class, 'faq'])->name('home.faq');
 Route::get('/peralatan-laboratorium', [HomeController::class, 'tools'])->name('home.tools');
+Route::get('/testimoni', [HomeController::class, 'testimonies'])->name('home.testimonies');
+Route::post('admin/testimoni/tambah', [AdminController::class, 'testimoniAdmin'])->name('admin.testimoni');
+Route::post('asistant/testimoni/tambah', [AsistantController::class, 'testimoniAsistant'])->name('asistant.testimoni');
+Route::post('dosen/testimoni/tambah', [DosenController::class, 'testimoniDosen'])->name('dosen.testimoni');
+Route::post('lead/testimoni/tambah', [LeadController::class, 'testimoniLead'])->name('lead.testimoni');
+Route::post('mahasiswa/testimoni/tambah', [DashboardController::class, 'testimoniUser'])->name('user.testimoni');
 Route::get('/kategori-berita/{id}', [HomeController::class, 'categories'])->name('home.news.categories');
 Route::get('/berita', [HomeController::class, 'news'])->name('home.news');
 Route::get('/berita/detail/{id}', [HomeController::class, 'new'])->name('home.news.detail');
@@ -197,6 +204,9 @@ Route::prefix('admin')->group(function(){
     Route::get('/faq/edit/{id}', [FaqController::class, 'edit'])->name('admin.faq.edit')->middleware('admin');
     Route::post('/faq/update/{id}', [FaqController::class, 'update'])->name('admin.faq.update')->middleware('admin');
     Route::get('/faq/delete/{id}', [FaqController::class, 'destroy'])->name('admin.faq.delete')->middleware('admin');
+    Route::get('/testimoni', [AdminTestimoniController::class, 'index'])->name('admin.testimonies')->middleware('admin');
+    Route::get('/testimoni/acc', [AdminTestimoniController::class, 'acc'])->name('admin.testimonies.acc')->middleware('admin');
+    Route::get('/testimoni/unacc', [AdminTestimoniController::class, 'unacc'])->name('admin.testimonies.unacc')->middleware('admin');
     Route::get('/login', [AdminController::class, 'index'])->name('admin.login.form');
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');

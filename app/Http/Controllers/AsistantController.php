@@ -13,6 +13,7 @@ use App\Models\Village;
 use App\Models\Asistant;
 use App\Models\District;
 use App\Models\Training;
+use App\Models\Testimonie;
 use Illuminate\Http\Request;
 use App\Models\ReleaseComment;
 use Illuminate\Support\Facades\Auth;
@@ -199,4 +200,24 @@ class AsistantController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function testimoniAsistant(Request $request)
+    {   
+        if(!Auth::guard('asistant')->user()->id){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum memberikan testimoni anda !');
+        }
+
+        Testimonie::create([
+            'asistant_id' => Auth::guard('asistant')->user()->id,
+            'testimoni' => $request->testimoni,
+        ]);
+
+        $notification = array(
+            'message' => 'Terima Kasih telah memberikan testimoni anda !',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
 }

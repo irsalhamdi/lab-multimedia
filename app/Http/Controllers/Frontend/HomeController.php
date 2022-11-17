@@ -3,36 +3,35 @@
 namespace App\Http\Controllers\Frontend;
 
 use Share;
+use App\Models\Faq;
 use App\Models\News;
+use App\Models\Tool;
+use App\Models\Dosen;
 use App\Models\Comment;
 use App\Models\Contact;
+use App\Models\Gallery;
 use App\Models\Profile;
 use App\Models\Regency;
 use App\Models\Release;
 use App\Models\Trainer;
 use App\Models\Village;
 use App\Models\District;
+use App\Models\Schedule;
 use App\Models\Training;
+use App\Models\Customers;
 use Illuminate\Support\Str;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use App\Models\ReleaseComment;
 use App\Models\ReleaseCategory;
+use App\Models\ResearchTeacher;
 use App\Models\LearningMaterial;
 use App\Models\TrainingCategory;
 use Illuminate\Support\Facades\DB;
 use App\Models\CommunityDedication;
 use App\Http\Controllers\Controller;
-use App\Models\Customers;
-use App\Models\Dosen;
-use App\Models\Faq;
-use App\Models\Gallery;
 use App\Models\ResearchResultTeacher;
-use App\Models\ResearchTeacher;
-use App\Models\Schedule;
-use App\Models\Tool;
-
-use function Ramsey\Uuid\v1;
+use App\Models\Testimonie;
 
 class HomeController extends Controller
 {
@@ -43,7 +42,8 @@ class HomeController extends Controller
         $trainings = Training::with('category')->latest()->limit(3)->get();
         $latest = Training::with('category')->latest()->limit(1)->first();
         $dedications = CommunityDedication::with('dosen')->latest()->limit(2)->get();
-        
+        $testimonies = Testimonie::where('status', 1)->limit(3)->get();
+
         $contact = Contact::find(1);
         $regency = Regency::where('id', $contact->regency_id)->first();
         $district = District::where('id', $contact->district_id)->first();
@@ -51,7 +51,7 @@ class HomeController extends Controller
         
         $title = 'Lab Multimedia';
 
-        return view('frontend.index', compact('title', 'news', 'trainings', 'latest', 'dedications', 'contact', 'regency', 'district', 'village'));
+        return view('frontend.index', compact('testimonies', 'title', 'news', 'trainings', 'latest', 'dedications', 'contact', 'regency', 'district', 'village'));
     }
 
     public function categories($id)
@@ -433,6 +433,19 @@ class HomeController extends Controller
         $title = 'Peralatan Laboratorium';
 
         return view('frontend.tools.index', compact('tools', 'title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function testimonies()
+    {   
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+        $testimonies = Testimonie::where('status', 1)->latest()->paginate(3);
+        
+        $title = 'Testimoni';
+
+        return view('frontend.testimonies.index', compact('title', 'testimonies', 'contact', 'regency', 'district', 'village'));
     }
 
     public function subscribe(Request $request)

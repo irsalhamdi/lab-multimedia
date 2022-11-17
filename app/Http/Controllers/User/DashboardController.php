@@ -13,26 +13,27 @@ use App\Models\Release;
 use App\Models\Trainer;
 use App\Models\Village;
 use App\Models\District;
+use App\Models\Research;
 use App\Models\Training;
 use App\Mail\TrainingMail;
+use App\Models\Testimonie;
 use App\Models\Participant;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Models\ReleaseComment;
+use App\Models\ResearchTeacher;
 use App\Models\LearningMaterial;
+use App\Mail\ResearchTeacherMail;
 use App\Models\CommunityDedication;
+use App\Models\ResearchParticipant;
 use App\Http\Controllers\Controller;
+use App\Models\ResearchTeacherGuide;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CommunityDedicationMail;
-use App\Mail\ResearchTeacherMail;
 use App\Models\CommunityDedicationGuide;
 use App\Models\ParticipantCommunityDedication;
-use App\Models\Research;
-use App\Models\ResearchParticipant;
-use App\Models\ResearchTeacher;
-use App\Models\ResearchTeacherGuide;
 
 class DashboardController extends Controller
 {
@@ -358,6 +359,7 @@ class DashboardController extends Controller
         if(!Auth::user()){
             return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum mendaftar pengabdian !');
         }
+        
         $dedication = CommunityDedication::findOrFail($id);
 
         $contact = Contact::find(1);
@@ -630,32 +632,22 @@ class DashboardController extends Controller
         return redirect()->back()->with($notification);
     }
 
-    public function absent(Request $request)
-    {
-        $training = Training::findOrFail($request->id);
-        $participant = Participant::where(['training_id' => $training->id, 'user_id' => Auth::user()->id])->first();
-
-        if($request->customRadioInline == 'hadir'){
-            $participant->update(['absent' => 'hadir']);
-        }else if($request->customRadioInline == 'izin'){
-            $participant->update(['absent' => 'izin']);
-        }else if($request->customRadioInline == 'telat'){
-            $participant->update(['absent' => 'telat']);
-        }else{
-            $notification = array(
-                'message' => 'Silahkan pilih salah satu !',
-                'alert-type' => 'error',
-            );
-    
-            return redirect()->back()->with($notification);
+    public function testimoniUser(Request $request)
+    {   
+        if(!Auth::user()){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum memberikan testimoni anda !');
         }
 
+        Testimonie::create([
+            'user_id' => Auth::user()->id,
+            'testimoni' => $request->testimoni,
+        ]);
+
         $notification = array(
-            'message' => 'Absensi berhasil !',
-            'alert-type' => 'info',
+            'message' => 'Terima Kasih telah memberikan testimoni anda !',
+            'alert-type' => 'success',
         );
 
         return redirect()->back()->with($notification);
-
     }
 }

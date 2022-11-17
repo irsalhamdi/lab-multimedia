@@ -175,6 +175,18 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#testimoni" aria-expanded="false" aria-controls="testimoni">
+          <i class="typcn typcn-point-of-interest-outline menu-icon"></i>
+          <span class="menu-title">Testimoni</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="testimoni">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.testimonies') }}"> Testimoni Lab</a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#kontak" aria-expanded="false" aria-controls="kontak">
           <i class="typcn typcn-phone-outline menu-icon"></i>
           <span class="menu-title">Kontak</span>

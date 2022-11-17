@@ -11,12 +11,13 @@ use App\Models\Regency;
 use App\Models\Release;
 use App\Models\Village;
 use App\Models\District;
+use App\Models\Testimonie;
 use App\Models\Participant;
-use App\Models\ParticipantCommunityDedication;
 use Illuminate\Http\Request;
 use App\Models\ReleaseComment;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Models\ParticipantCommunityDedication;
 
 class DosenController extends Controller
 {
@@ -261,4 +262,24 @@ class DosenController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function testimoniDosen(Request $request)
+    {   
+        if(!Auth::guard('dosen')->user()->id){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum memberikan testimoni anda !');
+        }
+
+        Testimonie::create([
+            'dosen_id' => Auth::guard('dosen')->user()->id,
+            'testimoni' => $request->testimoni,
+        ]);
+
+        $notification = array(
+            'message' => 'Terima Kasih telah memberikan testimoni anda !',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
 }

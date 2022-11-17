@@ -13,6 +13,7 @@ use App\Models\Release;
 use App\Models\Village;
 use App\Models\District;
 use App\Models\Training;
+use App\Models\Testimonie;
 use Illuminate\Http\Request;
 use App\Models\ReleaseComment;
 use Illuminate\Support\Facades\Auth;
@@ -193,6 +194,27 @@ class AdminController extends Controller
 
         $notification = array(
             'message' => 'Komentar berhasil ditambahkan !',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function testimoniAdmin(Request $request)
+    {  
+        if(!Auth::guard('admin')->user()->id){
+            return redirect()->route('login')->with('complete', 'silahkan login terlebih dahulu sebelum memberikan testimoni anda !');
+        }
+
+        dd(Auth::guard('admin')->user()->id);
+
+        Testimonie::create([
+            'admin_id' => Auth::guard('admin')->user()->id,
+            'testimoni' => $request->testimoni,
+        ]);
+
+        $notification = array(
+            'message' => 'Terima Kasih telah memberikan testimoni anda !',
             'alert-type' => 'success',
         );
 

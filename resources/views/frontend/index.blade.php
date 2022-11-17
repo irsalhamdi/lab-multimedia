@@ -358,4 +358,73 @@
             </div>
         </div>
     </div>
-@endsection
+
+    <div class="container" style="padding-bottom: 200px">
+        <div class="row justify-content-center">
+            <div class="col-lg-8 col-md-10">
+                <div class="section_title text-center mb-70">
+                    <h3 class="mb-45">Testimoni</h3>
+                    <p>Lihat berbagai pengalaman mereka yang telah bekerja sama dengan kami.</p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            @if ($testimonies->count())
+                @foreach ($testimonies as $testimoni)
+                    @php
+                        $date = date('d',strtotime($testimoni->created_at));
+                        $month = date('F',strtotime($testimoni->created_at));
+                        $year = date('Y',strtotime($testimoni->created_at));
+                    @endphp
+                    <div class="col-md-4">
+                        <figure class="snip1390">
+                        @if ($testimoni->admin_id !== null)
+                            <img src="{{ (!empty($testimoni->admin->profile)) ? asset($testimoni->admin->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
+                        @elseif($testimoni->asistant_id !== null)
+                            <img src="{{ (!empty($testimoni->asistant->profile)) ? asset($testimoni->asistant->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
+                        @elseif($testimoni->dosen_id !== null)
+                            <img src="{{ (!empty($testimoni->dosen->profile)) ? asset($testimoni->dosen->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
+                        @elseif($testimoni->lead_id !== null)
+                            <img src="{{ (!empty($testimoni->lead->profile)) ? asset($testimoni->lead->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
+                        @elseif($testimoni->user_id !== null)
+                            <img src="{{ (!empty($testimoni->user->profile)) ? asset($testimoni->user->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
+                        @endif
+                        <figcaption>
+                            @if ($testimoni->admin_id !== null)
+                                <h2>{{ Str::limit($testimoni->admin->name, 15) }}</h2>
+                            @elseif($testimoni->asistant_id !== null)
+                                <h2>{{ Str::limit($testimoni->asistant->name, 15) }}</h2>
+                            @elseif($testimoni->dosen_id !== null)
+                                <h2>{{ Str::limit($testimoni->dosen->name, 15) }}</h2>
+                            @elseif($testimoni->lead_id !== null)
+                                <h2>{{ Str::limit($testimoni->lead->name , 15)}}</h2>
+                            @elseif($testimoni->user_id !== null)
+                                <h2>{{ Str::limit($testimoni->user->name , 15)}}</h2>
+                            @endif
+                            <h4>{{ $date }} {{ Str::substr($month, 0, 3) }},  {{ $year }}</h4>
+                            <blockquote>{{ $testimoni->testimoni }}</blockquote>
+                        </figcaption>
+                        </figure>
+                    </div>
+                @endforeach
+            @else
+                <div class="col-lg-12">
+                    <div class="section_title text-center">
+                        <h4>Testimoni belum tersedia</h4>
+                    </div>
+                </div>
+            @endif
+        </div>
+        @if ($testimonies->count())
+            <div class="row" style="padding-top: 15px;">
+                <div class="col-lg-12">
+                    <div class="course_all_btn text-center">
+                        <a href="{{ route('home.testimonies') }}" class="boxed-btn4">Lihat Semua</a>
+                    </div>
+                </div>
+            </div>
+        @else
+        @endif
+    </div>
+
+@endsection 
