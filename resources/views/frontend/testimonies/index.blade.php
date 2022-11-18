@@ -11,7 +11,7 @@
             </div>
         </div>
     </div>
-    <div class="popular_program_area section__padding program__page">
+    <div class="popular_program_area section__padding program__page" style="padding-bottom: 5%;">">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -20,47 +20,49 @@
                     </div>
                 </div>
             </div>
-            <div style="padding-bottom: 100px">
+            <div style="padding-top: 10px;">
                 <div class="row">
                     @if ($testimonies->count())
                         @foreach ($testimonies as $testimoni)
-                            @php
-                                $date = date('d',strtotime($testimoni->created_at));
-                                $month = date('F',strtotime($testimoni->created_at));
-                                $year = date('Y',strtotime($testimoni->created_at));
-                            @endphp
-                            <div class="col-md-4">
-                                <figure class="snip1390">
-                                @if ($testimoni->admin_id !== null)
-                                    <img src="{{ (!empty($testimoni->admin->profile)) ? asset($testimoni->admin->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                                @elseif($testimoni->asistant_id !== null)
-                                    <img src="{{ (!empty($testimoni->asistant->profile)) ? asset($testimoni->asistant->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                                @elseif($testimoni->dosen_id !== null)
-                                    <img src="{{ (!empty($testimoni->dosen->profile)) ? asset($testimoni->dosen->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                                @elseif($testimoni->lead_id !== null)
-                                    <img src="{{ (!empty($testimoni->lead->profile)) ? asset($testimoni->lead->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                                @elseif($testimoni->user_id !== null)
-                                    <img src="{{ (!empty($testimoni->user->profile)) ? asset($testimoni->user->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                                @endif
-                                <figcaption>
-                                    @if ($testimoni->admin_id !== null)
-                                        <h2>{{ Str::limit($testimoni->admin->name, 15) }}</h2>
-                                    @elseif($testimoni->asistant_id !== null)
-                                        <h2>{{ Str::limit($testimoni->asistant->name, 15) }}</h2>
-                                    @elseif($testimoni->dosen_id !== null)
-                                        <h2>{{ Str::limit($testimoni->dosen->name, 15) }}</h2>
-                                    @elseif($testimoni->lead_id !== null)
-                                        <h2>{{ Str::limit($testimoni->lead->name , 15)}}</h2>
-                                    @elseif($testimoni->user_id !== null)
-                                        <h2>{{ Str::limit($testimoni->user->name , 15)}}</h2>
-                                    @endif
-                                    <h4>{{ $date }} {{ Str::substr($month, 0, 3) }},  {{ $year }}</h4>
-                                    <blockquote>{{ $testimoni->testimoni }}</blockquote>
-                                </figcaption>
-                                </figure>
+                            <div class="col-lg-4 col-md-6">
+                                <div class="single__program">
+                                    <div class="program_thumb">
+                                        <div style="text-align: center">
+                                            @if($testimoni->admin_id !== null)
+                                                <img class="mb-3" src="{{ (!empty($testimoni->admin->profile)) ? asset($testimoni->admin->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                            @elseif($testimoni->asistant_id !== null)
+                                                <img class="mb-3" src="{{ (!empty($testimoni->asistant->profile)) ? asset($testimoni->asistant->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                            @elseif($testimoni->dosen_id !== null)
+                                                <img class="mb-3" src="{{ (!empty($testimoni->dosen->profile)) ? asset($testimoni->dosen->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                            @elseif($testimoni->lead_id !== null)
+                                                <img class="mb-3" src="{{ (!empty($testimoni->lead->profile)) ? asset($testimoni->lead->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                            @elseif($testimoni->user_id !== null)
+                                                <img class="mb-3" src="{{ (!empty($testimoni->user->profile)) ? asset($testimoni->user->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 70; border-radius: 50%;">
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="program__content">
+                                        <div style="text-align: center">
+                                            @if($testimoni->admin_id !== null)                                            
+                                                <h4>{{ $testimoni->admin->name }}</h4>
+                                            @elseif($testimoni->asistant_id !== null)
+                                                <h4>{{ $testimoni->asistant->name }}</h4>
+                                            @elseif($testimoni->dosen_id !== null)
+                                                <h4>{{ $testimoni->dosen->name }}</h4>
+                                            @elseif($testimoni->lead_id !== null)
+                                                <h4>{{ $testimoni->lead->name }}</h4>
+                                            @elseif($testimoni->user_id !== null)
+                                                <h4>{{ $testimoni->user->name }}</h4>
+                                            @endif 
+                                        </div>
+                                        <div style="text-align: center">
+                                            <p>{!! $testimoni->testimoni !!}</p>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        @endforeach  
-                        <div class="container mt-3">
+                        @endforeach
+                        <div class="container">
                             <div class="d-flex justify-content-center">
                                 {{ $testimonies->links() }}
                             </div>

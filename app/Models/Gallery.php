@@ -15,4 +15,8 @@ class Gallery extends Model
             return $query->where('title', 'like', '%' . $search . '%');
         });
     }
+
+    public function galleries(){
+        return $this->hasMany(Gallery::class, 'gallery_id', 'id');
+    }
 }

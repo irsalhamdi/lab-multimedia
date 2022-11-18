@@ -30,8 +30,10 @@ use App\Models\TrainingCategory;
 use Illuminate\Support\Facades\DB;
 use App\Models\CommunityDedication;
 use App\Http\Controllers\Controller;
+use App\Models\GalleryActivity;
 use App\Models\ResearchResultTeacher;
 use App\Models\Testimonie;
+use Illuminate\Auth\Access\Gate;
 
 class HomeController extends Controller
 {
@@ -394,6 +396,21 @@ class HomeController extends Controller
         $title = 'Gallery Laboratorium Multimedia';
 
         return view('frontend.gallery.index', compact('title', 'contact', 'regency', 'district', 'village', 'galleries'));
+    }
+
+    public function galleriesActivities($id)
+    {
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $gallery = Gallery::findOrFail($id);
+        $galleries = GalleryActivity::where('gallery_id', $gallery->id)->get();
+
+        $title = $gallery->title;
+
+        return view('frontend.gallery.gallery-activities', compact('title', 'galleries', 'contact', 'regency', 'district', 'village'));
     }
 
     public function schedules()

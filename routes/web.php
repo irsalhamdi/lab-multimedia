@@ -58,6 +58,7 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang-kami', [HomeController::class, 'profile'])->name('home.profile');
 Route::get('/struktur-organisasi', [HomeController::class, 'structure'])->name('home.structure');
 Route::get('/galeri', [HomeController::class, 'galleries'])->name('home.galleries');
+Route::get('/galeri-kegiatan/{id}', [HomeController::class, 'galleriesActivities'])->name('home.galleries.activities');
 Route::get('/jadwal', [HomeController::class, 'schedules'])->name('home.schedules');
 Route::get('/frequently-ask-question', [HomeController::class, 'faq'])->name('home.faq');
 Route::get('/peralatan-laboratorium', [HomeController::class, 'tools'])->name('home.tools');
@@ -191,6 +192,8 @@ Route::prefix('admin')->group(function(){
     Route::post('/galeri/store', [GalleryController::class, 'store'])->name('admin.gallery.store')->middleware('admin');
     Route::get('/galeri/edit/{id}', [GalleryController::class, 'edit'])->name('admin.gallery.edit')->middleware('admin');
     Route::post('/galeri/update/{id}', [GalleryController::class, 'update'])->name('admin.gallery.update')->middleware('admin');
+    Route::get('/galeri/edit-image/{id}', [GalleryController::class, 'editImage'])->name('admin.gallery.edit.image')->middleware('admin');
+    Route::post('/galeri/update-image/{id}', [GalleryController::class, 'updateImage'])->name('admin.gallery.update.image')->middleware('admin');
     Route::get('/galeri/delete/{id}', [GalleryController::class, 'destroy'])->name('admin.gallery.delete')->middleware('admin');
     Route::get('/jadwal', [ScheduleController::class, 'index'])->name('admin.schedules')->middleware('admin');
     Route::get('/jadwal/add', [ScheduleController::class, 'create'])->name('admin.schedule.add')->middleware('admin');

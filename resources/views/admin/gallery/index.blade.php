@@ -26,7 +26,10 @@
                                 Galeri
                             </th>
                             <th>
-                                Judul
+                                Gambar
+                            </th>
+                            <th>
+                                Galeri
                             </th>
                             <th>
                                 Aksi
@@ -41,6 +44,11 @@
                                     </td>
                                     <td class="py-1">
                                         <img src="{{ ($gallery->image != null) ? asset($gallery->image) : asset('frontend/img/gallery.png') }}" alt="">
+                                    </td>
+                                    <td>
+                                        <a href="{{ route('admin.gallery.edit.image', $gallery->id) }}" type="button" class="btn btn-primary btn-circle btn-sm justify-content-between flex-nowrap">
+                                            <i class="typcn typcn-upload"></i>
+                                        </a>                                        
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.gallery.edit', $gallery->id) }}" type="button" class="btn btn-warning btn-circle btn-sm justify-content-between flex-nowrap">

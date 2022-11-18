@@ -359,72 +359,155 @@
         </div>
     </div>
 
-    <div class="container" style="padding-bottom: 200px">
-        <div class="row justify-content-center">
-            <div class="col-lg-8 col-md-10">
-                <div class="section_title text-center mb-70">
-                    <h3 class="mb-45">Testimoni</h3>
-                    <p>Lihat berbagai pengalaman mereka yang telah bekerja sama dengan kami.</p>
+    <section class="testimonials-section" style="padding-bottom: 10%">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-8 col-md-10">
+                    <div class="section_title text-center mb-70">
+                        <h3 class="mb-45">Testimoni</h3>
+                        <p>Lihat berbagai pengalaman mereka yang telah bekerja sama dengan kami</p>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            @if ($testimonies->count())
-                @foreach ($testimonies as $testimoni)
-                    @php
-                        $date = date('d',strtotime($testimoni->created_at));
-                        $month = date('F',strtotime($testimoni->created_at));
-                        $year = date('Y',strtotime($testimoni->created_at));
-                    @endphp
-                    <div class="col-md-4">
-                        <figure class="snip1390">
-                        @if ($testimoni->admin_id !== null)
-                            <img src="{{ (!empty($testimoni->admin->profile)) ? asset($testimoni->admin->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                        @elseif($testimoni->asistant_id !== null)
-                            <img src="{{ (!empty($testimoni->asistant->profile)) ? asset($testimoni->asistant->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                        @elseif($testimoni->dosen_id !== null)
-                            <img src="{{ (!empty($testimoni->dosen->profile)) ? asset($testimoni->dosen->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                        @elseif($testimoni->lead_id !== null)
-                            <img src="{{ (!empty($testimoni->lead->profile)) ? asset($testimoni->lead->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                        @elseif($testimoni->user_id !== null)
-                            <img src="{{ (!empty($testimoni->user->profile)) ? asset($testimoni->user->profile) : asset('frontend/img/user.png') }}" alt="profile-sample3" class="profile" />
-                        @endif
-                        <figcaption>
-                            @if ($testimoni->admin_id !== null)
-                                <h2>{{ Str::limit($testimoni->admin->name, 15) }}</h2>
-                            @elseif($testimoni->asistant_id !== null)
-                                <h2>{{ Str::limit($testimoni->asistant->name, 15) }}</h2>
-                            @elseif($testimoni->dosen_id !== null)
-                                <h2>{{ Str::limit($testimoni->dosen->name, 15) }}</h2>
-                            @elseif($testimoni->lead_id !== null)
-                                <h2>{{ Str::limit($testimoni->lead->name , 15)}}</h2>
-                            @elseif($testimoni->user_id !== null)
-                                <h2>{{ Str::limit($testimoni->user->name , 15)}}</h2>
-                            @endif
-                            <h4>{{ $date }} {{ Str::substr($month, 0, 3) }},  {{ $year }}</h4>
-                            <blockquote>{{ $testimoni->testimoni }}</blockquote>
-                        </figcaption>
-                        </figure>
-                    </div>
-                @endforeach
-            @else
-                <div class="col-lg-12">
-                    <div class="section_title text-center">
-                        <h4>Testimoni belum tersedia</h4>
+            <div class="row">
+                <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" type="text/css" rel="stylesheet">
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js" type="text/javascript"></script>
+                <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js" type="text/javascript"></script>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="carousel slide" data-ride="carousel" id="quote-carousel">    
+                                <ol class="carousel-indicators">
+                                    @if ($testimonies->count())
+                                        <li data-target="#quote-carousel" data-slide-to="0" class="active"></li>
+                                        @php
+                                            $counter = 1;
+                                        @endphp
+                                        @foreach ($testimonies->skip(1) as $testimoni)
+                                            <li data-target="#quote-carousel" data-slide-to="{{ $counter++ }}"></li>
+                                        @endforeach
+                                    @else
+                                    @endif
+                                </ol>
+                                <div class="carousel-inner">
+                                    @if ($testimonies->count())
+                                        <div class="item active">
+                                            <div class="row">
+                                                <div class="col-sm-12">
+                                                    @if($testimonies[0]->admin_id !== null)
+                                                        <img src="{{ (!empty($testimonies[0]->admin->profile)) ? asset($testimonies[0]->admin->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                    @elseif($testimonies[0]->asistant_id !== null)
+                                                        <img src="{{ (!empty($testimonies[0]->asistant->profile)) ? asset($testimonies[0]->asistant->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                    @elseif($testimonies[0]->dosen_id !== null)
+                                                        <img src="{{ (!empty($testimonies[0]->dosen->profile)) ? asset($testimonies[0]->dosen->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                    @elseif($testimonies[0]->lead_id !== null)
+                                                        <img src="{{ (!empty($testimonies[0]->lead->profile)) ? asset($testimonies[0]->lead->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                    @elseif($testimonies[0]->user_id !== null)
+                                                        <img src="{{ (!empty($testimonies[0]->user->profile)) ? asset($testimonies[0]->user->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 70; border-radius: 50%;">
+                                                    @endif
+                                                    <p>
+                                                        @if($testimonies[0]->admin_id !== null)
+                                                            {{ $testimonies[0]->testimoni }}
+                                                        @elseif($testimonies[0]->asistant_id !== null)
+                                                            {{ $testimonies[0]->asitestimoni }}
+                                                        @elseif($testimonies[0]->dosen_id !== null)
+                                                            {{ $testimonies[0]->testimoni }}
+                                                        @elseif($testimonies[0]->lead_id !== null)
+                                                            {{ $testimonies[0]->testimoni }}
+                                                        @elseif($testimonies[0]->user_id !== null)
+                                                            {{ $testimonies[0]->testimoni }}
+                                                        @endif
+                                                    </p>
+                                                    <small>
+                                                        <strong>
+                                                            <h5>
+                                                                @if($testimonies[0]->admin_id !== null)
+                                                                    <a href="#">{{ $testimonies[0]->admin->name }}</a>
+                                                                @elseif($testimonies[0]->asistant_id !== null)
+                                                                    <a href="#">{{ $testimonies[0]->asistant->name }}</a>
+                                                                @elseif($testimonies[0]->dosen_id !== null)
+                                                                    <a href="#">{{ $testimonies[0]->dosen->name }}</a>
+                                                                @elseif($testimonies[0]->lead_id !== null)
+                                                                    <a href="#">{{ $testimonies[0]->lead->name }}</a>
+                                                                @elseif($testimonies[0]->user_id !== null)
+                                                                    <a href="#">{{ $testimonies[0]->user->name }}</a>
+                                                                @endif
+                                                            </h5>
+                                                        </strong>
+                                                    </small>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        @foreach ($testimonies->skip(1) as $testimoni)
+                                            <div class="item">
+                                                <div class="row">
+                                                    <div class="col-sm-12">
+                                                        @if($testimoni->admin_id !== null)
+                                                            <img class="mb-3" src="{{ (!empty($testimoni->admin->profile)) ? asset($testimoni->admin->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                        @elseif($testimoni->asistant_id !== null)
+                                                            <img class="mb-3" src="{{ (!empty($testimoni->asistant->profile)) ? asset($testimoni->asistant->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                        @elseif($testimoni->dosen_id !== null)
+                                                            <img class="mb-3" src="{{ (!empty($testimoni->dosen->profile)) ? asset($testimoni->dosen->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                        @elseif($testimoni->lead_id !== null)
+                                                            <img class="mb-3" src="{{ (!empty($testimoni->lead->profile)) ? asset($testimoni->lead->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 150px; border-radius: 50%;">
+                                                        @elseif($testimoni->user_id !== null)
+                                                            <img class="mb-3" src="{{ (!empty($testimoni->user->profile)) ? asset($testimoni->user->profile) : asset('frontend/img/user.png') }}" style="width: 150px; height: 70; border-radius: 50%;">
+                                                        @endif
+                                                    <p>
+                                                        @if($testimoni->admin_id !== null)
+                                                            {{ $testimoni->testimoni }}
+                                                        @elseif($testimoni->asistant_id !== null)
+                                                            {{ $testimoni->asitestimoni }}
+                                                        @elseif($testimoni->dosen_id !== null)
+                                                            {{ $testimoni->testimoni }}
+                                                        @elseif($testimoni->lead_id !== null)
+                                                            {{ $testimoni->testimoni }}
+                                                        @elseif($testimoni->user_id !== null)
+                                                            {{ $testimoni->testimoni }}
+                                                        @endif
+                                                    </p>
+                                                    <small>
+                                                        <strong>
+                                                            <h5>
+                                                                @if($testimoni->admin_id !== null)
+                                                                    <a href="#">{{ $testimoni->admin->name }}</a>
+                                                                @elseif($testimoni->asistant_id !== null)
+                                                                    <a href="#">{{ $testimoni->asistant->name }}</a>
+                                                                @elseif($testimoni->dosen_id !== null)
+                                                                    <a href="#">{{ $testimoni->dosen->name }}</a>
+                                                                @elseif($testimoni->lead_id !== null)
+                                                                    <a href="#">{{ $testimoni->lead->name }}</a>
+                                                                @elseif($testimoni->user_id !== null)
+                                                                    <a href="#">{{ $testimoni->user->name }}</a>
+                                                                @endif
+                                                            </h5>
+                                                        </strong>
+                                                    </small>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        @endforeach
+                                    @else
+                                        <div class="col-lg-12">
+                                            <div class="section_title text-center">
+                                                <h4>Testimoni belum tersedia</h4>
+                                            </div>
+                                        </div>
+                                    @endif
+                                </div>
+                            </div>                          
+                        </div>
                     </div>
                 </div>
-            @endif
-        </div>
-        @if ($testimonies->count())
-            <div class="row" style="padding-top: 15px;">
+            </div>
+            <div class="row" style="padding-top: 5%">
                 <div class="col-lg-12">
                     <div class="course_all_btn text-center">
                         <a href="{{ route('home.testimonies') }}" class="boxed-btn4">Lihat Semua</a>
                     </div>
                 </div>
             </div>
-        @else
-        @endif
-    </div>
+        </div>
+    </section>
 
 @endsection 

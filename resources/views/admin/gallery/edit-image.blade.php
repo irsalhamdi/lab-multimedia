@@ -4,23 +4,14 @@
     <div class="col-12 grid-margin stretch-card">
         <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Tambah Galeri</h4>
+            <h4 class="card-title">Edit Gambar Utama</h4>
             <p class="card-description">
-            Form Tambah Galeri
+            Form Edit Gambar Utama
             </p>
-            <form method="POST" action="{{ route('admin.gallery.store') }}" class="forms-sample" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('admin.gallery.update.image', $gallery->id) }}" class="forms-sample" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
-                    <label>Judul</label>
-                    <input type="text" name="title" value="{{ old('title') }}" class="form-control @error('title') is-invalid @enderror" placeholder="Judul Galeri" required>
-                    @error('title')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
-                </div>
-                <div class="form-group">
-                    <img id="showImage" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px;">
+                    <img id="showImage" src="{{ (!empty($gallery->image)) ? asset($gallery->image) : url('upload/default.jpg') }}" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px;">
                 </div>
                 <div class="form-group">
                     <label>Gambar Utama</label>
@@ -31,10 +22,42 @@
                         </div>
                     @enderror
                 </div>
-                <div class="form-group">
-                    <label>Gallery</label>
-                    <input type="file" id="multiImg" name="gambar[]" class="form-control" required multiple>
-                    <div id="preview_img"></div>
+                <a href="{{ route('admin.galleries') }}" class="btn btn-light">Cancel</a>
+                <button type="submit" class="btn btn-primary mr-2">Submit</button>
+            </form>
+        </div>
+        </div>
+    </div>
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">Edit Galeri</h4>
+            <p class="card-description">
+            Form Edit Galeri
+            </p>
+            <form method="POST" action="{{ route('admin.gallery.update.image', $gallery->id) }}" class="forms-sample" enctype="multipart/form-data">
+                @csrf
+                <div class="row row-sm">
+                    @foreach ($galleries as $image)
+                        <div class="col-md-3">
+                            <div class="card">
+                                <img src="{{ asset($image->gambar) }}" width="280" height="130">
+                            </div>
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <a href="" class="btn btn-sm" id="delete" title="Delete Image">
+                                        <i class="fa fa-trash"></i>
+                                    </a>
+                                </h5>
+                                <p class="card-text">
+                                    <div class="form-group">
+                                        <label class="form-control-label">Change Image</label>
+                                        <input type="file" name="name[ $image->id ]" class="form-control">
+                                    </div>
+                                </p>
+                            </div>
+                        </div>
+                    @endforeach
                 </div>
                 <a href="{{ route('admin.galleries') }}" class="btn btn-light">Cancel</a>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>

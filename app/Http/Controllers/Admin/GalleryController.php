@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Gallery;
+use App\Models\GalleryActivity;
 use Illuminate\Http\Request;
 
 class GalleryController extends Controller
@@ -34,10 +35,24 @@ class GalleryController extends Controller
             $file->move(public_path('upload/gallery'),$fileName);
             $url = 'upload/gallery/' . $fileName;
 
-            Gallery::create([
+            $id = Gallery::insertGetId([
                 'title' => $request->title,
                 'image' => $url,
             ]);
+
+            $images = $request->file('gambar');
+
+            foreach($images  as $image){
+    
+                $name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('upload/gallery/activity'), $name);
+                $urlActivity = 'upload/gallery/activity/' . $name;
+    
+                GalleryActivity::insert([
+                    'gallery_id' => $id,
+                    'gambar' => $urlActivity,
+                ]);
+            }
 
             $notification = array(
                 'message' => 'Galeri berhasil ditambahkan !',
@@ -100,6 +115,14 @@ class GalleryController extends Controller
             return redirect()->route('admin.galleries')->with($notification);
         }
 
+    }
+
+    public function editImage($id)
+    {
+        $gallery = Gallery::findOrFail($id);
+        $galleries = GalleryActivity::where('gallery_id', $gallery->id)->get();
+        
+        return view('admin.gallery.edit-image', compact('gallery', 'galleries'));
     }
 
     public function destroy($id)

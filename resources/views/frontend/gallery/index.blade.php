@@ -39,7 +39,7 @@
                                     <img src="{{ asset($gallery->image) }}" style="width: 360; height: 268px;">
                                 </div>
                                 <div class="program__content" style="text-align: center">
-                                    <h4><a href="">{{ $gallery->title }}</a></h4>
+                                    <h4><a href="{{ route('home.galleries.activities', $gallery->id) }}">{{ $gallery->title }}</a></h4>
                                 </div>
                             </div>
                         </div>
