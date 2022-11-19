@@ -47,6 +47,7 @@
           <ul class="nav flex-column sub-menu">
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.news-category') }}"> Kategori </a></li>
             <li class="nav-item"> <a class="nav-link" href="{{ route('admin.news') }}"> Daftar Berita </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.news.request') }}"> Permintaan Berita </a></li>
           </ul>
         </div>
       </li>

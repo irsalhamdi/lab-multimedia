@@ -13,7 +13,7 @@ class NewsController extends Controller
 {
     public function index()
     {
-        $news = News::latest()->filter(request(['search']))->paginate(3)->withQueryString();
+        $news = News::where('status', 1)->latest()->filter(request(['search']))->paginate(3)->withQueryString();
         return view('admin.news.index', compact('news'));
     }
 
@@ -155,6 +155,26 @@ class NewsController extends Controller
             'message' => 'Berita berhasil dihapus !',
             'alert-type' => 'warning',
         );
+        
+        return redirect()->back()->with($notification);
+    }
+
+    public function request()
+    {
+        $news = News::where('status', 0)->latest()->filter(request(['search']))->paginate(3)->withQueryString();
+        return view('admin.news.request', compact('news'));
+    }
+
+    public function acc(Request $request)
+    {
+        News::findOrFail($request->id)->update([
+            'status' => 1,
+        ]);
+
+        $notification = [
+            'message' => 'Berita berhasil diupdate !',
+            'alert-type' => 'info',
+        ];
 
         return redirect()->back()->with($notification);
     }

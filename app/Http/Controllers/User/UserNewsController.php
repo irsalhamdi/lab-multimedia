@@ -1,25 +1,26 @@
 <?php
 
-namespace App\Http\Controllers\Asistant;
+namespace App\Http\Controllers\User;
 
 use App\Models\News;
 use Illuminate\Support\Str;
 use App\Models\NewsCategory;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class AsistantNewsController extends Controller
+class UserNewsController extends Controller
 {
     public function index()
     {
-        $news = News::where('status', 1)->latest()->filter(request(['search']))->paginate(3)->withQueryString();
-        return view('asistant.news.index', compact('news'));
+        $news = News::where('user_id', Auth::user()->id)->latest()->filter(request(['search']))->paginate(3)->withQueryString();
+        return view('user.news.index', compact('news'));
     }
 
     public function create()
     {
         $categories = NewsCategory::orderBy('name', 'ASC')->get();
-        return view('asistant.news.add', compact('categories'));
+        return view('user.news.add', compact('categories'));
     }
 
     public function store(Request $request)
@@ -43,12 +44,14 @@ class AsistantNewsController extends Controller
             $url = 'upload/news/' . $fileName;
 
             News::create([
+                'user_id' => Auth::user()->id,
                 'news_categories_id' => $request->news_categories_id,
                 'title' => $request->title,
                 'image' => $url,
                 'video' => $request->video,
                 'description' => $request->description,
-                'excerpt' => Str::limit(strip_tags($request->description), 200)
+                'excerpt' => Str::limit(strip_tags($request->description), 200),
+                'status' => 0
             ]);
 
             $notification = array(
@@ -56,7 +59,7 @@ class AsistantNewsController extends Controller
                 'alert-type' => 'success',
             );
     
-            return redirect()->route('asistant.news')->with($notification);
+            return redirect()->route('mahasiswa.berita')->with($notification);
 
         }else{
 
@@ -74,7 +77,7 @@ class AsistantNewsController extends Controller
     {
         $news = News::findOrFail($id);
         $categories = NewsCategory::orderBy('name', 'ASC')->get();
-        return view('asistant.news.edit', compact('news', 'categories'));
+        return view('user.news.edit', compact('news', 'categories'));
     }
 
     public function update(Request $request, $id)
@@ -100,7 +103,7 @@ class AsistantNewsController extends Controller
 
             $file = $request->file('image');
             $fileName = $news->id . date('YmdHi') . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('upload/news'),$fileName);
+            $file->move(public_path('upload/news/'),$fileName);
             $url = 'upload/news/' . $fileName;
 
             News::findOrFail($news->id)->update([
@@ -117,7 +120,7 @@ class AsistantNewsController extends Controller
                 'alert-type' => 'info',
             );
     
-            return redirect()->route('asistant.news')->with($notification);
+            return redirect()->route('mahasiswa.berita')->with($notification);
         }else{
 
             News::findOrFail($news->id)->update([
@@ -133,7 +136,7 @@ class AsistantNewsController extends Controller
                 'alert-type' => 'info',
             );
     
-            return redirect()->route('asistant.news')->with($notification);
+            return redirect()->route('mahasiswa.berita')->with($notification);
         }
 
     }
@@ -141,7 +144,7 @@ class AsistantNewsController extends Controller
     public function show($id)
     {
         $news = News::findOrFail($id);
-        return view('asistant.news.detail', compact('news'));
+        return view('user.news.detail', compact('news'));
     }
 
     public function destroy($id)

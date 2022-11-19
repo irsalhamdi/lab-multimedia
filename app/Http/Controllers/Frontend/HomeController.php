@@ -39,7 +39,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $news = News::with('category')->latest()->limit(3)->get();
+        $news = News::with('category')->where('status', 1)->latest()->limit(3)->get();
 
         $trainings = Training::with('category')->latest()->limit(3)->get();
         $latest = Training::with('category')->latest()->limit(1)->first();

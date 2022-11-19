@@ -75,6 +75,18 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#news" aria-expanded="false" aria-controls="news">
+          <i class="typcn typcn-document menu-icon"></i>
+          <span class="menu-title">Berita</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="news">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('mahasiswa.berita') }}"> Daftar Berita </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#qa" aria-expanded="false" aria-controls="qa">
           <i class="typcn typcn-message-typing menu-icon"></i>
           <span class="menu-title">Pesan</span>

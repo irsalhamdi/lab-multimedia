@@ -650,4 +650,38 @@ class DashboardController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function member()
+    {   
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Daftar Member Lab';
+
+        return view('user.member.index', compact('title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function memberEnroll(Request $request)
+    {   
+        $requirement = $request->requirement;
+        $wordRequirement = 'saya memahami dan akan mengikuti persyaratan member lab';
+
+        if($requirement !== $wordRequirement){
+            return redirect()->back()->with('error', 'pastikan anda menulis kalimat di atas dengan benar. Perhatikan huruf besar dan kecil !');
+        }
+
+        User::where('id', Auth::user()->id)->update([
+            'status' => 1
+        ]);
+
+        $notification = array(
+            'message' => 'Pendaftaran Member berhasil !',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->route('dashboard')->with($notification);
+
+    }
 }

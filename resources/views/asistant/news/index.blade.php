@@ -23,7 +23,7 @@
               <thead>
                 <tr>
                   <th>
-                    Kategori 
+                    Penulis 
                   </th>
                   <th>
                     Judul 
@@ -40,7 +40,17 @@
                   @foreach ($news as $new)
                       <tr>
                           <td class="py-1">
-                              {{ $new->category->name }}
+                            @if($new->admin_id !== null)
+                              {{ $new->admin->name }}
+                            @elseif($new->asistant_id !== null)
+                              {{ $new->asistant->name }}
+                            @elseif($new->dosen_id !== null)
+                              {{ $new->dosen->name }}
+                            @elseif($new->lead_id !== null)
+                              {{ $new->lead->name }}
+                            @elseif($new->user_id !== null)
+                              {{ $new->user->name }}
+                            @endif
                           </td>
                           <td>
                               {{ $new->title }}

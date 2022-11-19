@@ -12,7 +12,7 @@ class LeadNewsController extends Controller
 {
     public function index()
     {
-        $news = News::latest()->filter(request(['search']))->paginate(3)->withQueryString();
+        $news = News::where('status', 1)->latest()->filter(request(['search']))->paginate(3)->withQueryString();
         return view('lead.news.index', compact('news'));
     }
 

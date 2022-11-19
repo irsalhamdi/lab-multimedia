@@ -24,7 +24,35 @@
                             <h2>{{ $new->title}}</h2>
                             <ul class="blog-info-link mt-3 mb-4">
                                 <li><a href="{{ route('home.news.categories', $new->category->id) }}"><i class="fa fa-list"></i> {{ $new->category->name }}</a></li>
-                                <li><a href="#"><i class="fa fa-comments"></i> {{ $count }} Komentar</a></li>
+                                <li><i class="fa fa-comments"></i> {{ $count }} Komentar</li>
+                                @if($new->admin_id !== null)
+                                <li>
+                                    <i class="ti-user"></i>
+                                    {{ $new->admin->name }}
+                                </li>
+                                @elseif($new->asistant_id !== null)
+                                <li>
+                                    <i class="ti-user"></i>
+                                    {{ $new->asistant->name }}
+                                </li>
+                                @elseif($new->dosen_id !== null)
+                                <li>
+                                    <i class="ti-user"></i>
+                                    <a href="{{ route('home.dosen', $new->dosen->id) }}">
+                                        {{ $new->dosen->name }}
+                                    </a>
+                                </li>
+                                @elseif($new->lead_id !== null)
+                                <li>
+                                    <i class="ti-user"></i>
+                                    {{ $new->lead->name }}
+                                </li>
+                                @elseif($new->user_id !== null)
+                                <li>
+                                    <i class="ti-user"></i>
+                                    {{ $new->user->name }}
+                                </li>
+                                @endif
                             </ul>
                             @if($new->video == null)
                             @else
