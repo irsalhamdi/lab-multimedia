@@ -67,7 +67,7 @@
           </div>
         @else
           <div class="d-flex justify-content-center">
-            <p class="text-muted">Kategori berita tidak di temukan</p>
+            <p class="text-muted">Berita tidak di temukan</p>
           </div>
         @endif
         <div class="d-flex justify-content-center mt-3">
