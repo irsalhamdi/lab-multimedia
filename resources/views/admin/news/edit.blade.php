@@ -52,6 +52,15 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>Link Video</label>
+                    <input type="text" name="video" value="{{ old('video', $news->video) }}" class="form-control @error('video') is-invalid @enderror" placeholder="Link Video Berita">
+                    @error('video')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label>Deskripsi</label>
                     <textarea id="editor" name="description" rows="10" cols="80" required>
                         {{ old('description', $news->description) }}

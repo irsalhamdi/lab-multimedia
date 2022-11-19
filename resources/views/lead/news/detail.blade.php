@@ -10,6 +10,16 @@
         <div class="card">
         <div class="card-body">
             <h4 class="card-title">{{ $news->title }}</h4>
+            @if($news->video == null)
+            @else
+                 @php
+                    $string = substr($news->video, 32);
+                    $url = 'https://www.youtube.com/embed/'.$string;
+                @endphp
+                <div class="text-center">
+                    <iframe style="width: 100%" width="560" height="315" src="{{ $url }}"></iframe>                                
+                </div>
+            @endif
                 <p class="card-description">
                     <img class="mb-3" src="https://source.unsplash.com/500x400?"{{ $news->category->name }}" style="display: block; margin-left: auto; margin-right: auto; width: 300px; height: 300px;"> 
                     <i class="typcn typcn-time"></i> 
