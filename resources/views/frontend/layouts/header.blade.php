@@ -83,7 +83,8 @@
                                             </li>
                                             <li><a href="{{ route('home.tools') }}">Fasilitas</a>
                                                 <ul class="submenu">
-                                                    <li><a href="{{ route('home.tools') }}">Peralatan Laboratorium</a></li>
+                                                    <li><a href="{{ route('home.tools') }}">Peralatan Praktikum</a></li>
+                                                    <li><a href="{{ route('home.tools.researchs') }}">Peralatan Penelitian</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ route('home.trainings') }}">Layanan <i class="ti-angle-down"></i></a>

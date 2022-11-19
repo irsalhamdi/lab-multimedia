@@ -445,11 +445,24 @@ class HomeController extends Controller
         $regency = Regency::where('id', $contact->regency_id)->first();
         $district = District::where('id', $contact->district_id)->first();
         $village = Village::where('id', $contact->village_id)->first();
-        $tools = Tool::orderBy('name', 'ASC')->filter(request(['search']))->paginate(6)->withQueryString();
+        $tools = Tool::where('category', 0)->orderBy('name', 'ASC')->filter(request(['search']))->paginate(6)->withQueryString();
 
-        $title = 'Peralatan Laboratorium';
+        $title = 'Peralatan Praktikum';
 
         return view('frontend.tools.index', compact('tools', 'title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function toolsResearchs()
+    {
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+        $tools = Tool::where('category', 1)->orderBy('name', 'ASC')->filter(request(['search']))->paginate(6)->withQueryString();
+
+        $title = 'Peralatan Penelitian';
+
+        return view('frontend.tools.tools-researchs', compact('tools', 'title', 'contact', 'regency', 'district', 'village'));
     }
 
     public function testimonies()

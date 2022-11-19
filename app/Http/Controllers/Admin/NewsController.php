@@ -47,6 +47,7 @@ class NewsController extends Controller
                 'news_categories_id' => $request->news_categories_id,
                 'title' => $request->title,
                 'image' => $url,
+                'video' => $request->video,
                 'description' => $request->description,
                 'excerpt' => Str::limit(strip_tags($request->description), 200)
             ]);

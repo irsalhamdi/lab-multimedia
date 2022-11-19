@@ -29,6 +29,7 @@ class ToolExport implements FromCollection, ShouldAutoSize, WithMapping, WithHea
             $row->name,
             $row->quantity,
             $row->description,
+            $row->category === 0 ? 'Praktikum' : 'Penelitian',
         ];
     }
 
@@ -38,6 +39,7 @@ class ToolExport implements FromCollection, ShouldAutoSize, WithMapping, WithHea
             'Nama',
             'Jumlah',
             'Deskripsi',
+            'Kategori'
         ];
     }
 
@@ -45,7 +47,7 @@ class ToolExport implements FromCollection, ShouldAutoSize, WithMapping, WithHea
     {
         return [
             AfterSheet::class => function(AfterSheet $event){
-                $event->sheet->getStyle('A1:C1')->applyFromArray([
+                $event->sheet->getStyle('A1:D1')->applyFromArray([
                     'font' => [
                         'bold' => true
                     ]

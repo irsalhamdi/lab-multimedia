@@ -43,6 +43,7 @@ class AsistantToolController extends Controller
 
         Tool::create([
             'name' => $request->name,
+            'category' => $request->category,
             'quantity' => $request->quantity,
             'image' => $url,
             'description' => $request->description,
@@ -91,6 +92,7 @@ class AsistantToolController extends Controller
 
             Tool::find($tool->id)->update([
                 'name' => $request->name,
+                'category' => $request->category,
                 'quantity' => $request->quantity,
                 'image' => $url,
                 'description' => $request->description,
@@ -106,6 +108,7 @@ class AsistantToolController extends Controller
 
         Tool::find($tool->id)->update([
             'name' => $request->name,
+            'category' => $request->category,
             'quantity' => $request->quantity,
             'description' => $request->description,
         ]);

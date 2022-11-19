@@ -19,6 +19,7 @@ class CreateToolsTable extends Migration
             $table->integer('quantity');
             $table->text('description')->nullable();
             $table->string('image')->nullable();
+            $table->tinyInteger('category');
             $table->timestamps();
         });
     }

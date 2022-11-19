@@ -32,6 +32,9 @@
                     Jumlah 
                   </th>
                   <th>
+                    Kategori
+                  </th>
+                  <th>
                     Image 
                   </th>
                   <th>
@@ -47,6 +50,13 @@
                           </td>
                           <td>
                             {{  $tool->quantity }}
+                          </td>
+                          <td>
+                            @if ($tool->category === 0)
+                              Praktikum
+                            @else
+                              Penelitian
+                            @endif
                           </td>
                           <td>
                             <img src="{{ (!empty($tool->image)) ? asset($tool->image) : url('upload/default.jpg') }}" style="width: 60">

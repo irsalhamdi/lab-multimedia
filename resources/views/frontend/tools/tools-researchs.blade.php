@@ -16,7 +16,7 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section_title text-center">
-                        <h3>Peralatan Praktikum</h3>
+                        <h3>Peralatan Penelitian</h3>
                     </div>
                     <form action="{{ route('home.tools') }}" class="mt-3 mb-3">
                         <div class="form-group">

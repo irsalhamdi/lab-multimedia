@@ -61,7 +61,8 @@ Route::get('/galeri', [HomeController::class, 'galleries'])->name('home.gallerie
 Route::get('/galeri-kegiatan/{id}', [HomeController::class, 'galleriesActivities'])->name('home.galleries.activities');
 Route::get('/jadwal', [HomeController::class, 'schedules'])->name('home.schedules');
 Route::get('/frequently-ask-question', [HomeController::class, 'faq'])->name('home.faq');
-Route::get('/peralatan-laboratorium', [HomeController::class, 'tools'])->name('home.tools');
+Route::get('/peralatan-laboratorium-praktikum', [HomeController::class, 'tools'])->name('home.tools');
+Route::get('/peralatan-laboratorium-penelitian', [HomeController::class, 'toolsResearchs'])->name('home.tools.researchs');
 Route::get('/testimoni', [HomeController::class, 'testimonies'])->name('home.testimonies');
 Route::post('admin/testimoni/tambah', [AdminController::class, 'testimoniAdmin'])->name('admin.testimoni');
 Route::post('asistant/testimoni/tambah', [AsistantController::class, 'testimoniAsistant'])->name('asistant.testimoni');

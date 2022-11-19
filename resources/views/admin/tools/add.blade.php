@@ -20,6 +20,18 @@
                     @enderror
                 </div>
                 <div class="form-group">
+                    <label>Kategori</label>
+                    <select name="category" class="form-control @error('category') is-invalid @enderror" required>
+                       <option value="0">Peralatan Praktikum</option>
+                       <option value="1">Peralatan Penelitian</option>
+                    </select>
+                    @error('category')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label>Jumlah</label>
                     <input type="number" name="quantity" value="{{ old('quantity') }}" class="form-control @error('quantity') is-invalid @enderror" placeholder="Jumlah Peralatan">
                     @error('quantity')

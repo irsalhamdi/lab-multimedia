@@ -26,6 +26,16 @@
                                 <li><a href="{{ route('home.news.categories', $new->category->id) }}"><i class="fa fa-list"></i> {{ $new->category->name }}</a></li>
                                 <li><a href="#"><i class="fa fa-comments"></i> {{ $count }} Komentar</a></li>
                             </ul>
+                            @if($new->video == null)
+                            @else
+                                @php
+                                    $string = substr($new->video, 32);
+                                    $url = 'https://www.youtube.com/embed/'.$string;
+                                @endphp
+                                <div class="text-center">
+                                    <iframe style="width: 100%" width="560" height="315" src="{{ $url }}"></iframe>                                
+                                </div>
+                            @endif
                             {!! $new->description !!}
                         </div>
                     </div>
