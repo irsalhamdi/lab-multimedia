@@ -17,6 +17,7 @@ class CreateResearchTable extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->string('title');
+            $table->string('category');
             $table->string('description');
             $table->string('dosen');
             $table->string('image');

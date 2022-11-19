@@ -53,6 +53,7 @@ use App\Http\Controllers\Lead\LeadTeacherController;
 use App\Http\Controllers\Admin\ScheduleController;
 use App\Http\Controllers\Dosen\DosenNewsController;
 use App\Http\Controllers\Dosen\ResearchTeacherController;
+use App\Http\Controllers\Lead\LeadResearchController;
 use App\Http\Controllers\User\ResearchController;
 use App\Http\Controllers\User\UserNewsController;
 
@@ -438,6 +439,10 @@ Route::prefix('lead')->group(function(){
     Route::get('/training/participants/export/{id}', [LeadTrainingController::class, 'export'])->name('lead.training.participants.export')->middleware('lead');
     Route::get('/training/status/active', [LeadTrainingController::class, 'active'])->name('lead.training.status.active')->middleware('lead');
     Route::get('/training/status/unactive', [LeadTrainingController::class, 'unactive'])->name('lead.training.status.unactive')->middleware('lead');
+    Route::get('penelitian/mahasiswa', [LeadResearchController::class, 'student'])->name('lead.research.student')->middleware('lead');
+    Route::get('penelitian/dosen', [LeadResearchController::class, 'teacher'])->name('lead.research.teacher')->middleware('lead');
+    Route::get('penelitian/mahasiswa/detail/{id}', [LeadResearchController::class, 'show'])->name('lead.research.student.detail')->middleware('lead');
+    Route::get('penelitian/dosen/detail/{id}', [LeadResearchController::class, 'show'])->name('lead.research.teacher.detail')->middleware('lead');
     Route::get('/release-category', [LeadReleaseCategoryController::class, 'index'])->name('lead.release-category')->middleware('lead');
     Route::get('/release-category/add', [LeadReleaseCategoryController::class, 'create'])->name('lead.release-category.add')->middleware('lead');
     Route::post('/release-category/store', [LeadReleaseCategoryController::class, 'store'])->name('lead.release-category.store')->middleware('lead');
@@ -493,6 +498,9 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::post('mahasiswa/pengabdian-masyarakat/participants-store/{id}', [DashboardController::class, 'participantsStore'])->name('mahasiswa.community.dedication.participants.store');
     Route::post('mahasiswa/pengabdian-masyarakat/daftar/submit/{id}', [DashboardController::class, 'dedicationSubmit'])->name('mahasiswa.daftar.pengabdian.submit');
     Route::get('mahasiswa/penelitian', [ResearchController::class, 'list'])->name('mahasiswa.penelitian.individu');
+    Route::get('mahasiswa/penelitian/hasil/{id}', [ResearchController::class, 'result'])->name('mahasiswa.penelitian.individu.hasil');
+    Route::get('mahasiswa/penelitian/informasi/{id}', [ResearchController::class, 'information'])->name('mahasiswa.penelitian.individu.information');
+    Route::post('mahasiswa/penelitian/hasil/{id}', [ResearchController::class, 'resultSubmit'])->name('mahasiswa.penelitian.individu.hasil.submit');
     Route::get('mahasiswa/penelitian/lain', [DashboardController::class, 'listResearchTeacher'])->name('mahasiswa.penelitian.joins'); 
     Route::get('mahasiswa/penelitian/lain/{id}', [DashboardController::class, 'researchTeacherDetail'])->name('mahasiswa.penelitian.join'); 
     Route::post('mahasiswa/penelitian/participants-store/{id}', [DashboardController::class, 'participantsResearchStore'])->name('mahasiswa.penelitian.participants.store');

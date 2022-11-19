@@ -7,55 +7,78 @@
         </div>
         @endif
     </div>
-    <div class="content-wrapper">
-        <div class="row">
-            @if ($researchs->count())
-                @foreach ($researchs as $research)
-                    <div class="col-lg-6 grid-margin stretch-card">
-                        <div class="card">
-                            <div class="card-body">
-                                <div class="d-flex flex-wrap justify-content-between">
-                                    <h4 style="color: #df105b">
-                                        {{ $research->title }}
-                                    </h4>
-                                </div>
-                                @php
-                                    $date = date('d',strtotime($research->created_at));
-                                    $month = date('F',strtotime($research->created_at));
-                                    $year = date('Y',strtotime($research->created_at));
-                                    $hour = date('H:i',strtotime($research->created_at));
-                                @endphp
-                                <p class="card-description">
-                                    <i class="typcn typcn-time"></i> 
-                                    <span class="text-warning mb-1 font-weight-bold"><code>{{ $date }} {{ Str::substr($month, 0, 3) }} {{ $year }}</code></span>
-                                </p>
-                                <p>
-                                    {{$research->description }}
-                                </p>
-                                @if ($research->status === 0)
-                                    <p>
-                                        Status : <span class="text-danger">Diterima oleh admin</span> 
-                                    </p>
-                                    <p>
-                                        Informasi : <span class="text-danger">akan diinformasikan selanjutnya</span> 
-                                    </p>
-                                @else
-                                    <p>
-                                        Status : <span class="text-success">Berhasil</span> 
-                                    </p>
-                                    <p>
-                                        Informasi : <span class="text-success">{{ $research->information }}</span> 
-                                    </p>
-                                @endif
-                            </div>
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Penelitian Anda</h4>
+                <p class="card-description">
+                    Daftar Penelitian Anda
+                </p>
+                <form action="{{ route('mahasiswa.penelitian.individu') }}">
+                    <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari Galeri" aria-label="Cari Galeri">
+                        <div class="input-group-append">
+                        <button class="btn btn-sm btn-primary" type="submit">Cari</button>
                         </div>
                     </div>
-                @endforeach
-            @else
-                <div class="d-flex justify-content-center">
-                    <p class="text-muted">Anda belum pernah mendaftar penelitian</p>
+                    </div>
+                </form>
+                @if ($researchs->count())
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                            <tr>
+                                <th>
+                                    Kategori
+                                </th>
+                                <th>
+                                    Judul
+                                </th>
+                                <th>
+                                    Hasil
+                                </th>
+                                <th>
+                                    Informasi
+                                </th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($researchs as $research)
+                                    <tr>
+                                        <td class="py-1">
+                                            {{$research->category }}
+                                        </td>
+                                        <td class="py-1">
+                                            {{ $research->title }}
+                                        </td>
+                                        <td>
+                                            @if ($research->status === 0)
+                                            @else
+                                                <a href="{{ route('mahasiswa.penelitian.individu.hasil', $research->id) }}" type="button" class="btn btn-primary btn-circle btn-sm justify-content-between flex-nowrap">
+                                                    <i class="typcn typcn-upload"></i>
+                                                </a>                                        
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <a href="{{ route('mahasiswa.penelitian.individu.information', $research->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
+                                                <i class="typcn typcn-eye"></i>
+                                            </a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                @else
+                    <div class="d-flex justify-content-center">
+                        <p class="text-muted">Penelitian tidak di temukan</p>
+                    </div>
+                @endif
+                <div class="d-flex justify-content-center mt-3">
+                    {{ $researchs->links() }}
                 </div>
-            @endif
+            </div>
         </div>
     </div>
 @endsection

@@ -8,9 +8,10 @@ use App\Models\Contact;
 use App\Models\Regency;
 use App\Models\Village;
 use App\Models\District;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use App\Models\Research;
+use Illuminate\Http\Request;
+use App\Models\ResearchResult;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class ResearchController extends Controller
@@ -53,6 +54,7 @@ class ResearchController extends Controller
             Research::create([
                 'user_id' => $user->id,
                 'title' => $request->title,
+                'category' => $request->category,
                 'description' => $request->description,
                 'dosen' => $request->dosen,
                 'image' => $url
@@ -64,7 +66,72 @@ class ResearchController extends Controller
 
     public function list()
     {   
-        $researchs = Research::where('user_id', Auth::user()->id)->get();
+        $researchs = Research::where('user_id', Auth::user()->id)->filter(request(['search']))->paginate(3)->withQueryString();
         return view('user.research.index', compact('researchs'));
+    }
+
+    public function information($id)
+    {
+        $research = Research::findOrFail($id);
+        return view('user.research.information', compact('research'));
+    }
+
+    public function result($id)
+    {
+        $research = Research::findOrFail($id);
+        $result = ResearchResult::where('research_id', $research->id)->first();
+
+        return view('user.research.result', compact('research', 'result'));
+    }
+
+    public function resultSubmit(Request $request, $id)
+    {
+        $request->validate([
+            'file' => 'mimes:pdf'
+        ], [
+            'file.mimes' => 'tipe file pdf',
+        ]);
+
+        $research = Research::findOrFail($id);
+        $result = ResearchResult::where('research_id', $research->id)->first();
+        if($result){
+
+            if(file_exists(public_path('upload/research/result/'.$result->file))) {
+                @unlink('upload/research/result/'.$result->file);
+            }            
+
+            $file = $request->file('file');
+            $destinationPath = 'upload/research/result';
+            $name = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath,$name);
+
+            ResearchResult::findOrFail($result->id)->update([
+                'file' => $name,
+            ]);
+    
+            $notification = array(
+                'message' => 'Hasil penelitian berhasil diupdate !',
+                'alert-type' => 'success',
+            );
+
+            return redirect()->back()->with($notification);
+        }
+
+        $file = $request->file('file');
+        $destinationPath = 'upload/research/result';
+        $name = date('YmdHis') . "." . $file->getClientOriginalExtension();
+        $file->move($destinationPath,$name);
+
+        ResearchResult::create([
+            'research_id' => $research->id,
+            'file' => $name,
+        ]);
+        
+        $notification = array(
+            'message' => 'Hasil penelitian berhasil ditambahkan !',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
     }
 }

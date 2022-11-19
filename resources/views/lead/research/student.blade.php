@@ -1,10 +1,10 @@
-@extends('admin.layouts.main')
+@extends('lead.layouts.main')
 @section('main')
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
         <div class="card-body">
             <h4 class="card-title">Daftar Penelitian Mahasiswa</h4>
-            <form action="{{ route('admin.research') }}">
+            <form action="{{ route('lead.research.student') }}">
                 <div class="form-group">
                   <div class="input-group">
                     <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Cari Penelitian" aria-label="Cari Penelitian">
@@ -26,10 +26,13 @@
                                 Judul
                             </th>
                             <th>
-                                Status 
+                                Tanggal 
                             </th>
                             <th>
-                                Aksi
+                                Informasi
+                            </th>
+                            <th>
+                                Hasil
                             </th>
                         </tr>
                         </thead>
@@ -43,16 +46,30 @@
                                         {{$research->title }}
                                     </td>
                                     <td>
-                                        @if ($research->status === 0)
-                                            Belum Acc
-                                        @else
-                                            Acc
-                                        @endif
+                                        @php
+                                            $date = date('d',strtotime($research->created_at));
+                                            $month = date('F',strtotime($research->created_at));
+                                            $year = date('Y',strtotime($research->created_at));
+                                            $hour = date('H:i',strtotime($research->created_at));
+                                        @endphp
+                                        {{ $date }} {{ $month }} {{ $year }}
                                     </td>
                                     <td>
-                                        <a href="{{ route('admin.research.detail', $research->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
+                                        <a href="" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
                                             <i class="typcn typcn-eye"></i>
                                         </a>
+                                    </td>
+                                    <td>
+                                        @php
+                                            $result = App\Models\ResearchResult::where('research_id', $research->id)->first();
+                                        @endphp
+                                        @if ($result)
+                                            <a target="_blank" href="{{ asset('upload/research/result/'.$result->file) }}" type="button" class="btn btn-primary btn-circle btn-sm justify-content-between flex-nowrap" style="margin-left: 2px; margin-right: 2px; margin-top: 2px; margin-bottom: 2px;">
+                                                <i class="typcn typcn-upload"></i>
+                                            </a>
+                                        @else
+                                            Belum Tersedia
+                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

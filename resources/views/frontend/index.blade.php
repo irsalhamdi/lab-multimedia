@@ -251,6 +251,18 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="col-md-6 mb-3">
+                                        <div class="single_input">
+                                            <div class="default-select" id="default-select">
+                                                <select name="category">
+                                                    <option disabled>Jenis Penelitian</option>
+                                                    <option value="Penelitian Tugas Akhir">Penelitian Tugas Akhir</option>
+                                                    <option value="Penelitian Magang">Penelitian Magang</option>
+                                                    <option value="Penelitian Lain">Penelitian Lain</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="col-md-6">
                                         <div class="single_input">
                                             <input type="text" name="title" value="{{ old('title') }}" class="@error('title') is-invalid @enderror" placeholder="Tema penelitian" required>
@@ -261,10 +273,10 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="single_input">
-                                            <input type="text" name="description" value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="Deskripsi Penelitian" required>
-                                            @error('description')
+                                            <input type="text" name="dosen" value="{{ old('dosen') }}" class="@error('dosen') is-invalid @enderror" placeholder="Dosen Pendamping" required>
+                                            @error('dosen')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>
@@ -273,8 +285,8 @@
                                     </div>
                                     <div class="col-md-12">
                                         <div class="single_input">
-                                            <input type="text" name="dosen" value="{{ old('dosen') }}" class="@error('dosen') is-invalid @enderror" placeholder="Dosen pendamping" required>
-                                            @error('dosen')
+                                            <input type="text" name="description" value="{{ old('description') }}" class="@error('description') is-invalid @enderror" placeholder="Deskripsi Penelitian" required>
+                                            @error('description')
                                                 <span class="invalid-feedback" role="alert">
                                                     <strong>{{ $message }}</strong>
                                                 </span>

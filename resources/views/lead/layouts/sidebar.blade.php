@@ -64,6 +64,19 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#research" aria-expanded="false" aria-controls="research">
+          <i class="typcn typcn-briefcase menu-icon"></i>
+          <span class="menu-title">Penelitian</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="research">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('lead.research.student') }}"> Penelitian Mahasiswa </a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('lead.research.teacher') }}"> Penelitian Dosen </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#training" aria-expanded="false" aria-controls="training">
           <i class="typcn typcn-clipboard menu-icon"></i>
           <span class="menu-title">Pelatihan</span>
