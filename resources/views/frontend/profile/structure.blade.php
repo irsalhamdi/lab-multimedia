@@ -56,6 +56,49 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-6 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px; height:300px;" src="{{ asset('frontend/img/dea.jpg') }}">
+                        </div>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Asisten Laboratorium Palembang<br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Dea Salsabila</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-6">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px; height:300px; " src="{{ asset('frontend/img/iwan.jpg') }}">
+                        </div>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Asisten Laboratorium Palembang<br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Iwan Mandala Putra</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12 col-md-12">
+                    <div class="single__program">
+                        <div class="program_thumb" style="text-align: center">
+                            <img style="border: 4px; border-radius: 10px; width: 300px; height:300px;" src="{{ asset('frontend/img/tasya.jpg') }}">
+                        </div>
+                        <div class="program__content">
+                            <div style="text-align: center">
+                                Asisten Laboratorium Palembang<br>
+                                <b style="font-family: Poppins; color: #ffb804; font-size: 20px;">Tassya Ushwatun Hasanah</b>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 @endsection

@@ -316,8 +316,10 @@ class HomeController extends Controller
 
     public function teacher($id)
     {
-       $dedications = CommunityDedication::where('dosen_id', $id)->filter(request(['search']))->paginate(6)->withQueryString();
-       $researchs = ResearchTeacher::where('dosen_id', $id)->filter(request(['search']))->paginate(6)->withQueryString();
+       $dedications = CommunityDedication::where('dosen_id', $id)->get();
+       $researchs = ResearchTeacher::where('dosen_id', $id)->get();
+       $news = News::where('dosen_id', $id)->get();
+       
        $dosen = Dosen::where('id', $id)->first();
 
        $contact = Contact::find(1);
@@ -327,7 +329,7 @@ class HomeController extends Controller
 
        $title = 'Kegiatan | '.$dosen->name;
 
-       return view('frontend.teacher.index', compact('title', 'dedications', 'researchs', 'contact', 'regency', 'district', 'village'));
+       return view('frontend.teacher.index', compact('title', 'dedications', 'researchs', 'news', 'dosen', 'contact', 'regency', 'district', 'village'));
     }
 
     public function download()
