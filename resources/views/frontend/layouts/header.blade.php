@@ -100,6 +100,7 @@
                                             <li><a href="{{ route('download') }}">Unduhan <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('download') }}">Unduhan</a></li>
+                                                    <li><a href="{{ route('social') }}">Media Sosial</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ route('contact') }}">Hubungi Kami</a></li>

@@ -542,4 +542,16 @@ class HomeController extends Controller
             return redirect('https://api.whatsapp.com/send?phone=+6282151789910&text='.$url);
         }
     }
+
+    public function social()
+    {
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Media Social';
+
+        return view('frontend.social.index', compact('title', 'contact', 'regency', 'district', 'village'));
+    }
 }
