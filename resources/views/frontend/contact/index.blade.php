@@ -13,48 +13,10 @@
     </div>
     <section class="contact-section">
         <div class="container">
-            <div class="d-none d-sm-block mb-5 pb-4">
-                <div id="map" style="height: 480px; position: relative; overflow: hidden;"></div>
-                <script>
-                    function initMap() {
-                        var uluru = {
-                            lat: -25.363,
-                            lng: 131.044
-                        };
-                        var grayStyles = [{
-                                featureType: "all",
-                                stylers: [{
-                                        saturation: -90
-                                    },
-                                    {
-                                        lightness: 50
-                                    }
-                                ]
-                            },
-                            {
-                                elementType: 'labels.text.fill',
-                                stylers: [{
-                                    color: '#ccdee9'
-                                }]
-                            }
-                        ];
-                        var map = new google.maps.Map(document.getElementById('map'), {
-                            center: {
-                                lat: -31.197,
-                                lng: 150.744
-                            },
-                            zoom: 9,
-                            styles: grayStyles,
-                            scrollwheel: false
-                        });
-                    }
-                </script>
-                <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDpfS1oRGreGSBU5HHjMmQ3o5NLw7VdJ6I&amp;callback=initMap">
-                </script>
-
+            <div class="peta-responsive">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3984.405305300619!2d104.730048814936!3d-2.9849000978261184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e3b75ed9f44e9c5%3A0x30db735107f3611d!2sFasilkom%20Universitas%20Sriwijaya%20Bukit%20Besar!5e0!3m2!1sid!2sid!4v1668965222478!5m2!1sid!2sid" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
-
-            <div class="row">
+            <div class="row" style="margin-top: 5%">
                 <div class="col-12">
                     <h2 class="contact-title">Hubungi Kami</h2>
                 </div>

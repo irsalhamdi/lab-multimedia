@@ -6837,4 +6837,18 @@ h6 {
   margin-bottom:1px;
 }
 
+.peta-responsive{
+  overflow:hidden;
+  padding-bottom:56.25%;
+  position:relative;
+  height:0;
+}
+.peta-responsive iframe{
+  left:0;
+  top:0;
+  height:100%;
+  width:100%;
+  position:absolute;
+}
+
 /*# sourceMappingURL=style.css.map */
