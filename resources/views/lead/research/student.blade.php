@@ -23,6 +23,9 @@
                                 Nama
                             </th>
                             <th>
+                                Kategori
+                            </th>
+                            <th>
                                 Judul
                             </th>
                             <th>
@@ -41,6 +44,9 @@
                                 <tr>
                                     <td class="py-1">
                                         {{$research->user->name }}
+                                    </td>
+                                    <td>
+                                        {{ $research->category }}
                                     </td>
                                     <td>
                                         {{$research->title }}
