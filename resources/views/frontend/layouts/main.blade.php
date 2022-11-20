@@ -102,15 +102,17 @@
             </small>
         </button>
         <div class="chat-popup" id="myForm">
-            <form id="form" method="POST" action="{{ route('admin.news.store') }}" class="form-container">
+            <form id="form" method="POST" action="{{ route('whatsapp') }}" class="form-container">
+                @csrf
                 <h1 style="font-family: sans-serif; color: #ffb804;">Pesan</h1>
 
                 <h6 style="font-family: sans-serif; color: #ffb804;" for="msg">
                     Kirimkan pesan anda
                 </h6>
-                <textarea placeholder="Ketik disini" name="msg" required></textarea>
+                <textarea placeholder="Ketik disini" id="pesan" name="message" required></textarea>
                 
-                <a target="_blank" href="https://wa.me/+6282286866972" class="btn">Kirim</a>
+                {{-- <a target="_blank" href="https://wa.me/+6282286866972" class="btn">Kirim</a> --}}
+                <button onclick="submit()" type="submit" class="btn">Kirim</button>
                 <a class="btn cancel" onclick="closeForm()">Tutup</a>
             </form>
         </div>
@@ -121,6 +123,10 @@
             }
            function closeForm() {
               document.getElementById("myForm").style.display = "none";
+            }
+            function submit()
+            {
+              document.getElementById('pesan').submit()
             }
         </script>
         <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

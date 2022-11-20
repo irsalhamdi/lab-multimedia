@@ -501,4 +501,45 @@ class HomeController extends Controller
 
         return redirect()->back()->with($notification);
     }
+
+    public function whatsapp(Request $request)
+    {
+        $message = $request->message;
+        $url = urlencode($message);
+        
+        if($url === ''){
+            date_default_timezone_set("Asia/Jakarta");
+
+            $b = time();
+            $hour = date("G",$b);
+
+            if ($hour>=0 && $hour<=11)
+            {
+                $url = urlencode("Selamat Pagi :");
+                return redirect('https://api.whatsapp.com/send?phone=+6282151789910&text='.$url);
+            }
+            elseif ($hour >=12 && $hour<=14)
+            {
+                $url = urlencode("Selamat Siang ");
+                return redirect('https://api.whatsapp.com/send?phone=+6282151789910&text='.$url);
+            }
+            elseif ($hour >=15 && $hour<=17)
+            {
+                $url = urlencode("Selamat Sore :");
+                return redirect('https://api.whatsapp.com/send?phone=+6282151789910&text='.$url);
+            }
+            elseif ($hour >=17 && $hour<=18)
+            {
+                $url = urlencode("Selamat Petang");
+                return redirect('https://api.whatsapp.com/send?phone=+6282151789910&text='.$url);
+            }
+            elseif ($hour >=19 && $hour<=23)
+            {
+                $url = urlencode("Selamat Malam");
+                return redirect('https://api.whatsapp.com/send?phone=+6282151789910&text='.$url);
+            }
+        }else{
+            return redirect('https://api.whatsapp.com/send?phone=+6282151789910&text='.$url);
+        }
+    }
 }

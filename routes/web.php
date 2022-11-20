@@ -57,6 +57,7 @@ use App\Http\Controllers\Lead\LeadResearchController;
 use App\Http\Controllers\User\ResearchController;
 use App\Http\Controllers\User\UserNewsController;
 
+Route::post('/whatsapp', [HomeController::class, 'whatsapp'])->name('whatsapp');
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/tentang-kami', [HomeController::class, 'profile'])->name('home.profile');
 Route::get('/struktur-organisasi', [HomeController::class, 'structure'])->name('home.structure');
