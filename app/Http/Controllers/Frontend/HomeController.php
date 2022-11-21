@@ -41,11 +41,13 @@ class HomeController extends Controller
 {
     public function index()
     {   
-        Visitor::create([
-            'created_at' => Carbon::now(),
+        $visitor = Visitor::find(1);
+
+        $visitor->update([
+            'count' => $visitor->count + 1
         ]);
 
-        $visitors = Visitor::latest()->count();
+        $visitors = Visitor::find(1);
 
         $news = News::with('category')->where('status', 1)->latest()->limit(3)->get();
         $trainings = Training::with('category')->latest()->limit(3)->get();
