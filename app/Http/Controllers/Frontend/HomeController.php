@@ -33,14 +33,21 @@ use App\Http\Controllers\Controller;
 use App\Models\GalleryActivity;
 use App\Models\ResearchResultTeacher;
 use App\Models\Testimonie;
+use App\Models\Visitor;
+use Carbon\Carbon;
 use Illuminate\Auth\Access\Gate;
 
 class HomeController extends Controller
 {
     public function index()
-    {
-        $news = News::with('category')->where('status', 1)->latest()->limit(3)->get();
+    {   
+        Visitor::create([
+            'created_at' => Carbon::now(),
+        ]);
 
+        $visitors = Visitor::latest()->count();
+
+        $news = News::with('category')->where('status', 1)->latest()->limit(3)->get();
         $trainings = Training::with('category')->latest()->limit(3)->get();
         $latest = Training::with('category')->latest()->limit(1)->first();
         $dedications = CommunityDedication::with('dosen')->latest()->limit(2)->get();
@@ -53,7 +60,7 @@ class HomeController extends Controller
         
         $title = 'Lab Multimedia';
 
-        return view('frontend.index', compact('testimonies', 'title', 'news', 'trainings', 'latest', 'dedications', 'contact', 'regency', 'district', 'village'));
+        return view('frontend.index', compact('testimonies', 'title', 'news', 'trainings', 'latest', 'dedications', 'contact', 'regency', 'district', 'village', 'visitors'));
     }
 
     public function categories($id)
