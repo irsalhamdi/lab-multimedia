@@ -11,6 +11,15 @@
             <form method="POST" action="{{ route('dosen.community.dedication.store') }}" class="forms-sample" enctype="multipart/form-data">
                 @csrf
                 <div class="form-group">
+                    <label>Skema</label>
+                    <input type="text" name="skema" value="{{ old('skema') }}" class="form-control @error('skema') is-invalid @enderror" placeholder="Skema Pengabdian">
+                    @error('skema')
+                        <div class="invalid-feedback">
+                            {{ $message }}
+                        </div>
+                    @enderror
+                </div>
+                <div class="form-group">
                     <label>Nama</label>
                     <input type="text" name="name" value="{{ old('name') }}" class="form-control @error('name') is-invalid @enderror" placeholder="Nama Pengabdian">
                     @error('name')

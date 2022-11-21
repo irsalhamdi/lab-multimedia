@@ -16,6 +16,7 @@ class CreateCommunityDedicationsTable extends Migration
         Schema::create('community_dedications', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('dosen_id');
+            $table->string('skema');
             $table->string('name');
             $table->text('description');
             $table->text('excerpt');

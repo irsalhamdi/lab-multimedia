@@ -33,6 +33,7 @@ class CommunityDedicationController extends Controller
     public function store(Request $request)
     {
         $request->validate([
+            'skema' => ['required', 'min:5'],
             'name' => ['required', 'min:5'],
             'image' => ['required', 'mimes:jpg,jpeg,png'],
             'description' => ['required', 'min:10'],
@@ -40,6 +41,8 @@ class CommunityDedicationController extends Controller
             'place' => ['required', 'min:5'],
             'date' => ['required'],
         ], [
+            'skema.required' => 'Skema wajib diisi',
+            'skema.min' => 'Skema minimal 5 karakter',
             'name.required' => 'Nama wajib diisi',
             'name.min' => 'Nama minimal 5 karakter',
             'image.required' => 'Gambar wajib diisi',
@@ -62,6 +65,7 @@ class CommunityDedicationController extends Controller
 
             CommunityDedication::create([
                 'dosen_id' => Auth::guard('dosen')->user()->id,
+                'skema' => $request->skema,
                 'name' => $request->name,
                 'image' => $url,
                 'participants' => $request->participants,
@@ -96,6 +100,7 @@ class CommunityDedicationController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
+            'skema' => ['required', 'min:5'],
             'name' => ['required', 'min:5'],
             'image' => ['mimes:jpg,jpeg,png'],
             'description' => ['required', 'min:10'],
@@ -103,6 +108,8 @@ class CommunityDedicationController extends Controller
             'place' => ['required', 'min:5'],
             'date' => ['required'],
         ], [
+            'skema.required' => 'Skema wajib diisi',
+            'skema.min' => 'Skema minimal 5 karakter',
             'name.required' => 'Nama wajib diisi',
             'name.min' => 'Nama minimal 5 karakter',
             'image.mimes' => 'tipe file harus jpg, jpeg, atau png',
@@ -129,6 +136,7 @@ class CommunityDedicationController extends Controller
             $url = 'upload/dedication/' . $fileName;
 
             CommunityDedication::findOrFail($dedication->id)->update([
+                'skema' => $request->skema,
                 'name' => $request->name,
                 'image' => $url,
                 'participants' => $request->participants,
@@ -147,6 +155,7 @@ class CommunityDedicationController extends Controller
         }else{
 
             CommunityDedication::findOrFail($dedication->id)->update([
+                'skema' => $request->skema,
                 'name' => $request->name,
                 'participants' => $request->participants,
                 'place' => $request->place,
