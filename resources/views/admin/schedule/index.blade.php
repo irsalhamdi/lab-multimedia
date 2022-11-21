@@ -3,9 +3,9 @@
     <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
         <div class="card-body">
-            <h4 class="card-title">Jadwal </h4>
+            <h4 class="card-title">Jadwal Harian Laboratorium</h4>
             <p class="card-description">
-                Daftar Jadwal <code><a href="{{ route('admin.schedule.add') }}">Tambah</a></code>
+                Daftar Jadwal Harian<code><a href="{{ route('admin.schedule.add') }}">Tambah</a></code>
             </p>
             <form action="{{ route('admin.schedules') }}">
                 <div class="form-group">
@@ -23,10 +23,16 @@
                         <thead>
                         <tr>
                             <th>
-                                Jadwal
+                                Jadwal Mulai
                             </th>
                             <th>
-                                Image
+                                Jadwal Selesai
+                            </th>
+                            <th>
+                                Mata Kuliah
+                            </th>
+                            <th>
+                                Dosen
                             </th>
                             <th>
                                 Aksi
@@ -37,10 +43,16 @@
                             @foreach ($schedules as $schedule)
                                 <tr>
                                     <td class="py-1">
-                                        {{$schedule->name }}
+                                        {{$schedule->hour }}
                                     </td>
                                     <td class="py-1">
-                                        <img src="{{ ($schedule->image != null) ? asset($schedule->image) : asset('frontend/img/schedule.png') }}" alt="">
+                                        {{$schedule->endhour }}
+                                    </td>
+                                    <td class="py-1">
+                                        {{$schedule->lesson }}
+                                    </td>
+                                    <td class="py-1">
+                                        {{$schedule->teacher }}
                                     </td>
                                     <td>
                                         <a href="{{ route('admin.schedule.edit', $schedule->id) }}" type="button" class="btn btn-warning btn-circle btn-sm justify-content-between flex-nowrap">

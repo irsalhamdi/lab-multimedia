@@ -147,7 +147,8 @@
         </a>
         <div class="collapse" id="schedule">
           <ul class="nav flex-column sub-menu">
-            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.schedules') }}"> Jadwal Lab</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.schedules') }}"> Jadwal Harian</a></li>
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.schedule.period') }}"> Jadwal Semester</a></li>
           </ul>
         </div>
       </li>

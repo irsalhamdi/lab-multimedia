@@ -22,34 +22,27 @@ class ScheduleController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name' => 'required|min:5',
-            'description' => 'required|min:20',
+            'teacher' => 'min:5',
+            'lesson' => 'min:5',
         ], [
-            'name.required' => 'Nama wajib diisi',
-            'name.min' => 'Nama minimal 5 karakter',
-            'description.required' => 'Deskripsi wajib diisi',
-            'description.min' => 'Deskripsi minimal 20 karakter',
+            'teacher.min' => 'Deskripsi minimal 5 karakter',
+            'lesson.min' => 'Mata Kuliah minimal 5 karakter',
         ]);
 
-        if($request->file('image')){
-            $file = $request->file('image');
-            $fileName = date('YmdHi') . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('upload/schedule'),$fileName);
-            $url = 'upload/schedule/' . $fileName;
-
-            Schedule::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'image' => $url,
+        Schedule::create([
+            'hour' => $request->hour,
+            'endhour' => $request->endhour,
+            'tanggal' => date('Y-m-d',strtotime($request->hour)),
+            'teacher' => $request->teacher,
+            'lesson' => $request->lesson,
             ]);
 
-            $notification = array(
-                'message' => 'Galeri berhasil ditambahkan !',
-                'alert-type' => 'success',
-            );
+        $notification = array(
+            'message' => 'Jadwal berhasil ditambahkan !',
+            'alert-type' => 'success',
+        );
     
-            return redirect()->route('admin.schedules')->with($notification);
-        }
+        return redirect()->route('admin.schedules')->with($notification);
     }
 
     public function edit($id)
@@ -61,65 +54,39 @@ class ScheduleController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => 'required|min:5',
-            'description' => 'required|min:20',
+            'teacher' => '|min:5',
+            'lesson' => '|min:5',
         ], [
-            'name.required' => 'Nama wajib diisi',
-            'name.min' => 'Nama minimal 5 karakter',
-            'description.required' => 'Deskripsi wajib diisi',
-            'description.min' => 'Deskripsi minimal 20 karakter',
+            'teacher.min' => 'Deskripsi minimal 5 karakter',
+            'lesson.min' => 'Mata Kuliah minimal 5 karakter',
         ]);
 
         $schedule = Schedule::findOrFail($id);
 
-        if($request->file('image')){
 
-            if (file_exists(public_path($schedule->image))) {
-                @unlink($schedule->image);
-            }
-
-            $file = $request->file('image');
-            $fileName = $schedule->id . date('YmdHi') . '.' . $file->getClientOriginalExtension();
-            $file->move(public_path('upload/schedule/'),$fileName);
-            $url = 'upload/schedule/' . $fileName;
-
-            Schedule::findOrFail($schedule->id)->update([
-                'name' => $request->name,
-                'description' => $request->description,
-                'image' => $url,
-            ]);
+        Schedule::findOrFail($schedule->id)->update([
+            'hour' => $request->hour,
+            'endhour' => $request->endhour,
+            'tanggal' => date('Y-m-d',strtotime($request->hour)),
+            'teacher' => $request->teacher,
+            'lesson' => $request->lesson,
+        ]);
 
             $notification = array(
-                'message' => 'Galeri berhasil diupdate !',
+                'message' => 'Jadwal berhasil diupdate !',
                 'alert-type' => 'info',
             );
     
             return redirect()->route('admin.schedules')->with($notification);
-        }else{
-
-            Schedule::findOrFail($schedule->id)->update([
-                'name' => $request->name,
-                'description' => $request->description,
-            ]);
-
-            $notification = array(
-                'message' => 'Galeri berhasil diupdate !',
-                'alert-type' => 'info',
-            );
-    
-            return redirect()->route('admin.schedules')->with($notification);
-        }
-
     }
 
     public function destroy($id)
     {
         $schedule = Schedule::findOrFail($id);
-        @unlink($schedule->image);
         $schedule->delete(); 
 
         $notification = array(
-            'message' => 'Galeri berhasil dihapus !',
+            'message' => 'Jadwal berhasil dihapus !',
             'alert-type' => 'warning',
         );
 

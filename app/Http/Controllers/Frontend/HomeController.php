@@ -32,6 +32,7 @@ use App\Models\CommunityDedication;
 use App\Http\Controllers\Controller;
 use App\Models\GalleryActivity;
 use App\Models\ResearchResultTeacher;
+use App\Models\SchedulePeriode;
 use App\Models\Testimonie;
 use App\Models\Visitor;
 use Carbon\Carbon;
@@ -431,10 +432,22 @@ class HomeController extends Controller
         $district = District::where('id', $contact->district_id)->first();
         $village = Village::where('id', $contact->village_id)->first();
 
-        $schedules = Schedule::latest()->get();
+        $years = Schedule::select(DB::raw('LEFT(`hour`, 4) AS year'))
+                            ->distinct()
+                            ->get();
+
+        if(request('search')){
+            $schedules = Schedule::latest()->filter(request(['search']))->get();
+        }else{
+            $schedules = [];
+        }
+
+        $todays = Schedule::where('tanggal', date('Y-m-d'))->latest()->get();
+        $periods = SchedulePeriode::latest()->get();
+        
         $title = 'Jadwal Laboratorium Multimedia';
 
-        return view('frontend.schedules.index', compact('title', 'contact', 'regency', 'district', 'village', 'schedules'));
+        return view('frontend.schedules.index', compact('title', 'contact', 'regency', 'district', 'village', 'todays', 'schedules', 'periods', 'years'));
     }
 
     public function faq()
