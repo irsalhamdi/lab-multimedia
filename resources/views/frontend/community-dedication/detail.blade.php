@@ -55,7 +55,15 @@
                     {!! $dedication->description !!}
                 </p>
                 <div style="float: right;">
-                    <a href="{{ route('mahasiswa.daftar.pengabdian', $dedication->id) }}" class="boxed-btn3 text-right">Daftar</a>
+                    @php
+                        $now = date('Y-m-d');
+                        $date = substr($dedication->date, 0, 10);
+                    @endphp
+                    @if ($now > $date)
+                        <button class="boxed-btn3 text-right">Pendaftaran Ditutup</button>
+                    @else
+                        <a href="{{ route('mahasiswa.daftar.pengabdian', $dedication->id) }}" class="boxed-btn3 text-right">Daftar</a>
+                    @endif
                 </div>
             </div>
         </div>
