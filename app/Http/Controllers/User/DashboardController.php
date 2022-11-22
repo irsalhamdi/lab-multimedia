@@ -672,6 +672,17 @@ class DashboardController extends Controller
             return redirect()->back()->with('error', 'pastikan anda menulis kalimat di atas dengan benar. Perhatikan huruf besar dan kecil !');
         }
 
+        $check = User::where(['id' => Auth::user()->id, 'status' => 1])->first();
+
+        if($check){
+            $notification = array(
+                'message' => 'Anda telah terdaftar',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+
         User::where('id', Auth::user()->id)->update([
             'status' => 1
         ]);

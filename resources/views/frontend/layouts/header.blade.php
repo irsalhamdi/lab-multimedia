@@ -6,7 +6,14 @@
                     <div class="col-lg-12">
                         <div class="header_top_wrap d-flex justify-content-between align-items-center">
                             <div class="text_wrap">
-                                <p><span>{{ $contact->phone }}</span> <span>{{ $contact->email }}</span></p>
+                                @if (Auth::user() && Auth::user()->email_verified_at !== null)
+                                    <p>
+                                        <i class="ti-crown"></i>
+                                        <a href="{{ route('mahasiswa.daftar.member') }}">Daftar Member</a>
+                                        <i class=""></i>
+                                    </p>
+                                @else
+                                @endif
                             </div>
                             @if (Auth::guard('dosen')->user())
                                 <div class="text_wrap">
