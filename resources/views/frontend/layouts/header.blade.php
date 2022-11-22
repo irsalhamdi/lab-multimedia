@@ -79,16 +79,21 @@
                                 <div class="main-menu  d-none d-lg-block">
                                     <nav>
                                         <ul id="navigation">
+                                            <li><a href="{{ route('home.schedules') }}">Jadwal</a></li>
+                                            <li><a href="{{ route('home.galleries') }}">Gallery</a></li>
+                                            <li><a  href="{{ route('home.release') }}">Rilis <i class="ti-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="{{ route('home.news') }}">Berita</a></li>
+                                                    <li><a href="{{ route('home.release') }}">Pengumuman</a></li>
+                                                </ul>
+                                            </li>
                                             <li><a  href="{{ route('home.profile') }}">Tentang Lab <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('home.profile') }}">Profil</a></li>
                                                     <li><a href="{{ route('home.structure') }}">Struktur Organisasi</a></li>
-                                                    <li><a href="{{ route('home.galleries') }}">Gallery</a></li>
-                                                    <li><a href="{{ route('home.schedules') }}">Jadwal</a></li>
-                                                    <li><a href="{{ route('home.faq') }}">FAQ</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="{{ route('home.tools') }}">Fasilitas</a>
+                                            <li><a href="{{ route('home.tools') }}">Fasilitas<i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('home.tools') }}">Peralatan Praktikum</a></li>
                                                     <li><a href="{{ route('home.tools.researchs') }}">Peralatan Penelitian</a></li>
@@ -100,17 +105,20 @@
                                                     <li><a href="{{ route('home.dedications') }}">Pengabdian Masyarakat</a></li>
                                                     <li><a href="{{ route('home.researchs') }}">Penelitian</a></li>
                                                     <li><a href="{{ route('home.research.result') }}">Hasil Penelitian</a></li>
-                                                    <li><a href="{{ route('home.news') }}">Berita</a></li>
-                                                    <li><a href="{{ route('home.release') }}">Rilis</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ route('download') }}">Unduhan <i class="ti-angle-down"></i></a>
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('download') }}">Unduhan</a></li>
-                                                    <li><a href="{{ route('social') }}">Media Sosial</a></li>
                                                 </ul>
                                             </li>
-                                            <li><a href="{{ route('contact') }}">Hubungi Kami</a></li>
+                                            <li><a href="{{ route('contact') }}">Kontak<i class="ti-angle-down"></i></a>
+                                                <ul class="submenu">
+                                                    <li><a href="{{ route('contact') }}">Hubungi Kami</a></li>
+                                                    <li><a href="{{ route('social') }}">Media Sosial</a></li>
+                                                    <li><a href="{{ route('home.faq') }}">FAQ</a></li>
+                                                </ul>
+                                            </li>
                                         </ul>
                                     </nav>
                                 </div>
