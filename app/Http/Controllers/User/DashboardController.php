@@ -504,6 +504,54 @@ class DashboardController extends Controller
         return view('frontend.research.enroll', compact('research', 'title', 'contact', 'regency', 'district', 'village'));
     }
 
+    public function finalTaskEnroll()
+    {   
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Daftar Penelitian Tugas Akhir';
+
+        return view('frontend.final-task.index', compact('title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function internshipEnroll()
+    {
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Daftar Penelitian Magang';
+
+        return view('frontend.internship.index', compact('title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function practice()
+    {   
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Daftar Praktikum';
+
+        return view('frontend.practice.index', compact('title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function researchIndividuEnroll()
+    {
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Daftar Penelitian Lain';
+
+        return view('frontend.individual.index', compact('title', 'contact', 'regency', 'district', 'village'));
+    }
+
     public function researchSubmit(Request $request, $id)
     {
         $requirement = $request->requirement;

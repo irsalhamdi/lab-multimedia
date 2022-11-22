@@ -98,6 +98,10 @@ Route::post('/berita/komentar/{id}', [DashboardController::class, 'comment'])->n
 Route::post('/rilis/komentar/{id}', [DashboardController::class, 'commentRelease'])->name('mahasiswa.comment.release');
 Route::get('/pengabdian-masyarakat/daftar/{id}', [DashboardController::class, 'dedicationEnroll'])->name('mahasiswa.daftar.pengabdian');
 Route::get('/penelitian/daftar/{id}', [DashboardController::class, 'researchEnroll'])->name('mahasiswa.daftar.penelitian'); 
+Route::get('/penelitian/tugas-akhir/daftar', [DashboardController::class, 'finalTaskEnroll'])->name('home.final.task'); 
+Route::get('/penelitian/magang/daftar', [DashboardController::class, 'internshipEnroll'])->name('home.internship'); 
+Route::get('/penelitian/individu/daftar', [DashboardController::class, 'researchIndividuEnroll'])->name('home.research.individu'); 
+Route::get('/praktikum/daftar', [DashboardController::class, 'practice'])->name('home.practice'); 
 Route::post('/penelitian/individu', [ResearchController::class, 'enroll'])->name('mahasiswa.daftar.penelitian.individu');
 
 Route::prefix('admin')->group(function(){

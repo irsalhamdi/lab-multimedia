@@ -103,8 +103,12 @@
                                                 <ul class="submenu">
                                                     <li><a href="{{ route('home.trainings') }}">Pelatihan</a></li>
                                                     <li><a href="{{ route('home.dedications') }}">Pengabdian Masyarakat</a></li>
-                                                    <li><a href="{{ route('home.researchs') }}">Penelitian</a></li>
+                                                    <li><a href="{{ route('home.researchs') }}">Penelitian Dosen</a></li>
+                                                    <li><a href="{{ route('home.final.task') }}">Penelitian Tugas Akhir</a></li>
+                                                    <li><a href="{{ route('home.internship') }}">Penelitian Magang</a></li>
+                                                    <li><a href="{{ route('home.research.individu') }}">Penelitian Lain</a></li>
                                                     <li><a href="{{ route('home.research.result') }}">Hasil Penelitian</a></li>
+                                                    <li><a href="{{ route('home.practice') }}">Praktikum</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ route('download') }}">Unduhan <i class="ti-angle-down"></i></a>
