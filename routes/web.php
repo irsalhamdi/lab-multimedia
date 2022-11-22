@@ -103,6 +103,7 @@ Route::get('/penelitian/magang/daftar', [DashboardController::class, 'internship
 Route::get('/penelitian/individu/daftar', [DashboardController::class, 'researchIndividuEnroll'])->name('home.research.individu'); 
 Route::get('/praktikum/daftar', [DashboardController::class, 'practice'])->name('home.practice'); 
 Route::post('/penelitian/individu', [ResearchController::class, 'enroll'])->name('mahasiswa.daftar.penelitian.individu');
+Route::post('/praktikum/daftar', [DashboardController::class, 'practiceEnroll'])->name('mahasiswa.daftar.praktikum');
 
 Route::prefix('admin')->group(function(){
     Route::get('/profile/vission', [ProfileController::class, 'vission'])->middleware('admin')->name('admin.vission');
@@ -164,6 +165,7 @@ Route::prefix('admin')->group(function(){
     Route::get('penelitian', [AdminResearchController::class, 'index'])->name('admin.research')->middleware('admin');
     Route::get('penelitian/detail/{id}', [AdminResearchController::class, 'show'])->name('admin.research.detail')->middleware('admin');
     Route::post('penelitian/konfirmasi/{id}', [AdminResearchController::class, 'acc'])->name('admin.research.confirmation')->middleware('admin');
+    Route::get('praktikum-mahasiswa', [AdminController::class, 'practice'])->name('admin.practice')->middleware('admin');
     Route::get('/release-category', [ReleaseCategoryController::class, 'index'])->name('admin.release-category')->middleware('admin');
     Route::get('/release-category/add', [ReleaseCategoryController::class, 'create'])->name('admin.release-category.add')->middleware('admin');
     Route::post('/release-category/store', [ReleaseCategoryController::class, 'store'])->name('admin.release-category.store')->middleware('admin');
@@ -456,6 +458,7 @@ Route::prefix('lead')->group(function(){
     Route::get('penelitian/dosen', [LeadResearchController::class, 'teacher'])->name('lead.research.teacher')->middleware('lead');
     Route::get('penelitian/mahasiswa/detail/{id}', [LeadResearchController::class, 'show'])->name('lead.research.student.detail')->middleware('lead');
     Route::get('penelitian/dosen/detail/{id}', [LeadResearchController::class, 'show'])->name('lead.research.teacher.detail')->middleware('lead');
+    Route::get('praktikum-mahasiswa', [LeadController::class, 'practice'])->name('lead.practice')->middleware('lead');
     Route::get('/release-category', [LeadReleaseCategoryController::class, 'index'])->name('lead.release-category')->middleware('lead');
     Route::get('/release-category/add', [LeadReleaseCategoryController::class, 'create'])->name('lead.release-category.add')->middleware('lead');
     Route::post('/release-category/store', [LeadReleaseCategoryController::class, 'store'])->name('lead.release-category.store')->middleware('lead');
@@ -518,6 +521,7 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::get('mahasiswa/penelitian/lain/{id}', [DashboardController::class, 'researchTeacherDetail'])->name('mahasiswa.penelitian.join'); 
     Route::post('mahasiswa/penelitian/participants-store/{id}', [DashboardController::class, 'participantsResearchStore'])->name('mahasiswa.penelitian.participants.store');
     Route::post('mahasiswa/penelitian/daftar/submit/{id}', [DashboardController::class, 'researchSubmit'])->name('mahasiswa.daftar.penelitian.submit');
+    Route::get('mahasiswa/praktikum', [DashboardController::class, 'lesson'])->name('mahasiswa.praktikum');
     Route::get('mahasiswa/berita', [UserNewsController::class, 'index'])->name('mahasiswa.berita');
     Route::get('mahasiswa/berita/add', [UserNewsController::class, 'create'])->name('mahasiswa.berita.add');
     Route::post('mahasiswa/berita/store', [UserNewsController::class, 'store'])->name('mahasiswa.berita.store');

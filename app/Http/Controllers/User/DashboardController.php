@@ -13,6 +13,7 @@ use App\Models\Release;
 use App\Models\Trainer;
 use App\Models\Village;
 use App\Models\District;
+use App\Models\Practice;
 use App\Models\Research;
 use App\Models\Training;
 use App\Mail\TrainingMail;
@@ -24,6 +25,7 @@ use App\Models\ReleaseComment;
 use App\Models\ResearchTeacher;
 use App\Models\LearningMaterial;
 use App\Mail\ResearchTeacherMail;
+use Illuminate\Support\Facades\DB;
 use App\Models\CommunityDedication;
 use App\Models\ResearchParticipant;
 use App\Http\Controllers\Controller;
@@ -538,6 +540,59 @@ class DashboardController extends Controller
         $title = 'Daftar Praktikum';
 
         return view('frontend.practice.index', compact('title', 'contact', 'regency', 'district', 'village'));
+    }
+
+    public function practiceEnroll(Request $request)
+    {
+        $user = User::where(['nim' => $request->nim, 'email' => $request->email])->first();
+
+        if(empty($user)){
+            $notification = [
+                'message' => 'Data anda belum terdaftar di sistem kami, silahkan daftarkan akun terlebih dahulu !',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->with($notification);
+        }
+
+        $request->validate([
+            'name' => ['min:3'],
+            'nim' => ['min:10'],
+            'phone' => ['min:10'],
+            'lesson' => ['min:5'],
+            'description' => ['min:20'],
+            'dosen' => ['min:5'],
+            'day' => ['min:4'],
+            'time' => ['max:4'],
+        ],[
+            'name.min' => 'Nama harus minimal 3 karakter',
+            'nim.min' => 'NIM harus minimal 10 karakter',
+            'phone.min' => 'No hp harus minimal 10 karakter',
+            'lesson.min' => 'Mata Kulaih harus minimal 10 karakter',
+            'dosen.min' => 'Nama Dosen penelitian harus minimal 5 karakter',
+            'day,min' => 'Hari minimal 4 karakter',
+            'time.max' => 'Waktu Maksimal 4 karakter',
+        ]);
+
+        Practice::create([
+            'user_id' => $user->id,
+            'lesson' => $request->lesson,
+            'dosen' => $request->dosen,
+            'day' => $request->day,
+            'time' => $request->time
+        ]);
+    
+        return redirect()->route('mahasiswa.praktikum')->with('complete', 'Pendaftaran praktikum berhasil !');
+    }
+
+    public function lesson()
+    {
+        $years = Practice::select(DB::raw('LEFT(`created_at`, 4) AS year'))
+                            ->distinct()
+                            ->get();
+                            
+        $practices = Practice::where('user_id', Auth::user()->id)->latest()->filter(request(['search']))->paginate(3)->withQueryString();
+        return view('user.practice.index', compact('practices', 'years'));
     }
 
     public function researchIndividuEnroll()

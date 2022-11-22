@@ -32,15 +32,23 @@
                                         @foreach ($results as $result)
                                             <tr>
                                                 <td scope="row">{{ $i++ }}</td>
-                                                @php
-                                                    $research = App\Models\ResearchTeacher::where('id', $result->research_teacher_id)->first();
-                                                @endphp
+                                                    @php
+                                                        $research = App\Models\ResearchTeacher::where('id', $result->research_teacher_id)->first();
+                                                    @endphp
                                                 <td>{{ $research->title }}</td>
                                                 <td>{{ $research->dosen->name }}</td>
                                                 <td>
-                                                    <a target="_blank" href="{{ asset('upload/research-teacher/result/'.$result->file) }}" class="genric-btn default-border circle arrow">
-                                                        Lihat<span class="lnr lnr-arrow-right"></span>
-                                                    </a>
+                                                    @if (Auth::user() && Auth::user()->email_verified_at !== null)
+                                                        <a target="_blank" href="{{ asset('upload/research-teacher/result/'.$result->file) }}" class="genric-btn default-border circle arrow">
+                                                            Lihat<span class="lnr lnr-arrow-right"></span>
+                                                        </a>
+                                                    @elseif(Auth::guard('dosen')->check())
+                                                        <a target="_blank" href="{{ asset('upload/research-teacher/result/'.$result->file) }}" class="genric-btn default-border circle arrow">
+                                                            Lihat<span class="lnr lnr-arrow-right"></span>
+                                                        </a>
+                                                    @else
+                                                        Hanya tersedia untuk member lab
+                                                    @endif
                                                 </td>
                                             </tr>
                                         @endforeach

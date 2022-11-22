@@ -12,10 +12,12 @@ use App\Models\Regency;
 use App\Models\Release;
 use App\Models\Village;
 use App\Models\District;
+use App\Models\Practice;
 use App\Models\Training;
 use App\Models\Testimonie;
 use Illuminate\Http\Request;
 use App\Models\ReleaseComment;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -219,6 +221,16 @@ class AdminController extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    public function practice()
+    {
+        $years = Practice::select(DB::raw('LEFT(`created_at`, 4) AS year'))
+                            ->distinct()
+                            ->get();
+                            
+        $practices = Practice::latest()->filter(request(['search']))->paginate(3)->withQueryString();
+        return view('admin.practice.index', compact('practices', 'years'));
     }
 
 }

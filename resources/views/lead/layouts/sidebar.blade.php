@@ -77,6 +77,18 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#practice" aria-expanded="false" aria-controls="practice">
+          <i class="typcn typcn-spanner-outline menu-icon"></i>
+          <span class="menu-title">Praktikum</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="practice">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('lead.practice') }}"> Daftar Praktikum </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#training" aria-expanded="false" aria-controls="training">
           <i class="typcn typcn-clipboard menu-icon"></i>
           <span class="menu-title">Pelatihan</span>
