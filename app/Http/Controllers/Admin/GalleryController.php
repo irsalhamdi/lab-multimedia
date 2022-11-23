@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Gallery;
-use App\Models\GalleryActivity;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use App\Models\GalleryActivity;
+use App\Http\Controllers\Controller;
 
 class GalleryController extends Controller
 {
@@ -123,6 +124,42 @@ class GalleryController extends Controller
         $galleries = GalleryActivity::where('gallery_id', $gallery->id)->get();
         
         return view('admin.gallery.edit-image', compact('gallery', 'galleries'));
+    }
+
+    public function updateImage(Request $request )
+    {   
+        $images = $request->gambar;
+        
+		foreach ($images as $id => $img) {
+
+            $name = hexdec(uniqid()).'.'.$img->getClientOriginalExtension();
+            $img->move(public_path('upload/gallery/activity/'),$name);
+            $url = 'upload/gallery/activity/' . $name;
+
+            GalleryActivity::where('id',$id)->update([
+                'gambar' => $url,
+                'updated_at' => Carbon::now(),
+            ]);
+
+            $notification = array(
+                'message' => 'Galeri berhasil diupdate !',
+                'alert-type' => 'info',
+            );
+    
+            return redirect()->back()->with($notification);
+        }
+    }
+
+    public function deleteImage($id)
+    {
+        GalleryActivity::findOrFail($id)->delete();
+
+        $notification = array(
+           'message' => 'Gallery berhasil dihapus !',
+           'alert-type' => 'warning'
+       );
+
+       return redirect()->back()->with($notification);
     }
 
     public function destroy($id)

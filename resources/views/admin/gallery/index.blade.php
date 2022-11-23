@@ -23,7 +23,7 @@
                         <thead>
                         <tr>
                             <th>
-                                Galeri
+                                Nama
                             </th>
                             <th>
                                 Gambar

@@ -209,6 +209,7 @@ Route::prefix('admin')->group(function(){
     Route::post('/galeri/update/{id}', [GalleryController::class, 'update'])->name('admin.gallery.update')->middleware('admin');
     Route::get('/galeri/edit-image/{id}', [GalleryController::class, 'editImage'])->name('admin.gallery.edit.image')->middleware('admin');
     Route::post('/galeri/update-image/{id}', [GalleryController::class, 'updateImage'])->name('admin.gallery.update.image')->middleware('admin');
+    Route::get('/galeri/delete-image/{id}', [GalleryController::class, 'deleteImage'])->name('admin.gallery.delete.image')->middleware('admin');
     Route::get('/galeri/delete/{id}', [GalleryController::class, 'destroy'])->name('admin.gallery.delete')->middleware('admin');
     Route::get('/jadwal', [ScheduleController::class, 'index'])->name('admin.schedules')->middleware('admin');
     Route::get('/jadwal/add', [ScheduleController::class, 'create'])->name('admin.schedule.add')->middleware('admin');
@@ -330,6 +331,9 @@ Route::prefix('asistant')->group(function(){
     Route::post('/galeri/store', [AsistantGalleryController::class, 'store'])->name('asistant.gallery.store')->middleware('asistant');
     Route::get('/galeri/edit/{id}', [AsistantGalleryController::class, 'edit'])->name('asistant.gallery.edit')->middleware('asistant');
     Route::post('/galeri/update/{id}', [AsistantGalleryController::class, 'update'])->name('asistant.gallery.update')->middleware('asistant');
+    Route::get('/galeri/edit-image/{id}', [AsistantGalleryController::class, 'editImage'])->name('asistant.gallery.edit.image')->middleware('asistant');
+    Route::post('/galeri/update-image/{id}', [AsistantGalleryController::class, 'updateImage'])->name('asitant.gallery.update.image')->middleware('asitant');
+    Route::get('/galeri/delete-image/{id}', [AsistantGalleryController::class, 'deleteImage'])->name('asistant.gallery.delete.image')->middleware('asistant');
     Route::get('/galeri/delete/{id}', [AsistantGalleryController::class, 'destroy'])->name('asistant.gallery.delete')->middleware('asistant');
     Route::get('/login', [AsistantController::class, 'index'])->name('asistant.login.form');
     Route::post('/login', [AsistantController::class, 'login'])->name('asistant.login');
@@ -489,6 +493,9 @@ Route::prefix('lead')->group(function(){
     Route::post('/galeri/store', [LeadGalleryController::class, 'store'])->name('lead.gallery.store')->middleware('lead');
     Route::get('/galeri/edit/{id}', [LeadGalleryController::class, 'edit'])->name('lead.gallery.edit')->middleware('lead');
     Route::post('/galeri/update/{id}', [LeadGalleryController::class, 'update'])->name('lead.gallery.update')->middleware('lead');
+    Route::get('/galeri/edit-image/{id}', [LeadGalleryController::class, 'editImage'])->name('lead.gallery.edit.image')->middleware('lead');
+    Route::post('/galeri/update-image/{id}', [LeadGalleryController::class, 'updateImage'])->name('lead.gallery.update.image')->middleware('lead');
+    Route::get('/galeri/delete-image/{id}', [LeadGalleryController::class, 'deleteImage'])->name('lead.gallery.delete.image')->middleware('lead');
     Route::get('/galeri/delete/{id}', [LeadGalleryController::class, 'destroy'])->name('lead.gallery.delete')->middleware('lead');
     Route::get('/customer', [LeadCustomerController::class, 'index'])->name('lead.customer')->middleware('lead');
     Route::get('/login', [LeadController::class, 'index'])->name('lead.login.form');

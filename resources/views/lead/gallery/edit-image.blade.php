@@ -1,4 +1,4 @@
-@extends('admin.layouts.main')
+@extends('lead.layouts.main')
 @section('main')
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <div class="col-12 grid-margin stretch-card">
@@ -8,22 +8,22 @@
                 <p class="card-description">
                     Form Edit Galeri
                 </p>
-                <form method="POST" action="{{ route('admin.gallery.update.image', $gallery->id) }}" class="forms-sample" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('lead.gallery.update.image', $gallery->id) }}" class="forms-sample" enctype="multipart/form-data">
                     @csrf
                     <div class="row row-sm">
                         @if ($galleries->count())
                             @foreach ($galleries as $image)
-                                <div class="card mr-3 mb-3 ml-3" style="width: 20rem;">
-                                    <img src="{{ asset($image->gambar) }}" class="card-img-top" style="width: 320px; height: 200px;">
-                                    <div class="card-body" style="text-align: center">
-                                    <a href="{{ route('admin.gallery.delete.image',$image->id) }}">
-                                        <i class="typcn typcn-trash" id="delete" title="Delete Image"></i>
-                                    </a>
-                                    <input class="mt-3" type="file" name="gambar[{{  $image->id}}]">
-                                    </div>
+                            <div class="card mr-3 mb-3 ml-3" style="width: 20rem;">
+                                <img src="{{ asset($image->gambar) }}" class="card-img-top" style="width: 320px; height: 200px;">
+                                <div class="card-body" style="text-align: center">
+                                <a href="{{ route('lead.gallery.delete.image',$image->id) }}">
+                                    <i class="typcn typcn-trash" id="delete" title="Delete Image"></i>
+                                </a>
+                                <input class="mt-3" type="file" name="gambar[{{  $image->id}}]">
                                 </div>
+                            </div>
                             @endforeach
-                            <a href="{{ route('admin.galleries') }}" class="btn btn-light mr-2">Cancel</a>
+                            <a href="{{ route('lead.galleries') }}" class="btn btn-light mr-2">Cancel</a>
                             <button type="submit" class="btn btn-primary mr-2">Update</button>
                         @else
                             <p class="card-description ml-3">Galeri tidak ditemukan</p>

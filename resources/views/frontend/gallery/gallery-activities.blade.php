@@ -53,11 +53,19 @@
         </div>
         <div class="container-gallery">
             <div class="gallery">
-                @foreach ($galleries as $gallery)
-                    <a href="{{ asset($gallery->gambar) }}" data-lightbox="models">
-                        <img src="{{ asset($gallery->gambar) }}">
-                    </a>
-                @endforeach
+                @if ($galleries->count())
+                    @foreach ($galleries as $gallery)
+                        <a href="{{ asset($gallery->gambar) }}" data-lightbox="models">
+                            <img src="{{ asset($gallery->gambar) }}">
+                        </a>
+                    @endforeach
+                    @else
+                    <div class="col-lg-12">
+                        <div class="section_title text-center">
+                            <h4>Galeri Kegiatan {{ $title }} tidak temukan</h4>
+                        </div>
+                    </div>
+                @endif
             </div>
         </div>
     </div>
