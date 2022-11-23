@@ -107,8 +107,8 @@
                 @foreach ($news as $new)
                     <div class="col-lg-4 col-md-6">
                         <div class="single__program">
-                            <div class="program_thumb">
-                                <img src="{{ asset($new->image) }}" style="width: 350px; height: 300px">
+                            <div class="program_thumb" style="overflow: hidden; border: 4px; border-radius: 5px;">
+                                <img src="{{ asset($new->image) }}" style="width: 422px; height: 314px; object-fit: cover; object-position: 50% 50%">
                             </div>
                             <div class="program__content">
                                 @php
