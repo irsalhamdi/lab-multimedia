@@ -27,8 +27,8 @@
                                     $hour = date('H:i',strtotime($training->date));
                                 @endphp
                                 <article class="blog_item">
-                                    <div class="blog_item_img" style="width: 100%">
-                                        <img class="card-img rounded-0" src="{{ asset($training->image) }}">
+                                    <div class="blog_item_img" style="overflow: hidden;">
+                                        <img class="card-img rounded-0" src="{{ asset($training->image) }}" style="width: 730px; height: 500px; object-fit: cover;">
                                         <a href="{{ route('home.training', $training->id) }}" class="blog_item_date">
                                             <h3>{{ $date }}</h3>
                                             @php

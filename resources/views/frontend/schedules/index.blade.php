@@ -19,6 +19,16 @@
                     <div class="section_title text-center">
                         <h3>Jadwal Harian</h3>
                     </div>
+                    <form action="{{ route('home.schedules') }}" class="mt-3 mb-3">
+                        <div class="form-group">
+                            <div class="input-group">
+                                <input type="text" name="search" value="{{ request('search') }}" class="form-control" placeholder="Jadwal Dosen" aria-label="Cari Gallery">
+                                <div class="input-group-append">
+                                <button class="btn btn-sm btn-warning" type="submit">Cari</button>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
                     <form action="{{ route('home.schedules') }}">
                         <div class="single_input" style="text-align: center; margin-bottom: 3%">
                             <input type="date" name="search" value="{{ request('search') }}" required>
@@ -41,6 +51,7 @@
                             <thead>
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Hari</th>
                                     <th scope="col">Jadwal</th>
                                     <th scope="col">Dosen</th>
                                     <th scope="col">Mata Kuliah</th>
@@ -58,9 +69,20 @@
                                             $endmonth = date('F',strtotime($schedule->endhour));
                                             $endyear = date('Y',strtotime($schedule->endhour));
                                             $endhour = date('H:i',strtotime($schedule->hour));
+                                            $day = date('D', strtotime($schedule->hour));
+                                            $dayList = array(
+                                                'Sun' => 'Minggu',
+                                                'Mon' => 'Senin',
+                                                'Tue' => 'Selasa',
+                                                'Wed' => 'Rabu',
+                                                'Thu' => 'Kamis',
+                                                'Fri' => 'Jumat',
+                                                'Sat' => 'Sabtu'
+                                            );
                                     @endphp
                                     <tr>
                                         <td scope="row">{{ $i++ }}</td>
+                                        <td>{{ $dayList[$day] }}</td>
                                         <td>{{ $hour }} - {{ $endhour }}</td>
                                         <td>{{ $schedule->teacher}}</td>
                                         <td>{{ $schedule->lesson}}</td>
@@ -87,12 +109,13 @@
                 <div class="row">
                     <table class="table">
                         <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">Jadwal</th>
-                                    <th scope="col">Dosen</th>
-                                    <th scope="col">Mata Kuliah</th>
-                                </tr>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Hari</th>
+                                <th scope="col">Jadwal</th>
+                                <th scope="col">Dosen</th>
+                                <th scope="col">Mata Kuliah</th>
+                            </tr>
                         </thead>
                         <tbody>
                             @php $i = 1; @endphp
@@ -106,9 +129,20 @@
                                     $endmonth = date('F',strtotime($today->endhour));
                                     $endyear = date('Y',strtotime($today->endhour));
                                     $endhour = date('H:i',strtotime($today->hour));
+                                    $day = date('D', strtotime($today->hour));
+                                    $dayList = array(
+                                        'Sun' => 'Minggu',
+                                        'Mon' => 'Senin',
+                                        'Tue' => 'Selasa',
+                                        'Wed' => 'Rabu',
+                                        'Thu' => 'Kamis',
+                                        'Fri' => 'Jumat',
+                                        'Sat' => 'Sabtu'
+                                    );
                                 @endphp
                                 <tr>
                                     <td scope="row">{{ $i++ }}</td>
+                                    <td>{{ $dayList[$day] }}</td>
                                     <td>{{ $hour }} - {{ $endhour }} WIB</td>
                                     <td>{{ $today->teacher}}</td>
                                     <td>{{ $today->lesson}}</td>

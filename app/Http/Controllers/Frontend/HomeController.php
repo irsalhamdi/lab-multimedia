@@ -432,6 +432,10 @@ class HomeController extends Controller
         $district = District::where('id', $contact->district_id)->first();
         $village = Village::where('id', $contact->village_id)->first();
 
+        $teachers = Schedule::select(DB::raw('teacher'))
+                            ->distinct()
+                            ->get();
+
         $years = Schedule::select(DB::raw('LEFT(`hour`, 4) AS year'))
                             ->distinct()
                             ->get();
@@ -447,7 +451,7 @@ class HomeController extends Controller
         
         $title = 'Jadwal Laboratorium Multimedia';
 
-        return view('frontend.schedules.index', compact('title', 'contact', 'regency', 'district', 'village', 'todays', 'schedules', 'periods', 'years'));
+        return view('frontend.schedules.index', compact('title', 'contact', 'regency', 'district', 'village', 'todays', 'schedules', 'periods', 'years', 'teachers'));
     }
 
     public function faq()
