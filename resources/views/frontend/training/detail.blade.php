@@ -25,7 +25,7 @@
                 <div class="col-lg-12">
                     <div class="single_event d-flex align-items-center">
                         <div class="thumb">
-                            <img src="{{ asset($training->image) }}">
+                            <img src="{{ asset($training->image) }}" style="width: 458px; height: 581px; object-fit: fill;">
                             <div class="date text-center">
                                 <h4>{{ $date }}</h4>
                                 <span>{{ Str::substr($month, 0, 3) }}, {{ $year }}</span>
@@ -68,11 +68,11 @@
                     </div>
                 </div>
             </div>
-            <div class="row">
+            <div class="row mt-3">
                 <div class="col-lg-12">
                     <div class="single_event d-flex align-items-center">
                         <div class="thumb">
-                            <img src="{{ asset($trainer->image) }}">
+                            <img src="{{ asset($trainer->image) }}" style="width: 458px; height: 581px; object-fit: fill;">
                         </div>
                         <div class="event_details_info">
                             <div class="event_info">
