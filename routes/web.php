@@ -102,6 +102,7 @@ Route::get('/penelitian/tugas-akhir/daftar', [DashboardController::class, 'final
 Route::get('/penelitian/magang/daftar', [DashboardController::class, 'internshipEnroll'])->name('home.internship'); 
 Route::get('/penelitian/individu/daftar', [DashboardController::class, 'researchIndividuEnroll'])->name('home.research.individu'); 
 Route::get('/praktikum/daftar', [DashboardController::class, 'practice'])->name('home.practice'); 
+Route::get('/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratory'])->name('home.laboratory.clearance.certificate'); 
 Route::post('/penelitian/individu', [ResearchController::class, 'enroll'])->name('mahasiswa.daftar.penelitian.individu');
 Route::post('/praktikum/daftar', [DashboardController::class, 'practiceEnroll'])->name('mahasiswa.daftar.praktikum');
 
@@ -540,6 +541,7 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::post('mahasiswa/daftar/member/submit', [DashboardController::class, 'memberEnroll'])->name('mahasiswa.daftar.member.submit');
     Route::get('mahasiswa/message', [DashboardController::class, 'message'])->name('mahasiswa.message');
     Route::post('mahasiswa/message/reply/{id}', [DashboardController::class, 'reply'])->name('mahasiswa.message.reply.submit');
+    Route::post('mahasiswa/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratorySubmit'])->name('mahasiswa.laboratory.clearance.certificate.submit'); 
     Route::get('mahasiswa/mahasiswa/logout', [DashboardController::class, 'logout'])->name('mahasiswa.logout');
 });
 

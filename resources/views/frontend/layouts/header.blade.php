@@ -109,6 +109,7 @@
                                                     <li><a href="{{ route('home.research.individu') }}">Penelitian Lain</a></li>
                                                     <li><a href="{{ route('home.research.result') }}">Hasil Penelitian</a></li>
                                                     <li><a href="{{ route('home.practice') }}">Praktikum</a></li>
+                                                    <li><a href="{{ route('home.laboratory.clearance.certificate') }}">SK Bebas Laboratorium</a></li>
                                                 </ul>
                                             </li>
                                             <li><a href="{{ route('download') }}">Unduhan <i class="ti-angle-down"></i></a>

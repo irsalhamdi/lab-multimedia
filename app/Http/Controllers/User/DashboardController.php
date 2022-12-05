@@ -798,4 +798,22 @@ class DashboardController extends Controller
         return redirect()->route('dashboard')->with($notification);
 
     }
+
+    public function certificateClearenceLaboratory()
+    {
+        $contact = Contact::find(1);
+        $regency = Regency::where('id', $contact->regency_id)->first();
+        $district = District::where('id', $contact->district_id)->first();
+        $village = Village::where('id', $contact->village_id)->first();
+
+        $title = 'Surat Keterangan Bebas Laboratorium';
+        $user = Auth::user();
+
+        return view('frontend.certificate-clearence-laboratory.index', compact('contact', 'regency', 'district', 'village', 'title', 'user'));
+    }
+
+    public function certificateClearenceLaboratorySubmit(Request $request)
+    {
+        dd($request->all());
+    }
 }
