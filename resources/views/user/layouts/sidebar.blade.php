@@ -98,6 +98,24 @@
           </ul>
         </div>
       </li>
+      @php
+          $letter = App\Models\CertificateClearenceLaboratory::where('user_id', Auth::user()->id)->first();
+      @endphp
+      @if ($letter != null)
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#letter" aria-expanded="false" aria-controls="letter">
+            <i class="typcn typcn-document-text menu-icon"></i>
+            <span class="menu-title">SK Bebas Lab</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="letter">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{{ route('mahasiswa.laboratory.clearance.certificate') }}"> Surat Keterangan </a></li>
+            </ul>
+          </div>
+        </li>
+      @else
+      @endif
       <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#qa" aria-expanded="false" aria-controls="qa">
           <i class="typcn typcn-message-typing menu-icon"></i>

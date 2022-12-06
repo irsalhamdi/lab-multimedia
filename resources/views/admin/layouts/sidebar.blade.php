@@ -102,6 +102,18 @@
         </div>
       </li>
       <li class="nav-item">
+        <a class="nav-link" data-toggle="collapse" href="#letter" aria-expanded="false" aria-controls="letter">
+          <i class="typcn typcn-document-add menu-icon"></i>
+          <span class="menu-title">SK Bebas Lab</span>
+          <i class="menu-arrow"></i>
+        </a>
+        <div class="collapse" id="letter">
+          <ul class="nav flex-column sub-menu">
+            <li class="nav-item"> <a class="nav-link" href="{{ route('admin.laboratory.clearance.certificate') }}"> Surat Keterangan </a></li>
+          </ul>
+        </div>
+      </li>
+      <li class="nav-item">
         <a class="nav-link" data-toggle="collapse" href="#mahasiswa" aria-expanded="false" aria-controls="mahasiswa">
           <i class="typcn typcn-business-card menu-icon"></i>
           <span class="menu-title">Mahasiswa</span>

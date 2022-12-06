@@ -34,9 +34,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CommunityDedicationMail;
+use App\Models\CertificateClearenceLaboratory;
 use App\Models\CommunityDedicationGuide;
 use App\Models\ParticipantCommunityDedication;
-
+use PDF;
 class DashboardController extends Controller
 {
     public function index()
@@ -814,6 +815,45 @@ class DashboardController extends Controller
 
     public function certificateClearenceLaboratorySubmit(Request $request)
     {
-        dd($request->all());
+        $check = CertificateClearenceLaboratory::where('user_id', Auth::user()->id)->first();
+        if($check == null){
+            $user = Auth::user();
+            CertificateClearenceLaboratory::create([
+                'user_id' => Auth::user()->id,
+                'file' => '',
+            ]);
+            
+            $notification = [
+                'message' => 'Pengajuan SK Bebas Lab berhasil !',
+                'alert-type' => 'success',
+            ];
+
+            return redirect()->route('mahasiswa.laboratory.clearance.certificate')->with($notification);
+        }else{
+            $notification = [
+                'message' => 'Anda telah memeliki SK Bebas Laboratorium',
+                'alert-type' => 'error',
+            ];
+
+            return redirect()->back()->with($notification);
+        }
     }
+
+    public function certificateClearenceLaboratoryView()
+    {
+        $certificate = CertificateClearenceLaboratory::where('user_id', Auth::user()->id)->first();
+        return view('user.certificate-clearence-laboratory.index', compact('certificate'));
+    }
+
+    public function certificateClearenceLaboratoryDetail()
+    {
+        $user = Auth::user();
+
+        $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.certificate',compact('user'))->setPaper('a4')->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('SK-Bebas-Lab.pdf');
+    }
+
 }

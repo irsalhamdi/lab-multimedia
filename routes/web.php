@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminResearchController;
 use App\Http\Controllers\Admin\AdminTestimoniController;
+use App\Http\Controllers\Admin\Certificate;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\CustomerController;
 use App\Http\Controllers\Admin\FaqController;
@@ -233,6 +234,8 @@ Route::prefix('admin')->group(function(){
     Route::get('/testimoni', [AdminTestimoniController::class, 'index'])->name('admin.testimonies')->middleware('admin');
     Route::get('/testimoni/acc', [AdminTestimoniController::class, 'acc'])->name('admin.testimonies.acc')->middleware('admin');
     Route::get('/testimoni/unacc', [AdminTestimoniController::class, 'unacc'])->name('admin.testimonies.unacc')->middleware('admin');
+    Route::get('/surat-keterangan-bebas-laboratorium', [Certificate::class, 'index'])->name('admin.laboratory.clearance.certificate')->middleware('admin');
+    Route::get('/surat-keterangan-bebas-laboratorium/{id}', [Certificate::class, 'show'])->name('admin.laboratory.clearance.certificate.detail')->middleware('admin');
     Route::get('/login', [AdminController::class, 'index'])->name('admin.login.form');
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
@@ -541,7 +544,9 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::post('mahasiswa/daftar/member/submit', [DashboardController::class, 'memberEnroll'])->name('mahasiswa.daftar.member.submit');
     Route::get('mahasiswa/message', [DashboardController::class, 'message'])->name('mahasiswa.message');
     Route::post('mahasiswa/message/reply/{id}', [DashboardController::class, 'reply'])->name('mahasiswa.message.reply.submit');
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratoryView'])->name('mahasiswa.laboratory.clearance.certificate'); 
     Route::post('mahasiswa/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratorySubmit'])->name('mahasiswa.laboratory.clearance.certificate.submit'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium-detail', [DashboardController::class, 'certificateClearenceLaboratoryDetail'])->name('mahasiswa.laboratory.clearance.certificate.detail'); 
     Route::get('mahasiswa/mahasiswa/logout', [DashboardController::class, 'logout'])->name('mahasiswa.logout');
 });
 
