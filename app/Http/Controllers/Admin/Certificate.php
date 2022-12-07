@@ -20,12 +20,12 @@ class Certificate extends Controller
         $certificate = CertificateClearenceLaboratory::findOrFail($id);
         $user = User::where('id', $certificate->user_id)->first(); 
 
-        $pdf = PDF::loadView('admin.certificate.certificate',compact('user'))->setPaper('a4')->setOptions([
-            'tempDir' => public_path(),
-            'chroot' => public_path(),
-        ]);
-        return $pdf->download('SK-Bebas-Lab.pdf');
+        // $pdf = PDF::loadView('admin.certificate.certificate',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+        //     'tempDir' => public_path(),
+        //     'chroot' => public_path(),
+        // ]);
+        // return $pdf->download('SK-Bebas-Lab.pdf');
 
-        // return view('admin.certificate.certificate', compact('user'));
+        return view('admin.certificate.certificate', compact('user', 'certificate'));
     }
 }
