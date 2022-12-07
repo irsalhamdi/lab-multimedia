@@ -815,12 +815,82 @@ class DashboardController extends Controller
 
     public function certificateClearenceLaboratorySubmit(Request $request)
     {
+        $request->validate([
+            'generation' => 'min:4',
+            'title_of_thesis' => 'min:10',
+            'dosen' => 'min:3',
+            'necessity' => 'min:10',
+            'kpm' => 'mimes:pdf',
+            'form_ta' => 'mimes:pdf',
+            'form_proposal' => 'mimes:pdf',
+            'form_pengesahan_kp' => 'mimes:pdf',
+            'form_kp' => 'mimes:pdf',
+        ], [
+            'generation.min' => 'Angkatan minimal 4 angka',
+            'title_of_thesis.min' => 'Judul TA minimal 10 angka',
+            'dosen.min' => 'Nama Dosen minimal 3 angka',
+            'necessity.min' => 'Keperluan minimal 10 angka',
+            'kpm.mimes' => 'KPM harus pdf',
+            'form_ta.mimes' => 'Fotocopy Form Ujian TA harus pdf',
+            'form_proposal.mimes' => 'Fotocopy Tanda Terima Proposal Proposal harus pdf',
+            'form_pengesahan_kp.mimes' => 'Fotocopy Pengesahan KP harus pdf',
+            'form_kp.mimes' => 'Fotocopy Laporan KP harus pdf',
+        ]);
+
         $check = CertificateClearenceLaboratory::where('user_id', Auth::user()->id)->first();
         if($check == null){
-            $user = Auth::user();
+
+                
+            $file = $request->file('kpm');
+            $destinationPath = 'upload/kpm';
+            $kpm = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath,$kpm);
+
+            $file = $request->file('form_ta');
+            $destinationPath = 'upload/form_ta';
+            $form_ta = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath,$form_ta);
+
+            $file = $request->file('form_proposal');
+            $destinationPath = 'upload/form_proposal';
+            $form_proposal = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath,$form_proposal);
+
+            $file = $request->file('form_pengesahan_kp');
+            $destinationPath = 'upload/form_pengesahan_kp';
+            $form_pengesahan_kp = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath,$form_pengesahan_kp);
+
+            $file = $request->file('form_kp');
+            $destinationPath = 'upload/form_kp';
+            $form_kp = date('YmdHis') . "." . $file->getClientOriginalExtension();
+            $file->move($destinationPath,$form_kp);
+
             CertificateClearenceLaboratory::create([
                 'user_id' => Auth::user()->id,
-                'file' => '',
+                'generation' => $request->generation,
+                'title_of_thesis' => $request->title_of_thesis,
+                'dosen' => $request->dosen,
+                'necessity' => $request->necessity,
+                'basis_data' => $request->basis_data,
+                'multimedia' => $request->multimedia,
+                'robotika' => $request->robotika,
+                'elektronika' => $request->elektronika,
+                'perangkat_keras' => $request->perangkat_keras,
+                'struktur_data' => $request->struktur_data,
+                'pemrograman_lanjut' => $request->pemrograman_lanjut,
+                'instrumen' => $request->instrumen,
+                'kecerdasan' => $request->kecerdasan,
+                'jaringan' => $request->jaringan,
+                'pengolahan' => $request->pengolahan,
+                'rpl' => $request->rpl,
+                'pemrograman_dasar' => $request->pemrograman_dasar,
+                'pemrograman_internet' => $request->pemrograman_internet,
+                'kpm' => $kpm,
+                'form_ta' => $form_ta,
+                'form_proposal' => $form_proposal,
+                'form_pengesahan_kp' => $form_pengesahan_kp,
+                'form_kp' => $form_kp,
             ]);
             
             $notification = [
