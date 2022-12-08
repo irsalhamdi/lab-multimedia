@@ -9,13 +9,16 @@
     </head>
     <body>
 
-        <table width="100%" >
+        <table width="100%">
             <tr>
-                <th style="font-size: 20px; font-weight: bold;">
-                    <span style="margin-left: 3%;">UNIVERSITAS SRIWIJAYA</span><br>
-                    <span style="margin-left: 3%;"></span>FAKULTAS ILMU KOMPUTER<br>
-                    <span style="margin-left: 3%;"></span>LABORATORIUM KOMPUTER<br>
-                    <span style="font-family: sans-serif; font-size: 12px; margin-left: 2%; font-weight: normal">
+                <th width="20">
+                    <img src="{{ asset('frontend/img/unsri.png') }}" width="120%;">
+                </th>
+                <th style="font-size: 20px; font-weight: bold;" width="80">
+                    UNIVERSITAS SRIWIJAYA<br>
+                    FAKULTAS ILMU KOMPUTER<br>
+                    LABORATORIUM KOMPUTER<br>
+                    <span style="font-family: sans-serif; font-size: 12px; margin-left: 1%; font-weight: normal">
                         Jl. Palembang-Prabumulih Km, 32 Inderalaya Ogan Ilir Kode Pos 30662
                     </span><br>
                     <span style="font-family: sans-serif; font-size: 12px; margin-left: 2%; font-weight: normal">
