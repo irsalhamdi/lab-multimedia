@@ -4,7 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Surat Keterangan Bebas Lab</title>
+        <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/img/unsri.png') }}">
+        <title>Pengajuan Surat Keterangan Bebas Lab</title>
     </head>
     <body>
 
@@ -34,62 +35,185 @@
         <table width="100%">
             <tr>
                 <th>
-                    SURAT KETERANGAN <br>
-                    BEBAS PEMINJAMAN ALAT LABORATORIUM
+                    <u>PELAYANANAN MAHASISWA</u>
                 </th>
-            </tr>
-        </table>
-
-        <table width="100%">
-            <tr>
-                <td style="text-align: center">
-                    No : 110B/UN9.1.9/Lab/{{ date('Y') }}
-                </td>
             </tr>
         </table>
 
         <br><br>
 
         <table width="100%">
+                <tr>
+                    <p style="font-family: sans-serif;">    
+                        Nama&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $user->name }} <br>
+                        NIM&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $user->nim }} <br>
+                        Angkatan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $certificate->generation }} <br>
+                        Jurusan&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $user->jurusan }} <br>
+                        No. Hanphone&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $user->phone }} <br>
+                        Judul Tugas Akhir&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: {{ $certificate->title_of_thesis }}<br> 
+                        Dosen Pembimbing TA&nbsp;: {{ $certificate->dosen }}
+                    </p>
+                </tr>
+        </table>
+
+        <br>
+
+        <table width="100%">
+                <tr>
+                    <b style="text-align: justify; font-family: sans-serif;">
+                        KEPERLUAN
+                    </b><br>
+                    <span style="text-align: justify; font-family: sans-serif;">
+                        Surat Keterangan Bebas Peminjaman Alat Laboratorium Untuk :
+                    </span>
+                    <span style="text-align: justify; font-family: sans-serif;">
+                        {{ $certificate->necessity }}
+                    </span>
+                </tr>
+        </table>
+
+        <br><br>
+
+        <table width="100%">
+                <tr>
+                    <b style="text-align: justify; font-family: sans-serif;">
+                        LABORATORIUM
+                    </b><br>
+                </tr>
+        </table>
+
+        <br>
+
+        <table width="100%">
             <tr>
-                <p style="font-family: sans-serif;">    
-                    Dengan ini menerangkan bahwa:
-                </p>
+                <span style="text-align: justify; font-family: sans-serif;">
+                    <td> 
+                        @if ($certificate->basis_data === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Basis Data & Big Data
+                        @else
+                            Lab. Basis Data & Big Data
+                        @endif
+                    </td>
+                    <td> 
+                        @if ($certificate->instrumen === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Instrumen & Apk Nanoteknologi
+                        @else
+                            Lab. Instrumen & Apk Nanoteknologi
+                        @endif
+                    </td>
+                </span>
+            </tr>
+            <tr>
+                <span style="text-align: justify; font-family: sans-serif;">
+                    <td>
+                        @if ($certificate->multimedia === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Multimedia & Pemrograman Game
+                        @else
+                            Lab. Multimedia & Pemrograman Game
+                        @endif
+                    </td>
+                    <td>
+                        @if ($certificate->kecerdasan === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Kecerdasan Buatan & Grafika Komp
+                        @else
+                            Lab. Kecerdasan Buatan & Grafika Komp
+                        @endif
+                    </td>
+                </span>
+            </tr>
+            <tr>
+                <span style="text-align: justify; font-family: sans-serif;">
+                    <td>
+                        @if ($certificate->robotika === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Robotika, Sistem Kendali & Sistem Tertanam
+                        @else
+                            Lab. Robotika, Sistem Kendali & Sistem Tertanam
+                        @endif
+                    </td>
+                    <td>
+                        @if ($certificate->jaringan === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Jaringan Komputer & Komdat
+                        @else
+                            Lab. Jaringan Komputer & Komdat
+                        @endif
+                    </td>
+                </span>
+            </tr>
+            <tr>
+                <span style="text-align: justify; font-family: sans-serif;">
+                    <td>
+                        @if ($certificate->elektronika === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Elektronika & Sistem Kendali
+                        @else
+                            Lab. Elektronika & Sistem Kendali
+                        @endif
+                    </td>
+                    <td>
+                        @if ($certificate->pengolahan === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Pengolahan Citra & Pengenalan Pola
+                        @else
+                            Lab. Pengolahan Citra & Pengenalan Pola
+                        @endif
+                    </td>
+                </span>
+            </tr>
+            <tr>
+                <span style="text-align: justify; font-family: sans-serif;">
+                    <td>
+                        @if ($certificate->perangkat_keras === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Perangkat Keras & Teknologi Komponen
+                        @else
+                            Lab. Perangkat Keras & Teknologi Komponen
+                        @endif
+                    </td>
+                    <td>
+                        @if ($certificate->rpl === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. RPL & Sistem Informasi
+                        @else
+                            Lab. RPL & Sistem Informasi
+                        @endif
+                    </td>
+                </span>
+            </tr>
+            <tr>
+                <span style="text-align: justify; font-family: sans-serif;">
+                    <td>
+                        @if ($certificate->struktur_data === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Struktur Data & SI Akuntansi
+                        @else
+                            Lab. Struktur Data & SI Akuntansi
+                        @endif
+                    </td>
+                    <td>
+                        @if ($certificate->pemrograman_dasar === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Pemrograman Dasar
+                        @else
+                            Lab. Pemrograman Dasar
+                        @endif
+                    </td>
+                </span>
+            </tr>
+            <tr>
+                <span style="text-align: justify; font-family: sans-serif;">
+                    <td>
+                        @if ($certificate->pemrograman_lanjut === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Pemrograman Lanjut
+                        @else
+                            Lab. Pemrograman Lanjut
+                        @endif
+                    </td>
+                    <td>
+                        @if ($certificate->pemrograman_internet === 1)
+                            <img src="{{ asset('frontend/img/check.png') }}"> Lab. Pemrograman Internet
+                        @else
+                            Lab. Pemrograman Internet
+                        @endif
+                    </td>
+                </span>
             </tr>
         </table>
 
-        <table width="100%">
-                <tr>
-                    <p style="font-family: sans-serif;">    
-                        Nama &nbsp; &nbsp; &nbsp; : {{ $user->name }} <br>
-                        NIM &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;: {{ $user->nim }} <br>
-                        Angkatan : {{ $certificate->generation }} <br>
-                        Jurusan &nbsp;&nbsp;: {{ $user->jurusan }}
-                    </p>
-                </tr>
-        </table>
-
-        <table width="100%">
-                <tr>
-                    <p style="text-align: justify; font-family: sans-serif;">
-                        Menurut catatan/pengamatan kami, mahasiswa tersebut sudah tidak mempunyai pinjaman 
-                        alat-alat pada <b>Laboratorium Basis Data & Big Data</b> di Fakultas Ilmu Komputer Universitas
-                        Sriwijaya. Oleh karena itu, surat ini dapat di pergunakan mahasiswa tersebut untuk
-                        keperluan <b><i>Ujian Akhir Sidang / Komprehensif / Yudisium</i>.</b>
-                        Surat keterangan ini berlau selama 6 bulan sejak tanggal di keluarkan
-                    </p>
-                </tr>
-        </table>
-
-        <table width="100%">
-                <tr>
-                    <p style="text-align: justify; font-family: sans-serif;">
-                        Surat keterangan ini berlau selama 6 bulan sejak tanggal di keluarkan.
-                    </p>
-                </tr>
-        </table>
-
-        <br><br><br>
+        <br><br>
 
         <table width="100%">
             <tr>
@@ -99,12 +223,22 @@
                 @endphp
                 <p style="text-align: right; font-family: sans-serif;">
                     Palembang, {{ $date }}-{{ date('m') }}-{{ $year }}<br>
-                    a.n Kepala Laboratorium<br>
-                    Admin Laboratorium <br><br><br><br><br>
-                    <img src="{{ asset('frontend/img/qr-code.png') }}" width="100px;">
-                    <b>CAKRO PRANOLO</b><br>
-                     NIP : 19820318 201409 1 001
+                    Pemohon<br>
                 </p>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <img style="float: right;" src="{{ asset('frontend/img/qr-code.png') }}" width="100px;">
+            </tr>
+        </table>
+
+        <br>
+
+        <table width="100%">
+            <tr>
+                <b style="float: right; font-family: sans-serif;">{{ $user->name }}</b><br>
             </tr>
         </table>
 
