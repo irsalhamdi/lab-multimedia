@@ -913,7 +913,14 @@ class DashboardController extends Controller
     public function certificateClearenceLaboratoryView()
     {
         $certificate = CertificateClearenceLaboratory::where('user_id', Auth::user()->id)->first();
-        return view('user.certificate-clearence-laboratory.index', compact('certificate'));
+        $options = CertificateClearenceLaboratory::select(DB::raw('
+                                                                  basis_data, multimedia, robotika, elektronika, 
+                                                                  perangkat_keras, struktur_data, pemrograman_lanjut, 
+                                                                  instrumen, kecerdasan, jaringan, pengolahan, rpl, 
+                                                                  pemrograman_dasar, pemrograman_internet'
+                                                                ))->where('user_id', Auth::user()->id)->first();
+                                                    
+        return view('user.certificate-clearence-laboratory.index', compact('certificate','options'));
     }
 
     public function certificateClearenceLaboratoryDetail($id)
