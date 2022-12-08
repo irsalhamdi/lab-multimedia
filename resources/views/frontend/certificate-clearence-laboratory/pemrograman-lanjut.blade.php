@@ -100,11 +100,23 @@
                 <p style="text-align: right; font-family: sans-serif;">
                     Palembang, {{ $date }}-{{ date('m') }}-{{ $year }}<br>
                     a.n Kepala Laboratorium<br>
-                    Admin Laboratorium <br><br><br><br><br>
-                    <img src="{{ asset('frontend/img/qr-code.png') }}" width="100px;">
-                    <b>CAKRO PRANOLO</b><br>
-                     NIP : 19820318 201409 1 001
+                    Admin Laboratorium <br>
                 </p>
+            </tr>
+        </table>
+
+        <table width="100%">
+            <tr>
+                <img style="float: right;" src="{{ asset('frontend/img/qr-code.png') }}" width="100px;">
+            </tr>
+        </table>
+
+        <br>
+
+        <table width="100%">
+            <tr>
+                <b style="float: right; font-family: sans-serif;">CAKRO PRANOLO</b><br>
+                <span style="float: right; font-family: sans-serif;">NIP : 19820318 201409 1 001</span>
             </tr>
         </table>
 
