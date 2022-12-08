@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
+use PDF;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use PDF;
+use Illuminate\Support\Facades\Auth;
 use App\Models\CertificateClearenceLaboratory;
 
 class Certificate extends Controller
@@ -57,6 +58,22 @@ class Certificate extends Controller
     {
         $certificate = CertificateClearenceLaboratory::findOrFail($id);
         return view('admin.certificate.tanda-terima-proposal', compact('certificate'));
+    }
+
+    public function formPengajuan($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+
+        $user = User::where('id', $certificate->user_id)->first(); 
+    
+        // $pdf = PDF::loadView('admin.certificate.form-pengajuan',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+        //     'tempDir' => public_path(),
+        //     'chroot' => public_path(),
+        // ]);
+
+        // return $pdf->download('Pengajuan-SK-Bebas-Lab.pdf');
+
+        return view('admin.certificate.form-pengajuan', compact('user', 'certificate'));
     }
 
     public function acc($id)

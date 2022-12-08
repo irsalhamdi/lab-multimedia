@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
+use App\Http\Controllers\Admin\Certificate;
 use App\Models\News;
 use App\Models\User;
 use App\Models\Reply;
@@ -974,4 +975,19 @@ class DashboardController extends Controller
         return view('user.certificate-clearence-laboratory.tanda-terima-proposal', compact('certificate'));
     }
 
+    public function formPengajuan($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+
+        $user = Auth::user();
+    
+        // $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.form-pengajuan',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+        //     'tempDir' => public_path(),
+        //     'chroot' => public_path(),
+        // ]);
+
+        // return $pdf->download('Pengajuan-SK-Bebas-Lab.pdf');
+
+        return view('frontend.certificate-clearence-laboratory.form-pengajuan', compact('user', 'certificate'));
+    }
 }

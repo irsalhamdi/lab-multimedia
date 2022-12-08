@@ -46,6 +46,9 @@
                                               Dokumen
                                             </a>
                                             <div class="dropdown-menu">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.form.pengajuan', $certificate->id) }}" class="dropdown-item">
+                                                    <span class="card-description">Form Pengajuan</span>
+                                                </a>
                                                 <a href="{{ route('mahasiswa.laboratory.clearance.certificate.kpm', $certificate->id) }}" class="dropdown-item">
                                                     KPM
                                                 </a>

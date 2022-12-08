@@ -241,6 +241,7 @@ Route::prefix('admin')->group(function(){
     Route::get('surat-keterangan-bebas-laboratorium/form-ujian-ta/{id}', [Certificate::class, 'formUjianTa'])->name('admin.laboratory.clearance.certificate.form.ujian.ta')->middleware('admin'); 
     Route::get('surat-keterangan-bebas-laboratorium/pengesahan-kp/{id}', [Certificate::class, 'pengesahanKp'])->name('admin.laboratory.clearance.certificate.pengesahan.kp')->middleware('admin'); 
     Route::get('surat-keterangan-bebas-laboratorium/tanda-terima-proposal/{id}', [Certificate::class, 'tandaTerimaProposal'])->name('admin.laboratory.clearance.certificate.tanda.terima.proposal')->middleware('admin'); 
+    Route::get('surat-keterangan-bebas-laboratorium/form-pengajuan/{id}', [Certificate::class, 'formPengajuan'])->name('admin.laboratory.clearance.certificate.form.pengajuan')->middleware('admin'); 
     Route::get('/surat-keterangan-bebas-laboratorium/acc/{id}', [Certificate::class, 'acc'])->name('admin.laboratory.clearance.certificate.acc')->middleware('admin');
     Route::get('/surat-keterangan-bebas-laboratorium/un-acc/{id}', [Certificate::class, 'unacc'])->name('admin.laboratory.clearance.certificate.unacc')->middleware('admin');
     Route::get('/login', [AdminController::class, 'index'])->name('admin.login.form');
@@ -559,6 +560,7 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/form-ujian-ta/{id}', [DashboardController::class, 'formUjianTa'])->name('mahasiswa.laboratory.clearance.certificate.form.ujian.ta'); 
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/pengesahan-kp/{id}', [DashboardController::class, 'pengesahanKp'])->name('mahasiswa.laboratory.clearance.certificate.pengesahan.kp'); 
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/tanda-terima-proposal/{id}', [DashboardController::class, 'tandaTerimaProposal'])->name('mahasiswa.laboratory.clearance.certificate.tanda.terima.proposal'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/form-pengajuan/{id}', [DashboardController::class, 'formPengajuan'])->name('mahasiswa.laboratory.clearance.certificate.form.pengajuan'); 
     Route::get('mahasiswa/mahasiswa/logout', [DashboardController::class, 'logout'])->name('mahasiswa.logout');
 });
 
