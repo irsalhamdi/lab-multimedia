@@ -236,6 +236,13 @@ Route::prefix('admin')->group(function(){
     Route::get('/testimoni/unacc', [AdminTestimoniController::class, 'unacc'])->name('admin.testimonies.unacc')->middleware('admin');
     Route::get('/surat-keterangan-bebas-laboratorium', [Certificate::class, 'index'])->name('admin.laboratory.clearance.certificate')->middleware('admin');
     Route::get('/surat-keterangan-bebas-laboratorium/{id}', [Certificate::class, 'show'])->name('admin.laboratory.clearance.certificate.detail')->middleware('admin');
+    Route::get('surat-keterangan-bebas-laboratorium/kpm/{id}', [Certificate::class, 'kpm'])->name('admin.laboratory.clearance.certificate.kpm')->middleware('admin'); 
+    Route::get('surat-keterangan-bebas-laboratorium/laporan-kp/{id}', [Certificate::class, 'laporanKp'])->name('admin.laboratory.clearance.certificate.laporan.kp')->middleware('admin'); 
+    Route::get('surat-keterangan-bebas-laboratorium/form-ujian-ta/{id}', [Certificate::class, 'formUjianTa'])->name('admin.laboratory.clearance.certificate.form.ujian.ta')->middleware('admin'); 
+    Route::get('surat-keterangan-bebas-laboratorium/pengesahan-kp/{id}', [Certificate::class, 'pengesahanKp'])->name('admin.laboratory.clearance.certificate.pengesahan.kp')->middleware('admin'); 
+    Route::get('surat-keterangan-bebas-laboratorium/tanda-terima-proposal/{id}', [Certificate::class, 'tandaTerimaProposal'])->name('admin.laboratory.clearance.certificate.tanda.terima.proposal')->middleware('admin'); 
+    Route::get('/surat-keterangan-bebas-laboratorium/acc/{id}', [Certificate::class, 'acc'])->name('admin.laboratory.clearance.certificate.acc')->middleware('admin');
+    Route::get('/surat-keterangan-bebas-laboratorium/un-acc/{id}', [Certificate::class, 'unacc'])->name('admin.laboratory.clearance.certificate.unacc')->middleware('admin');
     Route::get('/login', [AdminController::class, 'index'])->name('admin.login.form');
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');
@@ -546,7 +553,12 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::post('mahasiswa/message/reply/{id}', [DashboardController::class, 'reply'])->name('mahasiswa.message.reply.submit');
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratoryView'])->name('mahasiswa.laboratory.clearance.certificate'); 
     Route::post('mahasiswa/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratorySubmit'])->name('mahasiswa.laboratory.clearance.certificate.submit'); 
-    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium-detail', [DashboardController::class, 'certificateClearenceLaboratoryDetail'])->name('mahasiswa.laboratory.clearance.certificate.detail'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium-detail/{id}', [DashboardController::class, 'certificateClearenceLaboratoryDetail'])->name('mahasiswa.laboratory.clearance.certificate.detail'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/kpm/{id}', [DashboardController::class, 'kpm'])->name('mahasiswa.laboratory.clearance.certificate.kpm'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/laporan-kp/{id}', [DashboardController::class, 'laporanKp'])->name('mahasiswa.laboratory.clearance.certificate.laporan.kp'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/form-ujian-ta/{id}', [DashboardController::class, 'formUjianTa'])->name('mahasiswa.laboratory.clearance.certificate.form.ujian.ta'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/pengesahan-kp/{id}', [DashboardController::class, 'pengesahanKp'])->name('mahasiswa.laboratory.clearance.certificate.pengesahan.kp'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/tanda-terima-proposal/{id}', [DashboardController::class, 'tandaTerimaProposal'])->name('mahasiswa.laboratory.clearance.certificate.tanda.terima.proposal'); 
     Route::get('mahasiswa/mahasiswa/logout', [DashboardController::class, 'logout'])->name('mahasiswa.logout');
 });
 

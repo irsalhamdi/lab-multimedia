@@ -915,15 +915,63 @@ class DashboardController extends Controller
         return view('user.certificate-clearence-laboratory.index', compact('certificate'));
     }
 
-    public function certificateClearenceLaboratoryDetail()
-    {
-        $user = Auth::user();
+    public function certificateClearenceLaboratoryDetail($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.certificate',compact('user'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab.pdf');
+        }
+    }
 
-        $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.certificate',compact('user'))->setPaper('a4')->setOptions([
-            'tempDir' => public_path(),
-            'chroot' => public_path(),
-        ]);
-        return $pdf->download('SK-Bebas-Lab.pdf');
+    public function kpm($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('user.certificate-clearence-laboratory.kpm', compact('certificate'));
+    }
+
+    public function laporanKp($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('user.certificate-clearence-laboratory.laporan-kp', compact('certificate'));
+    }
+
+    public function formUjianTa($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('user.certificate-clearence-laboratory.form-ujian-ta', compact('certificate'));
+    }
+
+    public function pengesahanKp($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('user.certificate-clearence-laboratory.pengesahan-kp', compact('certificate'));
+    }
+
+    public function tandaTerimaProposal($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('user.certificate-clearence-laboratory.tanda-terima-proposal', compact('certificate'));
     }
 
 }

@@ -15,6 +15,12 @@
                                     Surat 
                                 </th>
                                 <th>
+                                    Status
+                                </th>
+                                <th>
+                                    File
+                                </th>
+                                <th>
                                     Aksi
                                 </th>
                             </tr>
@@ -25,7 +31,42 @@
                                     SK Bebas Lab
                                 </td>
                                 <td>
-                                    <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail') }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
+                                    @if ($certificate->status === 0)
+                                       <span class="card-description">Sedang ditinjau admin </span>                                        
+                                    @elseif($certificate->status === 1)
+                                        <span class="text-success">Acc</span>                                   
+                                    @else
+                                        <span class="text-danger">Ditolak</span>
+                                    @endif
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <form action="">
+                                            <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                              Dokumen
+                                            </a>
+                                            <div class="dropdown-menu">
+                                                <a href="{{ route('mahasiswa.laboratory.clearance.certificate.kpm', $certificate->id) }}" class="dropdown-item">
+                                                    KPM
+                                                </a>
+                                                <a href="{{ route('mahasiswa.laboratory.clearance.certificate.laporan.kp', $certificate->id) }}" class="dropdown-item">
+                                                    Laporan KP
+                                                </a>
+                                                <a href="{{ route('mahasiswa.laboratory.clearance.certificate.form.ujian.ta', $certificate->id) }}" class="dropdown-item">
+                                                    Form Ujian TA
+                                                </a>
+                                                <a href="{{ route('mahasiswa.laboratory.clearance.certificate.pengesahan.kp', $certificate->id) }}" class="dropdown-item">
+                                                    Pengesahan KP
+                                                </a>
+                                                <a href="{{ route('mahasiswa.laboratory.clearance.certificate.tanda.terima.proposal', $certificate->id) }}" class="dropdown-item">
+                                                    Tanda Terima Proposal
+                                                </a>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </td>
+                                <td>
+                                    <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
                                         <i class="typcn typcn-eye-outline"></i>
                                     </a>
                                 </td>

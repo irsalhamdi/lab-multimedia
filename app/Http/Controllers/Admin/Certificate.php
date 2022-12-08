@@ -28,4 +28,63 @@ class Certificate extends Controller
 
         return view('admin.certificate.certificate', compact('user', 'certificate'));
     }
+
+    public function kpm($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('admin.certificate.kpm', compact('certificate'));
+    }
+
+    public function laporanKp($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('admin.certificate.laporan-kp', compact('certificate'));
+    }
+
+    public function formUjianTa($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('admin.certificate.form-ujian-ta', compact('certificate'));
+    }
+
+    public function pengesahanKp($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('admin.certificate.pengesahan-kp', compact('certificate'));
+    }
+
+    public function tandaTerimaProposal($id)
+    {
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        return view('admin.certificate.tanda-terima-proposal', compact('certificate'));
+    }
+
+    public function acc($id)
+    {
+        CertificateClearenceLaboratory::findOrFail($id)->update([
+            'status' => 1,
+        ]);
+
+        $notification = array(
+            'message' => 'SK Bebas Lab berhasil di acc',
+            'alert-type' => 'success',
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
+    public function unacc($id)
+    {
+        CertificateClearenceLaboratory::findOrFail($id)->update([
+            'status' => 2,
+        ]);
+
+        $notification = array(
+            'message' => 'SK Bebas Lab berhasil di tolak',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->back()->with($notification);
+    }
+
 }

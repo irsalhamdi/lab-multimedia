@@ -16,7 +16,16 @@
                                         Nama
                                     </th>
                                     <th>
+                                        Status
+                                    </th>
+                                    <th>
+                                        File
+                                    </th>
+                                    <th>
                                         Aksi
+                                    </th>
+                                    <th>                                        
+                                        Lihat
                                     </th>
                                 </tr>
                             </thead>
@@ -25,6 +34,62 @@
                                     <tr>
                                         <td class="py-1">
                                             {{ $certificate->user->name }}
+                                        </td>
+                                        <td>
+                                            @if ($certificate->status === 0)
+                                                <span class="card-description">Belum Acc </span>                                        
+                                            @elseif($certificate->status === 1)
+                                                <span class="text-success">Acc</span>                                   
+                                            @else
+                                                <span class="text-danger">Ditolak</span>
+                                            @endif
+                                        </td>
+                                        <td>
+                                            <div class="btn-group">
+                                                <form action="">
+                                                    <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                      Dokumen
+                                                    </a>
+                                                    <div class="dropdown-menu">
+                                                        <a href="{{ route('admin.laboratory.clearance.certificate.kpm', $certificate->id) }}" class="dropdown-item">
+                                                            KPM
+                                                        </a>
+                                                        <a href="{{ route('admin.laboratory.clearance.certificate.laporan.kp', $certificate->id) }}" class="dropdown-item">
+                                                            Laporan KP
+                                                        </a>
+                                                        <a href="{{ route('admin.laboratory.clearance.certificate.form.ujian.ta', $certificate->id) }}" class="dropdown-item">
+                                                            Form Ujian TA
+                                                        </a>
+                                                        <a href="{{ route('admin.laboratory.clearance.certificate.pengesahan.kp', $certificate->id) }}" class="dropdown-item">
+                                                            Pengesahan KP
+                                                        </a>
+                                                        <a href="{{ route('admin.laboratory.clearance.certificate.tanda.terima.proposal', $certificate->id) }}" class="dropdown-item">
+                                                            Tanda Terima Proposal
+                                                        </a>
+                                                    </div>
+                                                </form>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            @if ($certificate->status === 1)
+                                                <div class="btn-group">
+                                                    <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                        Aksi
+                                                    </a>
+                                                    <div class="dropdown-menu">
+                                                        <a id="year" onclick="submit()" type="submit" class="dropdown-item" href="{{ route('admin.laboratory.clearance.certificate.unacc', $certificate->id) }}">Un-Acc</a>
+                                                    </div>
+                                                </div>
+                                            @else
+                                                <div class="btn-group">
+                                                    <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                                                        Aksi
+                                                    </a>
+                                                    <div class="dropdown-menu">
+                                                        <a id="year" onclick="submit()" type="submit" class="dropdown-item" href="{{ route('admin.laboratory.clearance.certificate.acc', $certificate->id) }}">Acc</a>
+                                                    </div>
+                                                </div>
+                                            @endif
                                         </td>
                                         <td>
                                             <a target="_blank"href="{{ route('admin.laboratory.clearance.certificate.detail', $certificate->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
