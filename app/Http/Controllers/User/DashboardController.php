@@ -923,7 +923,7 @@ class DashboardController extends Controller
         return view('user.certificate-clearence-laboratory.index', compact('certificate','options'));
     }
 
-    public function certificateClearenceLaboratoryDetail($id)
+    public function certificateClearenceLaboratoryBasisData($id)
     {   
         $certificate = CertificateClearenceLaboratory::findOrFail($id);
         if($certificate->status === 0)
@@ -944,11 +944,388 @@ class DashboardController extends Controller
         }else{
             $user = Auth::user();
     
-            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.certificate',compact('user'))->setPaper('a4')->setOptions([
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.basis-data',compact('user', 'certificate'))->setPaper('a4')->setOptions([
                 'tempDir' => public_path(),
                 'chroot' => public_path(),
             ]);
-            return $pdf->download('SK-Bebas-Lab.pdf');
+            return $pdf->download('SK-Bebas-Lab-Basis-Data.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryMultimedia($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.multimedia',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Multimedia.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryRobotika($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.robotika',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Robotika.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryElektronika($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.elektronika',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Elektronika.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryPerangkatKeras($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.perangkat-keras',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Perangkat-Keras.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryStrukturData($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.struktur-data',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Struktur-Date.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryPemrogramanLanjut($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.pemrograman-lanjut',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Pemrograman-Lanjut.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryInstrumen($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.instrumen',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Instrumen.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryKecerdasan($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.kecerdasan',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Kecerdasan.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryJaringan($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.jaringan',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Jaringan.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryPengolahan($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.pengolahan',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Pengolahan.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryRpl($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.rpl',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-RPL.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryPemrogramanDasar($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.pemrograman-dasar',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Pemrograman-Dasar.pdf');
+        }
+    }
+
+    public function certificateClearenceLaboratoryPemrogramanInternet($id)
+    {   
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        if($certificate->status === 0)
+        {   
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }elseif($certificate->status === 2){
+            $notification = array(
+                'message' => 'SK Bebas Lab belum tersedia',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            $user = Auth::user();
+    
+            $pdf = PDF::loadView('frontend.certificate-clearence-laboratory.pemrograman-internet',compact('user', 'certificate'))->setPaper('a4')->setOptions([
+                'tempDir' => public_path(),
+                'chroot' => public_path(),
+            ]);
+            return $pdf->download('SK-Bebas-Lab-Pemrograman-Internet.pdf');
         }
     }
 

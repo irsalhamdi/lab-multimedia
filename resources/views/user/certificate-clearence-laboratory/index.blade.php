@@ -73,85 +73,85 @@
                                         </a>
                                         <div class="dropdown-menu">
                                             @if ($options['basis_data'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.basis.data', $certificate->id) }}" class="dropdown-item">
                                                     <span>Basis Data</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['multimedia'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.multimedia', $certificate->id) }}" class="dropdown-item">
                                                     <span>Multimedia</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['robotika'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.robotika', $certificate->id) }}" class="dropdown-item">
                                                     <span>Robotika</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['elektronika'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.elektronika', $certificate->id) }}" class="dropdown-item">
                                                     <span>Elektronika</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['perangkat_keras'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.perangkat.keras', $certificate->id) }}" class="dropdown-item">
                                                     <span>Perangkat Keras</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['struktur_data'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.struktur.data', $certificate->id) }}" class="dropdown-item">
                                                     <span>Struktur Data</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['pemrograman_lanjut'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.pemrograman.lanjut', $certificate->id) }}" class="dropdown-item">
                                                     <span>Pemrograman Lanjut</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['instrumen'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.instrumen', $certificate->id) }}" class="dropdown-item">
                                                     <span>Instrumen</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['kecerdasan'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.kecerdasan', $certificate->id) }}" class="dropdown-item">
                                                     <span>BI</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['jaringan'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.jaringan', $certificate->id) }}" class="dropdown-item">
                                                     <span>Jaringan</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['pengolahan'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.pengolahan', $certificate->id) }}" class="dropdown-item">
                                                     <span>Pengolahan</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['rpl'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.rpl', $certificate->id) }}" class="dropdown-item">
                                                     <span>RPL</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['pemrograman_dasar'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.pemrograman.dasar', $certificate->id) }}" class="dropdown-item">
                                                     <span>Pemrograman Dasar</span>
                                                 </a>
                                             @else
                                             @endif
                                             @if ($options['pemrograman_internet'] === 1)
-                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" class="dropdown-item">
+                                                <a target="_blank" href="{{ route('mahasiswa.laboratory.clearance.certificate.pemrograman.internet', $certificate->id) }}" class="dropdown-item">
                                                     <span>Pemrograman Internet</span>
                                                 </a>
                                             @else
