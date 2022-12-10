@@ -6,6 +6,14 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Surat Keterangan Bebas Lab</title>
     </head>
+    <style type="text/css" media="print">
+        @page 
+        {
+            size: auto;  
+            margin-top: 0mm; 
+            margin-bottom: 0mm; 
+        }
+    </style>
     <body>
 
         <table width="100%" >
@@ -124,5 +132,8 @@
         </table>
 
         <br>
+        <script>
+            window.print()
+        </script>
     </body>
 </html>
