@@ -233,7 +233,7 @@
 
         <table width="100%">
             <tr>
-                <img style="float: right;" src="{{ asset('frontend/img/qr-code.png') }}" width="100px;">
+                <img style="float: right;" src="{{ asset($certificate->signature) }}" width="100px;">
             </tr>
         </table>
 

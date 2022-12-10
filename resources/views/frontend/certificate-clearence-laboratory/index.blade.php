@@ -225,21 +225,21 @@
                                                     </span>
                                                 @enderror
                                             </div>
-                                        </div>           
+                                        </div>    
+                                        <div class="col-md-12">
+                                            <p>Silahkan tanda tangan di bawah</p>
+                                        </div>       
                                         <div class="col-md-12">
                                             <div id="signature-pad">
-                                                <div style="border:solid 3px rgb(255, 255, 255); width:300px; height:110px; padding:3px; position:relative;">
-                                                    <div id="note" onmouseover="my_function();"></div>
+                                                <div style="border:solid 2px rgb(255, 255, 255); width:360px;height:110px;padding:3px;position:relative;">
+                                                    <div id="note" onmouseover="my_function();">The signature should be inside box</div>
                                                     <canvas id="the_canvas" width="350px" height="100px"></canvas>
                                                 </div>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <p>Silahkan tanda tangan di atas</p>
-                                        </div>
-                                        <div class="col-md-12">
-                                            <div class="apply_btn">
-                                                <button class="boxed-btn3" type="submit">Daftar</button>
+                                                <div style="margin:10px;">
+                                                    <input type="hidden" id="signature" name="signature">
+                                                    <button type="button" id="clear_btn" class="btn btn-danger" style="display: none" data-action="clear"><span class="glyphicon glyphicon-remove"></span> Clear</button>
+                                                    <button type="submit" id="save_btn" class="boxed-btn3" data-action="save-png"><span class="glyphicon glyphicon-ok"></span>Daftar</button>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

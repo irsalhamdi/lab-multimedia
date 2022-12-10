@@ -867,6 +867,10 @@ class DashboardController extends Controller
             $form_kp = date('YmdHis') . "." . $file->getClientOriginalExtension();
             $file->move($destinationPath,$form_kp);
 
+            $sig_string=$request->signature;
+            $nama_file=Auth::user()->name . "." ."png";
+            file_put_contents('upload/signature/'.$nama_file, file_get_contents($sig_string));
+
             CertificateClearenceLaboratory::create([
                 'user_id' => Auth::user()->id,
                 'generation' => $request->generation,
@@ -892,6 +896,7 @@ class DashboardController extends Controller
                 'form_proposal' => $form_proposal,
                 'form_pengesahan_kp' => $form_pengesahan_kp,
                 'form_kp' => $form_kp,
+                'signature' => 'upload/signature/'.$nama_file
             ]);
             
             $notification = [
