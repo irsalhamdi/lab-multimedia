@@ -1,6 +1,5 @@
 @extends('frontend.layouts.main')
 @section('main')
-    <link rel="stylesheet" href="../libs/css/bootstrap.v3.3.6.css">
     <script type="text/javascript" src="{{ asset('frontend/js/signature.js') }}"></script>
     @if (Auth::user())
         <div ata-scroll-index='1' class="admission_area">
@@ -80,85 +79,85 @@
                                         </div>          
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="basis_data" id="checkbox_1" value="1" {{ old('basis_data') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="basis_data" id="checkbox_1" value="1" {{ old('basis_data') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_1">Basis Data & Big Data</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="instrumen" id="checkbox_2" value="1" {{ old('instrumen') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="instrumen" id="checkbox_2" value="1" {{ old('instrumen') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_2">Instrumen & Apk Nanoteknologi</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="multimedia" id="checkbox_3" value="1" {{ old('multimedia') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="multimedia" id="checkbox_3" value="1" {{ old('multimedia') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_3">Multimedia & Pemrograman Permainan</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="kecerdasan" id="checkbox_4" value="1" {{ old('kecerdasan') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="kecerdasan" id="checkbox_4" value="1" {{ old('kecerdasan') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_4">Kecerdasan Buatan & Grafika Komp</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="robotika" id="checkbox_5" value="1" {{ old('robotika') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="robotika" id="checkbox_5" value="1" {{ old('robotika') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_5">Robotika, Sistem Kendali & Tertanam</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="jaringan" id="checkbox_6" value="1" {{ old('jaringan') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="jaringan" id="checkbox_6" value="1" {{ old('jaringan') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_6">Jaringan Komputer & Komdat</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="elektronika" id="checkbox_7" value="1" {{ old('elektronika') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="elektronika" id="checkbox_7" value="1" {{ old('elektronika') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_7">Elektronika & Sistem Digital</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="pengolahan" id="checkbox_8" value="1" {{ old('pengolahan') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="pengolahan" id="checkbox_8" value="1" {{ old('pengolahan') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_8">Pengolahan Citra & Pengenalan Pola</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="perangkat_keras" id="checkbox_9" value="1" {{ old('perangkat_keras') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="perangkat_keras" id="checkbox_9" value="1" {{ old('perangkat_keras') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_9">Perangkat Keras & Teknologi Komponen</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="rpl" id="checkbox_10" value="1" {{ old('rpl') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="rpl" id="checkbox_10" value="1" {{ old('rpl') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_10">RPL & Sistem Informasi</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="struktur_data" id="checkbox_11" value="1" {{ old('struktur_data') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="struktur_data" id="checkbox_11" value="1" {{ old('struktur_data') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_11">Struktur Data & SI Akuntansi</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="pemrograman_dasar" id="checkbox_12" value="1" {{ old('pemrograman_dasar') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="pemrograman_dasar" id="checkbox_12" value="1" {{ old('pemrograman_dasar') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_12">Pemrograman Dasar</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="pemrograman_lanjut" id="checkbox_13" value="1" {{ old('pemrograman_lanjut') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="pemrograman_lanjut" id="checkbox_13" value="1" {{ old('pemrograman_lanjut') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_13">Pemrograman Lanjut</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="pemrograman_internet" id="checkbox_14" value="1" {{ old('pemrograman_internet') == '1' ? 'checked' : '' }}/>
+                                                <input onclick="setChecks(this)" type="checkbox" name="pemrograman_internet" id="checkbox_14" value="1" {{ old('pemrograman_internet') == '1' ? 'checked' : '' }}/>
                                                 <label for="checkbox_14">Pemrograman Internet</label>
                                             </div>
                                         </div>  
@@ -309,85 +308,85 @@
                                         </div>          
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="basis_data" id="checkbox_1" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="basis_data" id="checkbox_1" value="1" />
                                                 <label for="checkbox_1">Basis Data & Big Data</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="instrumen" id="checkbox_2" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="instrumen" id="checkbox_2" value="1" />
                                                 <label for="checkbox_2">Instrumen & Apk Nanoteknologi</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="multimedia" id="checkbox_3" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="multimedia" id="checkbox_3" value="1" />
                                                 <label for="checkbox_3">Multimedia & Pemrograman Permainan</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="kecerdasan" id="checkbox_4" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="kecerdasan" id="checkbox_4" value="1" />
                                                 <label for="checkbox_4">Kecerdasan Buatan & Grafika Komp</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="robotika" id="checkbox_5" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="robotika" id="checkbox_5" value="1" />
                                                 <label for="checkbox_5">Robotika, Sistem Kendali & Tertanam</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="jaringan" id="checkbox_6" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="jaringan" id="checkbox_6" value="1" />
                                                 <label for="checkbox_6">Jaringan Komputer & Komdat</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="elektronika" id="checkbox_7" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="elektronika" id="checkbox_7" value="1" />
                                                 <label for="checkbox_7">Elektronika & Sistem Digital</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="pengolahan" id="checkbox_8" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="pengolahan" id="checkbox_8" value="1" />
                                                 <label for="checkbox_8">Pengolahan Citra & Pengenalan Pola</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="perangkat_keras" id="checkbox_9" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="perangkat_keras" id="checkbox_9" value="1" />
                                                 <label for="checkbox_9">Perangkat Keras & Teknologi Komponen</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="rpl" id="checkbox_10" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="rpl" id="checkbox_10" value="1" />
                                                 <label for="checkbox_10">RPL & Sistem Informasi</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="struktur_data" id="checkbox_11" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="struktur_data" id="checkbox_11" value="1" />
                                                 <label for="checkbox_11">Struktur Data & SI Akuntansi</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="pemrograman_dasar" id="checkbox_12" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="pemrograman_dasar" id="checkbox_12" value="1" />
                                                 <label for="checkbox_12">Pemrograman Dasar</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="pemrograman_internet" id="checkbox_13" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="pemrograman_internet" id="checkbox_13" value="1" />
                                                 <label for="checkbox_13">Pemrograman Lanjut</label>
                                             </div>
                                         </div>        
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <input type="checkbox" name="hot_deals" id="checkbox_14" value="1" />
+                                                <input onclick="setChecks(this)" type="checkbox" name="hot_deals" id="checkbox_14" value="1" />
                                                 <label for="checkbox_14">Pemrograman Internet</label>
                                             </div>
                                         </div>  
@@ -488,6 +487,22 @@
         });
         function my_function(){
             document.getElementById("note").innerHTML="";
+        }
+    </script>
+    <script type="text/javascript">
+        var checkCount=0
+        var maxChecks=5
+        function setChecks(obj){
+            if(obj.checked){
+                checkCount=checkCount+1
+            }else{
+                checkCount=checkCount-1
+            }
+            if (checkCount>maxChecks){
+                obj.checked=false
+                checkCount=checkCount-1
+                alert('Anda hanya dapat memilih hingga ' + maxChecks + ' pilihan lab')
+            }
         }
     </script>
 @endsection
