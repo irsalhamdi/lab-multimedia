@@ -17,6 +17,22 @@
                   </div>
                 </div>
             </form>
+            <div class="btn-group">
+                <form action="{{ route('asistant.mahasiswa') }}">
+                    <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                    Jurusan
+                    </a>
+                    <div class="dropdown-menu">
+                        <button id="year" onclick="submit()" type="submit" name="search" value="Komputerisasi Akuntansi" class="dropdown-item" href="#">Komputerisasi Akuntansi</button>
+                        <button id="year" onclick="submit()" type="submit" name="search" value="Manajemen Informatika" class="dropdown-item" href="#">Manajemen Informatika</button>
+                        <button id="year" onclick="submit()" type="submit" name="search" value="Sistem Informasi" class="dropdown-item" href="#">Sistem Informasi</button>
+                        <button id="year" onclick="submit()" type="submit" name="search" value="Sistem Komputer" class="dropdown-item" href="#">Sistem Komputer</button>
+                        <button id="year" onclick="submit()" type="submit" name="search" value="Teknik Komputer" class="dropdown-item" href="#">Teknik Komputer</button>
+                        <button id="year" onclick="submit()" type="submit" name="search" value="Teknik Informatika" class="dropdown-item" href="#">Teknik Informatika</button>
+                        <button id="year" onclick="submit()" type="submit" name="search" value="Teknik Komputer Jaringan" class="dropdown-item" href="#">Teknik Komputer Jaringan</button>
+                    </div>
+                </form>
+            </div>
             @if ($users->count())
                 <div class="table-responsive">
                     <table class="table table-striped">
@@ -30,6 +46,9 @@
                             </th>
                             <th>
                                 Jurusan
+                            </th>
+                            <th>
+                                Status
                             </th>
                             <th>
                                 Aksi
@@ -47,6 +66,13 @@
                                     </td>
                                     <td class="py-1">
                                         {{$user->jurusan }}
+                                    </td>
+                                    <td class="py-1">
+                                        @if ($user->status === 1)
+                                            Member Lab
+                                        @else
+                                            -
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="{{ route('asistant.mahasiswa.edit', $user->id) }}" type="button" class="btn btn-warning btn-circle btn-sm justify-content-between flex-nowrap">

@@ -10,7 +10,7 @@ class LeadTeacherController extends Controller
 {
     public function index()
     {
-        $dosens =  Dosen::orderBy('name', 'ASC')->filter(request(['search']))->paginate(3)->withQueryString();
+        $dosens =  Dosen::orderBy('name', 'ASC')->filter(request(['search']))->paginate(10)->withQueryString();
        return view('lead.dosen.index', compact('dosens'));
     }
 

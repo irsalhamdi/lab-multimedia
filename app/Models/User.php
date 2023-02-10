@@ -20,7 +20,8 @@ class User extends Authenticatable implements MustVerifyEmail
                          ->orWhere('jurusan', 'like', '%' . $search . '%')
                          ->orWhere('phone', 'like', '%' . $search . '%')
                          ->orWhere('address', 'like', '%' . $search . '%')
-                         ->orWhere('updated_at', 'like', '%' . $search . '%');
+                         ->orWhere('updated_at', 'like', '%' . $search . '%')
+                         ->orWhere('status', 'like', '%' . $search . '%');
         });
     }
 

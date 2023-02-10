@@ -10,7 +10,7 @@ class MahasiswaController extends Controller
 {
     public function index()
     {
-       $users =  User::orderBy('name', 'ASC')->filter(request(['search']))->paginate(3)->withQueryString();
+       $users =  User::orderBy('name', 'ASC')->filter(request(['search']))->paginate(10)->withQueryString();
        return view('admin.mahasiswa.index', compact('users'));
     }
 

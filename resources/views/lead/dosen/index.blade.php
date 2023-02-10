@@ -17,6 +17,22 @@
                     </div>
                     </div>
                 </form>
+                <div class="btn-group">
+                    <form action="{{ route('lead.dosen') }}">
+                        <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
+                        Jurusan
+                        </a>
+                        <div class="dropdown-menu">
+                            <button id="year" onclick="submit()" type="submit" name="search" value="Komputerisasi Akuntansi" class="dropdown-item" href="#">Komputerisasi Akuntansi</button>
+                            <button id="year" onclick="submit()" type="submit" name="search" value="Manajemen Informatika" class="dropdown-item" href="#">Manajemen Informatika</button>
+                            <button id="year" onclick="submit()" type="submit" name="search" value="Sistem Informasi" class="dropdown-item" href="#">Sistem Informasi</button>
+                            <button id="year" onclick="submit()" type="submit" name="search" value="Sistem Komputer" class="dropdown-item" href="#">Sistem Komputer</button>
+                            <button id="year" onclick="submit()" type="submit" name="search" value="Teknik Komputer" class="dropdown-item" href="#">Teknik Komputer</button>
+                            <button id="year" onclick="submit()" type="submit" name="search" value="Teknik Informatika" class="dropdown-item" href="#">Teknik Informatika</button>
+                            <button id="year" onclick="submit()" type="submit" name="search" value="Teknik Komputer Jaringan" class="dropdown-item" href="#">Teknik Komputer Jaringan</button>
+                        </div>
+                    </form>
+                </div>
                 @if ($dosens->count())
                     <div class="table-responsive">
                         <table class="table table-striped">

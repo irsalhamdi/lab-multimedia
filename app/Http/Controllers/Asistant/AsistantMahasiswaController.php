@@ -10,7 +10,7 @@ class AsistantMahasiswaController extends Controller
 {
     public function index()
     {
-       $users =  User::orderBy('name', 'ASC')->filter(request(['search']))->paginate(3)->withQueryString();
+       $users =  User::orderBy('name', 'ASC')->filter(request(['search']))->paginate(10)->withQueryString();
        return view('asistant.mahasiswa.index', compact('users'));
     }
 
