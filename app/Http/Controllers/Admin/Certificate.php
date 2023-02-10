@@ -5,8 +5,9 @@ namespace App\Http\Controllers\Admin;
 use PDF;
 use App\Models\User;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 use App\Models\CertificateClearenceLaboratory;
+use App\Models\NumberCertificate;
+use Illuminate\Http\Request;
 
 class Certificate extends Controller
 {
@@ -102,6 +103,44 @@ class Certificate extends Controller
         );
 
         return redirect()->back()->with($notification);
+    }
+
+    public function certificateVerifyNumber($id)
+    {
+        $information = CertificateClearenceLaboratory::findOrFail($id);
+        $certificates = NumberCertificate::where('certificate_id', $id)->get();
+        return view('admin.certificate.detail', compact(['information', 'certificates']));
+    }
+    
+    public function certificateAddNumber($id)
+    {
+        $certificate = NumberCertificate::findOrFail($id);
+        $information = CertificateClearenceLaboratory::where('id', $certificate->certificate_id)->first();
+        
+        return view('admin.certificate.add-number', compact(['certificate', 'information']));
+    }
+
+    public function certificateSubmitNumber(Request $request, $id)
+    {
+        $certificate = NumberCertificate::findOrFail($id);
+        NumberCertificate::findOrFail($id)->update($request->all());
+        $information = CertificateClearenceLaboratory::where('id', $certificate->certificate_id)->first();
+
+        $notification = array(
+            'message' => 'Nomor Surat berhasil di update',
+            'alert-type' => 'info',
+        );
+
+        return redirect()->route('admin.laboratory.clearance.certificate.verify.number', $information->id)->with($notification);
+    }
+
+    public function certificateResult($id)
+    {   
+        $certificate = NumberCertificate::findOrFail($id);
+        $information = CertificateClearenceLaboratory::where('id', $certificate->certificate_id)->first();
+        $user = User::where('id', $information->user_id)->first();
+
+        return view('admin.certificate.result', compact(['user', 'certificate', 'information']));
     }
 
 }

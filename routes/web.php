@@ -235,7 +235,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/testimoni/acc', [AdminTestimoniController::class, 'acc'])->name('admin.testimonies.acc')->middleware('admin');
     Route::get('/testimoni/unacc', [AdminTestimoniController::class, 'unacc'])->name('admin.testimonies.unacc')->middleware('admin');
     Route::get('/surat-keterangan-bebas-laboratorium', [Certificate::class, 'index'])->name('admin.laboratory.clearance.certificate')->middleware('admin');
-    Route::get('/surat-keterangan-bebas-laboratorium/{id}', [Certificate::class, 'show'])->name('admin.laboratory.clearance.certificate.detail')->middleware('admin');
+    Route::get('/surat-keterangan-bebas-laboratorium-show/{id}', [Certificate::class, 'show'])->name('admin.laboratory.clearance.certificate.detail')->middleware('admin');
     Route::get('surat-keterangan-bebas-laboratorium/kpm/{id}', [Certificate::class, 'kpm'])->name('admin.laboratory.clearance.certificate.kpm')->middleware('admin'); 
     Route::get('surat-keterangan-bebas-laboratorium/laporan-kp/{id}', [Certificate::class, 'laporanKp'])->name('admin.laboratory.clearance.certificate.laporan.kp')->middleware('admin'); 
     Route::get('surat-keterangan-bebas-laboratorium/form-ujian-ta/{id}', [Certificate::class, 'formUjianTa'])->name('admin.laboratory.clearance.certificate.form.ujian.ta')->middleware('admin'); 
@@ -244,6 +244,10 @@ Route::prefix('admin')->group(function(){
     Route::get('surat-keterangan-bebas-laboratorium/form-pengajuan/{id}', [Certificate::class, 'formPengajuan'])->name('admin.laboratory.clearance.certificate.form.pengajuan')->middleware('admin'); 
     Route::get('/surat-keterangan-bebas-laboratorium/acc/{id}', [Certificate::class, 'acc'])->name('admin.laboratory.clearance.certificate.acc')->middleware('admin');
     Route::get('/surat-keterangan-bebas-laboratorium/un-acc/{id}', [Certificate::class, 'unacc'])->name('admin.laboratory.clearance.certificate.unacc')->middleware('admin');
+    Route::get('/surat-keterangan-bebas-laboratorium/{id}', [Certificate::class, 'certificateVerifyNumber'])->name('admin.laboratory.clearance.certificate.verify.number');
+    Route::get('/surat-keterangan-bebas-laboratorium-add-number/{id}', [Certificate::class, 'certificateAddNumber'])->name('admin.laboratory.clearance.certificate.add.number');
+    Route::post('/surat-keterangan-bebas-laboratorium-submit-number/{id}', [Certificate::class, 'certificateSubmitNumber'])->name('admin.laboratory.clearance.certificate.submit.number');
+    Route::get('/surat-keterangan-bebas-laboratorium-result/{id}', [Certificate::class, 'certificateResult'])->name('admin.laboratory.clearance.certificate.result');
     Route::get('/login', [AdminController::class, 'index'])->name('admin.login.form');
     Route::post('/login', [AdminController::class, 'login'])->name('admin.login');
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('admin.dashboard')->middleware('admin');

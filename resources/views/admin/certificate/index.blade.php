@@ -95,13 +95,9 @@
                                             @endif
                                         </td>
                                         <td>
-                                            @if ($certificate->status !== 1)
-                                                <span class="card-description">Belum Tersedia </span>  
-                                            @else
-                                                <a target="_blank"href="{{ route('admin.laboratory.clearance.certificate.detail', $certificate->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
-                                                    <i class="typcn typcn-eye-outline"></i>
-                                                </a>
-                                            @endif
+                                            <a href="{{ route('admin.laboratory.clearance.certificate.verify.number', $certificate->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
+                                                <i class="typcn typcn-eye-outline"></i>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
