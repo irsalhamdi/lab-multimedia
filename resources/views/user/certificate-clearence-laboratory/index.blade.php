@@ -66,8 +66,7 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>
-                                    <div class="btn-group">
+                                    {{-- <div class="btn-group">
                                         <a class="btn btn-white dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-expanded="false">
                                           Laboratorium
                                         </a>
@@ -157,7 +156,11 @@
                                             @else
                                             @endif
                                         </div>
-                                    </div>
+                                    </div> --}}
+                                <td>
+                                    <a href="{{ route('mahasiswa.laboratory.clearance.certificate.detail', $certificate->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
+                                        <i class="typcn typcn-eye-outline"></i>
+                                    </a>
                                 </td>
                             </tr>
                         </tbody>

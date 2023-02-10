@@ -558,6 +558,8 @@ Route::middleware('auth', 'verified')->group(function(){
     Route::post('mahasiswa/message/reply/{id}', [DashboardController::class, 'reply'])->name('mahasiswa.message.reply.submit');
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratoryView'])->name('mahasiswa.laboratory.clearance.certificate'); 
     Route::post('mahasiswa/surat-keterangan-bebas-laboratorium', [DashboardController::class, 'certificateClearenceLaboratorySubmit'])->name('mahasiswa.laboratory.clearance.certificate.submit'); 
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium/{id}', [DashboardController::class, 'certificateClearenceDetail'])->name('mahasiswa.laboratory.clearance.certificate.detail');
+    Route::get('mahasiswa/surat-keterangan-bebas-laboratorium-result/{id}', [DashboardController::class, 'certificateResult'])->name('mahasiswa.laboratory.clearance.certificate.result');
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium-basis_data/{id}', [DashboardController::class, 'certificateClearenceLaboratoryBasisData'])->name('mahasiswa.laboratory.clearance.certificate.basis.data'); 
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium-multimedia/{id}', [DashboardController::class, 'certificateClearenceLaboratoryMultimedia'])->name('mahasiswa.laboratory.clearance.certificate.multimedia'); 
     Route::get('mahasiswa/surat-keterangan-bebas-laboratorium-robotika/{id}', [DashboardController::class, 'certificateClearenceLaboratoryRobotika'])->name('mahasiswa.laboratory.clearance.certificate.robotika'); 

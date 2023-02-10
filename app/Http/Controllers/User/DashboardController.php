@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Admin\Certificate;
+use PDF;
 use App\Models\News;
 use App\Models\User;
 use App\Models\Reply;
@@ -26,6 +26,7 @@ use App\Models\ReleaseComment;
 use App\Models\ResearchTeacher;
 use App\Models\LearningMaterial;
 use App\Mail\ResearchTeacherMail;
+use App\Models\NumberCertificate;
 use Illuminate\Support\Facades\DB;
 use App\Models\CommunityDedication;
 use App\Models\ResearchParticipant;
@@ -35,10 +36,11 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\CommunityDedicationMail;
-use App\Models\CertificateClearenceLaboratory;
 use App\Models\CommunityDedicationGuide;
+use App\Http\Controllers\Admin\Certificate;
+use App\Models\CertificateClearenceLaboratory;
 use App\Models\ParticipantCommunityDedication;
-use PDF;
+
 class DashboardController extends Controller
 {
     public function index()
@@ -812,6 +814,22 @@ class DashboardController extends Controller
         $user = Auth::user();
 
         return view('frontend.certificate-clearence-laboratory.index', compact('contact', 'regency', 'district', 'village', 'title', 'user'));
+    }
+
+    public function certificateClearenceDetail($id)
+    {
+        $information = CertificateClearenceLaboratory::findOrFail($id);
+        $certificates = NumberCertificate::where('certificate_id', $id)->get();
+        return view('user.certificate-clearence-laboratory.detail', compact(['information', 'certificates']));
+    }
+
+    public function certificateResult($id)
+    {
+        $certificate = NumberCertificate::findOrFail($id);
+        $information = CertificateClearenceLaboratory::where('id', $certificate->certificate_id)->first();
+        $user = User::where('id', $information->user_id)->first();
+
+        return view('user.certificate-clearence-laboratory.result', compact(['user', 'certificate', 'information']));
     }
 
     public function certificateClearenceLaboratorySubmit(Request $request)
