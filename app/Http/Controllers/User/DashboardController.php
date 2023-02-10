@@ -889,7 +889,7 @@ class DashboardController extends Controller
             $nama_file=Auth::user()->name . "." ."png";
             file_put_contents('upload/signature/'.$nama_file, file_get_contents($sig_string));
 
-            CertificateClearenceLaboratory::create([
+            $id = CertificateClearenceLaboratory::insertGetId([
                 'user_id' => Auth::user()->id,
                 'generation' => $request->generation,
                 'title_of_thesis' => $request->title_of_thesis,
@@ -917,6 +917,19 @@ class DashboardController extends Controller
                 'signature' => 'upload/signature/'.$nama_file
             ]);
             
+            $option = CertificateClearenceLaboratory::select(DB::raw('basis_data, multimedia, robotika, elektronika, perangkat_keras, struktur_data, pemrograman_lanjut, instrumen, kecerdasan, jaringan, pengolahan, rpl, pemrograman_dasar, pemrograman_internet'))->where('id', $id)->first();
+
+            $results = array_filter($option->toArray(), function ($value) {
+                return $value === 1;
+            });
+    
+            foreach($results as $result => $number){
+                NumberCertificate::insert([
+                    'certificate_id' => $id,
+                    'type' => $result
+                ]);
+            }
+
             $notification = [
                 'message' => 'Pengajuan SK Bebas Lab berhasil !',
                 'alert-type' => 'success',
