@@ -126,7 +126,7 @@
 
         <table width="100%">
             <tr>
-                <b style="float: right; font-family: sans-serif;">CAKRO PRANOLO</b><br>
+                <b style="float: right; font-family: sans-serif;">Abdillahi Romadhona</b><br>
                 <span style="float: right; font-family: sans-serif;">NIP : 19820318 201409 1 001</span>
             </tr>
         </table>
