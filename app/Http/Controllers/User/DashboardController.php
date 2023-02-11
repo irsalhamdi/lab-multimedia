@@ -40,6 +40,7 @@ use App\Models\CommunityDedicationGuide;
 use App\Http\Controllers\Admin\Certificate;
 use App\Models\CertificateClearenceLaboratory;
 use App\Models\ParticipantCommunityDedication;
+use Illuminate\Support\Carbon;
 
 class DashboardController extends Controller
 {
@@ -926,7 +927,9 @@ class DashboardController extends Controller
             foreach($results as $result => $number){
                 NumberCertificate::insert([
                     'certificate_id' => $id,
-                    'type' => $result
+                    'type' => $result,
+                    'created_at' => Carbon::now(),
+                    'updated_at' => Carbon::now(),
                 ]);
             }
 

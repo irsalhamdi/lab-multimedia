@@ -4,10 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use PDF;
 use App\Models\User;
+use Illuminate\Http\Request;
+use App\Models\NumberCertificate;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use App\Models\CertificateClearenceLaboratory;
-use App\Models\NumberCertificate;
-use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class Certificate extends Controller
 {
@@ -79,16 +81,28 @@ class Certificate extends Controller
 
     public function acc($id)
     {
-        CertificateClearenceLaboratory::findOrFail($id)->update([
-            'status' => 1,
-        ]);
+        $certificate = CertificateClearenceLaboratory::findOrFail($id);
+        $check = NumberCertificate::select(DB::raw('number'))->where(['certificate_id' => $certificate->id, 'number' => NULL])->get();
 
-        $notification = array(
-            'message' => 'SK Bebas Lab berhasil di acc',
-            'alert-type' => 'success',
-        );
-
-        return redirect()->back()->with($notification);
+        if(count($check) !== 0){
+            $notification = array(
+                'message' => 'Silahkan lengkapi semua nomor surat terlebih dahulu !',
+                'alert-type' => 'error',
+            );
+    
+            return redirect()->back()->with($notification);
+        }else{
+            CertificateClearenceLaboratory::findOrFail($id)->update([
+                'status' => 1,
+            ]);
+            
+            $notification = array(
+                'message' => 'SK Bebas Lab berhasil di acc',
+                'alert-type' => 'success',
+            );
+    
+            return redirect()->back()->with($notification);
+        }   
     }
 
     public function unacc($id)
@@ -123,7 +137,12 @@ class Certificate extends Controller
     public function certificateSubmitNumber(Request $request, $id)
     {
         $certificate = NumberCertificate::findOrFail($id);
-        NumberCertificate::findOrFail($id)->update($request->all());
+        
+        NumberCertificate::findOrFail($id)->update([
+            'number' => $request->number,
+            'upated_at' => Carbon::now(),
+        ]);
+
         $information = CertificateClearenceLaboratory::where('id', $certificate->certificate_id)->first();
 
         $notification = array(
