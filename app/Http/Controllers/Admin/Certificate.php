@@ -3,13 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use PDF;
+use Carbon\Carbon;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\NumberCertificate;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Mail\CertificateClearenceLaboratoryMail;
+use Illuminate\Support\Facades\Mail;
 use App\Models\CertificateClearenceLaboratory;
-use Carbon\Carbon;
 
 class Certificate extends Controller
 {
@@ -92,10 +94,21 @@ class Certificate extends Controller
     
             return redirect()->back()->with($notification);
         }else{
-            CertificateClearenceLaboratory::findOrFail($id)->update([
+            $information = CertificateClearenceLaboratory::findOrFail($id)->update([
                 'status' => 1,
             ]);
             
+            $getUser = CertificateClearenceLaboratory::findOrFail($id);
+
+            $user = User::findOrFail($getUser->user_id)->first();
+
+            $data = [
+                'name' => $user->name,
+                'link' => 'http://127.0.0.1:8000/mahasiswa/surat-keterangan-bebas-laboratorium',
+            ];
+            
+            Mail::to($user->email)->send(new CertificateClearenceLaboratoryMail($data));
+
             $notification = array(
                 'message' => 'SK Bebas Lab berhasil di acc',
                 'alert-type' => 'success',
