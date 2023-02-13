@@ -25,6 +25,7 @@ class AsistantCustomerController extends Controller
         $news = News::findOrFail($lastNews);
         
         $data = [
+            'image' => $news->image,
             'link' => 'http://127.0.0.1:8000/berita/detail/' . $news->id,
             'title' => $news->title,
             'excerpt' => $news->excerpt,

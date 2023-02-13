@@ -30,7 +30,7 @@ class NewsMail extends Mailable
     {
         $news = $this->data;
         return $this->from('samburakatexplore@gmail.com')->view('mail.news', compact('news'))
-                    ->with(['link' => $news['link'], 'title' => $news['title'], 'excerpt' => $news['excerpt'], 'created_at' => $news['created_at']])
+                    ->with(['image' => $news['image'], 'link' => $news['link'], 'title' => $news['title'], 'excerpt' => $news['excerpt'], 'created_at' => $news['created_at']])
                     ->subject('Berita Terbaru dari Lab Multimedia FASILKOM UNSRI');
     }
 }
