@@ -26,7 +26,7 @@
                                 Email
                             </th>
                             <th>
-                                Aksi
+                                Kirim Berita Terbaru
                             </th>
                         </tr>
                         </thead>
@@ -37,8 +37,8 @@
                                         {{$customer->email }}
                                     </td>
                                     <td>
-                                        <a href="" type="button" class="btn btn-warning btn-circle btn-sm justify-content-between flex-nowrap">
-                                            <i class="typcn typcn-edit"></i>
+                                        <a href="{{ route('lead.send.news-letter', $customer->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
+                                            <i class="typcn typcn-arrow-forward"></i>
                                         </a>
                                     </td>
                                 </tr>
