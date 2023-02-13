@@ -197,6 +197,7 @@ Route::prefix('admin')->group(function(){
     Route::get('/message/reply/{id}', [MessageController::class, 'reply'])->name('admin.message.reply')->middleware('admin');
     Route::post('/message/reply/submit/{id}', [MessageController::class, 'submit'])->name('admin.message.reply.submit')->middleware('admin');
     Route::get('/customer', [CustomerController::class, 'index'])->name('admin.customer')->middleware('admin');
+    Route::get('/send-newsletter-all', [CustomerController::class, 'sendAllNewsLetter'])->name('admin.send.all-news-letter');
     Route::get('/send-newsletter/{id}', [CustomerController::class, 'sendNewsLetter'])->name('admin.send.news-letter');
     Route::get('/peralatan-lab', [ToolController::class, 'index'])->name('admin.tools')->middleware('admin');
     Route::get('/peralatan-lab/add', [ToolController::class, 'create'])->name('admin.tool.create')->middleware('admin');
@@ -336,6 +337,7 @@ Route::prefix('asistant')->group(function(){
     Route::post('/dosen/update/{id}', [AsistantTeacherController::class, 'update'])->name('asistant.dosen.update')->middleware('asistant');
     Route::get('/dosen/delete/{id}', [AsistantTeacherController::class, 'destroy'])->name('asistant.dosen.delete')->middleware('asistant');
     Route::get('/customer', [AsistantCustomerController::class, 'index'])->name('asistant.customer')->middleware('asistant');
+    Route::get('/send-newsletter-all', [AsistantCustomerController::class, 'sendAllNewsLetter'])->name('asistant.send.all-news-letter')->middleware('asistant');
     Route::get('/send-newsletter/{id}', [AsistantCustomerController::class, 'sendNewsLetter'])->name('asistant.send.news-letter')->middleware('asistant');
     Route::get('/peralatan-lab', [AsistantToolController::class, 'index'])->name('asistant.tools')->middleware('asistant');
     Route::get('/peralatan-lab/add', [AsistantToolController::class, 'create'])->name('asistant.tool.create')->middleware('asistant');
@@ -516,6 +518,7 @@ Route::prefix('lead')->group(function(){
     Route::get('/galeri/delete-image/{id}', [LeadGalleryController::class, 'deleteImage'])->name('lead.gallery.delete.image')->middleware('lead');
     Route::get('/galeri/delete/{id}', [LeadGalleryController::class, 'destroy'])->name('lead.gallery.delete')->middleware('lead');
     Route::get('/customer', [LeadCustomerController::class, 'index'])->name('lead.customer')->middleware('lead');
+    Route::get('/send-newsletter-all', [LeadCustomerController::class, 'sendAllNewsLetter'])->name('lead.send.all-news-letter')->middleware('lead');
     Route::get('/send-newsletter/{id}', [LeadCustomerController::class, 'sendNewsLetter'])->name('lead.send.news-letter')->middleware('lead');
     Route::get('/login', [LeadController::class, 'index'])->name('lead.login.form');
     Route::post('/login', [LeadController::class, 'login'])->name('lead.login');

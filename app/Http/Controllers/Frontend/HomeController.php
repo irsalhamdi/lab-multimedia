@@ -514,9 +514,15 @@ class HomeController extends Controller
                 'message' => 'Anda telah berlangganan',
                 'alert-type' => 'error',
             );
-    
+            
             return redirect()->back()->with($notification);
         }
+
+        $request->validate([
+            'email' => 'email:rfc,dns'
+        ], [
+            'email' => 'Email harus berupa alamat email yang valid !'
+        ]);
 
         Customers::create($request->all());
 

@@ -4,7 +4,10 @@
         <div class="card">
         <div class="card-body">
             <h4 class="card-title">Kustomer </h4>
-            <p class="card-description">
+            <span style="float: right" class="mb-3">
+                <a href="{{ route('lead.send.all-news-letter') }}" type="button" class="btn btn-sm bg-white btn-icon-text border"><i class="typcn typcn-mail mr-2"></i>Kirim Update Berita</a>
+            </span>
+            <p class="card-description mb-3">
                 Daftar Kustomer 
             </p>
             <form action="{{ route('lead.customer') }}">
@@ -26,7 +29,7 @@
                                 Email
                             </th>
                             <th>
-                                Kirim Berita Terbaru
+                                Aksi
                             </th>
                         </tr>
                         </thead>
@@ -37,8 +40,8 @@
                                         {{$customer->email }}
                                     </td>
                                     <td>
-                                        <a href="{{ route('lead.send.news-letter', $customer->id) }}" type="button" class="btn btn-dark btn-circle btn-sm justify-content-between flex-nowrap">
-                                            <i class="typcn typcn-arrow-forward"></i>
+                                        <a href="{{ route('lead.send.news-letter', $customer->id) }}" type="button" class="btn btn-link btn-circle btn-sm justify-content-between flex-nowrap">
+                                            <i class="typcn typcn-mail"></i>
                                         </a>
                                     </td>
                                 </tr>
