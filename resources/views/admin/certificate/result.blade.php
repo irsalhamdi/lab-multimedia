@@ -153,7 +153,7 @@
         <table width="100%">
             <tr>
                 <b style="float: right; font-family: sans-serif;">Abdillahi Romadhona</b><br>
-                <span style="float: right; font-family: sans-serif;">NIP : 19820318 201409 1 001</span>
+                <span style="float: right; font-family: sans-serif;">NIP : 1988041720131009101</span>
             </tr>
         </table>
 
