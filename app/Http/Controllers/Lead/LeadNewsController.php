@@ -51,12 +51,12 @@ class LeadNewsController extends Controller
                 'excerpt' => Str::limit(strip_tags($request->description), 200)
             ]);
 
-            $notification = array(
-                'message' => 'Berita berhasil ditambahkan !',
-                'alert-type' => 'success',
-            );
+            // $notification = array(
+            //     'message' => 'Berita berhasil ditambahkan !',
+            //     'alert-type' => 'success',
+            // );
     
-            return redirect()->route('lead.news')->with($notification);
+            return redirect()->route('lead.send.all-news-letter');
 
         }else{
 

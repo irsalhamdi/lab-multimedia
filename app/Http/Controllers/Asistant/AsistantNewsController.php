@@ -51,12 +51,12 @@ class AsistantNewsController extends Controller
                 'excerpt' => Str::limit(strip_tags($request->description), 200)
             ]);
 
-            $notification = array(
-                'message' => 'Berita berhasil ditambahkan !',
-                'alert-type' => 'success',
-            );
+            // $notification = array(
+            //     'message' => 'Berita berhasil ditambahkan !',
+            //     'alert-type' => 'success',
+            // );
     
-            return redirect()->route('asistant.news')->with($notification);
+            return redirect()->route('asistant.send.all-news-letter');
 
         }else{
 

@@ -49,15 +49,16 @@ class NewsController extends Controller
                 'image' => $url,
                 'video' => $request->video,
                 'description' => $request->description,
-                'excerpt' => Str::limit(strip_tags($request->description), 200)
+                'excerpt' => Str::limit(strip_tags($request->description), 200),
+                'status' => 1,
             ]);
 
-            $notification = array(
-                'message' => 'Berita berhasil ditambahkan !',
-                'alert-type' => 'success',
-            );
+            // $notification = array(
+            //     'message' => 'Berita berhasil ditambahkan !',
+            //     'alert-type' => 'success',
+            // );
     
-            return redirect()->route('admin.news')->with($notification);
+            return redirect()->route('admin.send.all-news-letter');
 
         }else{
 
@@ -171,12 +172,12 @@ class NewsController extends Controller
             'status' => 1,
         ]);
 
-        $notification = [
-            'message' => 'Berita berhasil diupdate !',
-            'alert-type' => 'info',
-        ];
+        // $notification = [
+        //     'message' => 'Berita berhasil diupdate !',
+        //     'alert-type' => 'info',
+        // ];
 
-        return redirect()->back()->with($notification);
+        return redirect()->route('admin.send.all-news-letter');
     }
 }
 
