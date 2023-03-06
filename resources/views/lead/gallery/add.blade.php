@@ -20,13 +20,21 @@
                     @enderror
                 </div>
                 <div class="form-group">
-                    <label>Image</label>
+                    <img id="showImage" style="display: block; margin-left: auto; margin-right: auto; width: 100px; height: 100px;">
+                </div>
+                <div class="form-group">
+                    <label>Gambar Utama</label>
                     <input type="file" name="image" class="form-control @error('image') is-invalid @enderror" id="image" required>
                     @error('image')
                         <div class="invalid-feedback">
                             {{ $message }}
                         </div>
                     @enderror
+                </div>
+                <div class="form-group">
+                    <label>Gallery</label>
+                    <input type="file" id="multiImg" name="gambar[]" class="form-control" required multiple>
+                    <div id="preview_img"></div>
                 </div>
                 <a href="{{ route('lead.galleries') }}" class="btn btn-light">Cancel</a>
                 <button type="submit" class="btn btn-primary mr-2">Submit</button>

@@ -36,10 +36,24 @@ class LeadGalleryController extends Controller
             $file->move(public_path('upload/gallery'),$fileName);
             $url = 'upload/gallery/' . $fileName;
 
-            Gallery::create([
+            $id = Gallery::insertGetId([
                 'title' => $request->title,
                 'image' => $url,
             ]);
+
+            $images = $request->file('gambar');
+
+            foreach($images  as $image){
+    
+                $name = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+                $image->move(public_path('upload/gallery/activity'), $name);
+                $urlActivity = 'upload/gallery/activity/' . $name;
+    
+                GalleryActivity::insert([
+                    'gallery_id' => $id,
+                    'gambar' => $urlActivity,
+                ]);
+            }
 
             $notification = array(
                 'message' => 'Galeri berhasil ditambahkan !',
