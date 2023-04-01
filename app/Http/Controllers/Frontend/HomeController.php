@@ -30,10 +30,14 @@ use App\Models\TrainingCategory;
 use Illuminate\Support\Facades\DB;
 use App\Models\CommunityDedication;
 use App\Http\Controllers\Controller;
+use App\Models\Admin;
+use App\Models\Asistant;
 use App\Models\GalleryActivity;
+use App\Models\Lead;
 use App\Models\ResearchResultTeacher;
 use App\Models\SchedulePeriode;
 use App\Models\Testimonie;
+use App\Models\User;
 use App\Models\Visitor;
 use Carbon\Carbon;
 use Illuminate\Auth\Access\Gate;
@@ -524,12 +528,32 @@ class HomeController extends Controller
             'email' => 'Email harus berupa alamat email yang valid !'
         ]);
 
-        Customers::create($request->all());
+        $users = User::where('email', $request->email)->first();
+        $dosen = Dosen::where('email', $request->email)->first();
+        $lead = Lead::where('email', $request->email)->first();
+        $asisten = Asistant::where('email', $request->email)->first();
+        $admin = Admin::where('email', $request->email)->first();
 
-        $notification = array(
-            'message' => 'Terima kasih telah berlangganan',
-            'alert-type' => 'success',
-        );
+        if($users || $dosen || $lead || $asisten ||$admin){
+            Customers::create($request->all());
+
+            $notification = array(
+                'message' => 'Terima kasih telah berlangganan',
+                'alert-type' => 'success',
+            );
+        }else{  
+            $notification = array(
+                'message' => 'Fitur ini hanya untuk civitas akademika fasilkom',
+                'alert-type' => 'warning',
+            );
+        }
+
+        // Customers::create($request->all());
+
+        // $notification = array(
+        //     'message' => 'Terima kasih telah berlangganan',
+        //     'alert-type' => 'success',
+        // );
 
         return redirect()->back()->with($notification);
     }
