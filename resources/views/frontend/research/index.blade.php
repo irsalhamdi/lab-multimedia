@@ -56,7 +56,7 @@
                 @else
                     <div class="col-lg-12">
                         <div class="section_title text-center">
-                            <h4>Penelitian di temukan</h4>
+                            <h4>Penelitian tidak  di temukan</h4>
                         </div>
                     </div>
                 @endif
